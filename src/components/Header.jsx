@@ -1,0 +1,58 @@
+import React, { useState } from 'react'
+import Toolbar from '@mui/material/Toolbar';
+import { Button, FormControl, IconButton, InputAdornment, InputBase, InputLabel, Link, TextField, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import ShoppingBasketRoundedIcon from '@mui/icons-material/ShoppingBasketRounded';
+import SearchIcon from '@mui/icons-material/Search';
+import Badge from '@mui/material/Badge';
+import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
+import LeftDrawer from './LeftDrawer'
+
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+function Header() {
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
+    const [open, setOpen] = useState(false)
+  return (
+      <>
+    <Toolbar sx={{borderBottom:0.5, borderColor:'divider'}}>
+        <IconButton  onClick={()=>setOpen(!open)}>
+            <MenuIcon/>
+        </IconButton>
+        <Typography
+            component='h2'
+            variant='h5'
+            color='inherit'
+            align='center'
+            noWrap
+            sx={{flex:1, fontFamily:'Lato', fontWeight:'bold'}}
+        >Manxho</Typography>
+        {matches ? (
+            <>
+            <IconButton>
+                 <Badge badgeContent={4} color="primary">
+                    <ShoppingBasketRoundedIcon/>
+                </Badge>
+            </IconButton>
+            </>
+        ) : (
+            <>
+                <Button variant='contained' sx={{ mr:2}}>Signin</Button>
+            <Button variant='contained' sx={{bgcolor:'black', mr:2, ":hover":{bgcolor:'black'}}}>Signup</Button>
+            <IconButton>
+            <Badge badgeContent={4} color="primary">
+                <ShoppingBasketRoundedIcon/>
+            </Badge>
+            </IconButton>
+            </>
+        ) }
+    </Toolbar> 
+       <LeftDrawer open={open} setOpen={setOpen}/>
+    </>
+
+  )
+}
+
+export default Header
