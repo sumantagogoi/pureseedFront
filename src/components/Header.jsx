@@ -18,9 +18,13 @@ function Header() {
   return (
       <>
     <Toolbar sx={{borderBottom:0.5, borderColor:'divider'}}>
-        <IconButton  onClick={()=>setOpen(!open)}>
+
+        {matches && (<>
+            <IconButton  onClick={()=>setOpen(!open)}>
             <MenuIcon/>
         </IconButton>
+        </>)}
+        
         <Typography
             component='h2'
             variant='h5'

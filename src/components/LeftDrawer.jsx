@@ -13,8 +13,10 @@ function LeftDrawer({open, setOpen}) {
     <SwipeableDrawer 
       PaperProps={{
         sx:{
-          backgroundColor:'black',
-          color:'white'
+          backgroundColor:'#6B2010',
+          color:'white',
+          borderRadius:'0px 100px 0 0'
+          
         }
       }}
       anchor='left'
@@ -29,16 +31,16 @@ function LeftDrawer({open, setOpen}) {
         <Box textAlign='center' sx={{mt:3}}>
             Manxho
         </Box>
-        <Divider/>
-        <Box>
+        <Divider variant='middle' sx={{border:1}}/>
+        <Box sx={{mt:2}}>
         <List>
-          <ListItem button sx={{textAlign:'center'}} >
+          <ListItem button  >
               <ListItemText primary={'Profile'}/>
           </ListItem>
-          <ListItem button sx={{textAlign:'center'}} >
+          <ListItem button  >
               <ListItemText primary={'Login'}/>
           </ListItem>
-          <ListItem button sx={{textAlign:'center'}} >
+          <ListItem button >
               <ListItemText primary={'Logout'}/>
           </ListItem>
         </List>
