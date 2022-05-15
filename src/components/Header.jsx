@@ -36,6 +36,9 @@ function Header() {
             align='center'
             noWrap
             sx={{flex:1, fontFamily:'Lato', fontWeight:'bold'}}
+
+ onClick={()=>navigate('/')}
+
         >Manxho</Typography>
         </>): (<>
             <Typography
