@@ -15,8 +15,8 @@ const Menu = () => {
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-   <Box sx={{flexGrow:1,mt:2, mb:2}}>
-       <Typography sx={{mb:2}} variant='h4' component='h5'>Menu</Typography>
+   <Box sx={{flexGrow:1,mt:4, mb:2}}>
+       <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 
         {Items.map((item)=>(

@@ -4,7 +4,7 @@ import React from 'react';
 const Category = () => {
     return (
         <Box sx={{flexGrow:1, mt:4, borderBottom:1, borderBottomColor:'divider'}}>
-            <Typography sx={{mb:2}} variant='h4' component='h5'>Category</Typography>
+            <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Category</Typography>
        <Grid container spacing={2}>
            <Grid item xs={6} md={4} lg={3}>
                 <Card sx={{maxWidth:345}}>
