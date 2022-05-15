@@ -43,7 +43,7 @@ function Header() {
             </>
         ) : (
             <>
-                <Button variant='contained' sx={{ mr:2}}>Signin</Button>
+                <Button variant='contained' sx={{ mr:2, bgcolor:'#6B2010', ":hover":{bgcolor:'#6B2010'}}}>Signin</Button>
             <Button variant='contained' sx={{bgcolor:'black', mr:2, ":hover":{bgcolor:'black'}}}>Signup</Button>
             <IconButton>
             <Badge badgeContent={4} color="primary">
