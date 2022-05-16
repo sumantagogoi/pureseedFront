@@ -6,6 +6,8 @@ import Signup from './pages/Signup'
 import Header from "./components/Header";
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Cart from './pages/Cart';
+import ResponsiveHeader from './components/ResponsiveHeader';
+import Profile from './pages/Profile';
 
 
 
@@ -14,13 +16,15 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Header/>
+    {/* <Header/> */}
+    <ResponsiveHeader/>
       <Routes>
       
         <Route path='/' exact element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
+        <Route path='/profile' element={<Profile/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
      </BrowserRouter>

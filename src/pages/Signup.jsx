@@ -1,14 +1,25 @@
 import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import GoogleIcon from '@mui/icons-material/Google';
+
+const theme = createTheme({
+  palette: {
+    google:{
+      main:'#DB4437'
+    }
+  }
+});
 
 const Signup = () => {
 
   const navigate = useNavigate()
   return (
+    <ThemeProvider theme={theme}>
    <Container component='main' maxWidth='xs'>
      <Box
-     sx={{marginTop:2, display:'flex', flexDirection:'column', alignItems:'center',}}
+     sx={{marginTop:8, display:'flex', flexDirection:'column', alignItems:'center',}}
      >
        
        <Avatar
@@ -77,11 +88,13 @@ const Signup = () => {
                   <Link onClick={()=>navigate('/signin')} variant='body2'>Already have an account? Sign in</Link>
               </Grid>
           </Grid>
+          <Button startIcon={<GoogleIcon/>} fullWidth color='google' sx={{mt:2, mb:2}}>Signup With Google</Button>
         </Box>
 
      </Box>
 
    </Container>
+   </ThemeProvider>
   )
 }
 

@@ -40,11 +40,11 @@ function LeftDrawer({open, setOpen}) {
         <Divider sx={{border:1}}/>
         <Box sx={{mt:2}}>
         <List>
-          <ListItem button  >
+          <ListItem button onClick={()=>navigateHandler('profile')} >
               <ListItemText primary={'Profile'}/>
           </ListItem>
-          <ListItem button  >
-              <ListItemText primary={'Product'}/>
+          <ListItem button onClick={()=>navigateHandler('products')} >
+              <ListItemText primary={'Products'}/>
           </ListItem>
           <ListItem button onClick={()=>navigateHandler('signin')} >
               <ListItemText primary={'Signin'}/>

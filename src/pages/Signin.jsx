@@ -1,13 +1,25 @@
 import React from 'react'
-import { Avatar, Box, Button, Container, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, Container, Grid, Link, Paper, SvgIcon, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
+import GoogleIcon from '@mui/icons-material/Google';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    google:{
+      main:'#DB4437'
+    }
+  }
+});
 
 const Signin = () => {
   const navigate = useNavigate();
   return (
     <>
+    <ThemeProvider theme={theme}>
     <Container component='main' maxWidth='xs'>
-      <Box sx={{marginTop:2, display:'flex', flexDirection:'column', alignItems:'center',}}>
+      <Box sx={{marginTop:10, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar
               alt='logo'
@@ -35,7 +47,8 @@ const Signin = () => {
         label='Password'
         margin='normal'
         />
-        <Button variant='contained' fullWidth sx={{mt:2, mb:2, bgcolor:'black', ":hover":{bgcolor:'black'}}}>Sing in</Button>
+        <Button variant='contained' color='secondary' fullWidth sx={{mt:2, mb:2, bgcolor:'black', ":hover":{bgcolor:'black'}}}>Sing in</Button>
+
         <Grid container>
           <Grid item xs> 
             <Link underline='hover'>Forgot Password</Link>
@@ -44,9 +57,11 @@ const Signin = () => {
               <Link onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
           </Grid>
         </Grid>
+        <Button startIcon={<GoogleIcon/>} fullWidth color='google' sx={{mt:2, mb:2}}>Login With Google</Button>
         </Box>
 
-        </Container>    
+        </Container>   
+        </ThemeProvider> 
       </>
        
   )
