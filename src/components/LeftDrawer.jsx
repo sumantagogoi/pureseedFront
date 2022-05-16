@@ -9,6 +9,11 @@ import {useNavigate} from 'react-router-dom'
 function LeftDrawer({open, setOpen}) {
   const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const navigate = useNavigate()
+
+  const navigateHandler =(path)=>{
+    navigate(`/${path}`)
+    setOpen(false)
+}
   return (
     <>
     <SwipeableDrawer 
@@ -41,8 +46,11 @@ function LeftDrawer({open, setOpen}) {
           <ListItem button  >
               <ListItemText primary={'Product'}/>
           </ListItem>
-          <ListItem button onClick={()=>navigate('/signin')} >
-              <ListItemText primary={'Singin'}/>
+          <ListItem button onClick={()=>navigateHandler('signin')} >
+              <ListItemText primary={'Signin'}/>
+          </ListItem>
+          <ListItem button onClick={()=>navigateHandler('signup')} >
+              <ListItemText primary={'Signup'}/>
           </ListItem>
           <ListItem button >
               <ListItemText primary={'Logout'}/>

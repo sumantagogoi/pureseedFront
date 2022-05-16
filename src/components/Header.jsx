@@ -17,10 +17,7 @@ function Header() {
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
-
-    const CartHandler = ()=>{
-        navigate('/cart')
-    }
+    
   return (
       <>
     <Toolbar sx={{borderBottom:0.5, borderColor:'divider'}}>
@@ -55,7 +52,7 @@ function Header() {
         
         {matches ? (
             <>
-            <IconButton onClick={CartHandler}>
+            <IconButton onClick={()=>navigate('/cart')}>
                  <Badge  badgeContent={4} color="primary">
                     <ShoppingBasketRoundedIcon/>
                 </Badge>
@@ -63,9 +60,9 @@ function Header() {
             </>
         ) : (
             <>
-                <Button onClick={()=>navigate('/signin')} variant='contained' sx={{ mr:2, bgcolor:'#6B2010', ":hover":{bgcolor:'#6B2010'}}}>Signin</Button>
+            <Button onClick={()=>navigate('/signin')} variant='contained' sx={{ mr:2, bgcolor:'#6B2010', ":hover":{bgcolor:'#6B2010'}}}>Signin</Button>
             <Button onClick={()=>navigate('/signup')} variant='contained' sx={{bgcolor:'black', mr:2, ":hover":{bgcolor:'black'}}}>Signup</Button>
-            <IconButton onClick={CartHandler}> 
+            <IconButton onClick={()=>navigate('/cart')}> 
             <Badge badgeContent={4} color="primary">
                 <ShoppingBasketRoundedIcon/>
             </Badge>

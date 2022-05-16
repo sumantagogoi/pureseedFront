@@ -1,16 +1,13 @@
 import React from 'react'
 import { Avatar, Box, Button, Container, Grid, Link, Paper, TextField, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 
-const Sigin = () => {
+const Signin = () => {
+  const navigate = useNavigate();
   return (
     <>
-    <Container component='main' maxWidth='sm'>
-      <Box
-          marginTop={4}
-          display='flex'
-          flexDirection='column'
-          alignItems='center'
-        >
+    <Container component='main' maxWidth='xs'>
+      <Box sx={{marginTop:2, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar
               alt='logo'
@@ -43,8 +40,8 @@ const Sigin = () => {
           <Grid item xs> 
             <Link underline='hover'>Forgot Password</Link>
           </Grid>
-          <Grid item sx>
-              <Link variant='body2'>No Account?Sign up</Link>
+          <Grid item xs>
+              <Link onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
           </Grid>
         </Grid>
         </Box>
@@ -55,4 +52,4 @@ const Sigin = () => {
   )
 }
 
-export default Sigin
+export default Signin;
