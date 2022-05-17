@@ -9,12 +9,23 @@ import Cart from './pages/Cart';
 import ResponsiveHeader from './components/ResponsiveHeader';
 import Profile from './pages/Profile';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline, Paper } from '@mui/material';
+
+const darkTheme = createTheme({
+  palette: {
+    mode:'dark',
+  },
+})
 
 
 
 function App() {
   return (
     <>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline/>
+      <Paper>
     <BrowserRouter>
     {/* <Header/> */}
     <ResponsiveHeader/>
@@ -28,6 +39,8 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
      </BrowserRouter>
+     </Paper>
+     </ThemeProvider>
     </>
    
   );

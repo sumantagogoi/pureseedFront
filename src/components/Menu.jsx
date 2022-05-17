@@ -15,7 +15,7 @@ const Menu = () => {
     const navigate = useNavigate()
     
   return (
-   <Box sx={{flexGrow:1,mt:4, mb:2}}>
+   <Box sx={{flexGrow:1, mt:4}}>
        <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 
@@ -27,7 +27,7 @@ const Menu = () => {
             </>
         ))} 
        </Grid>
-       <Box onClick={()=>navigate('/products')} sx={{textAlign:'center', mt:2, mb:2}}>
+       <Box onClick={()=>navigate('/products')} sx={{textAlign:'center', mt:2}}>
          <Button variant='outlined' sx={{bgcolor:'brown', color:'white', ':hover':{bgcolor:'brown'}}}>Show All Items</Button>
        </Box>
        

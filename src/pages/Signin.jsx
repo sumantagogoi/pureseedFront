@@ -5,19 +5,19 @@ import GoogleLogin from 'react-google-login';
 import GoogleIcon from '@mui/icons-material/Google';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme({
-  palette: {
-    google:{
-      main:'#DB4437'
-    }
-  }
-});
+// const theme = createTheme({
+//   palette: {
+//     google:{
+//       main:'#DB4437'
+//     }
+//   }
+// });
 
 const Signin = () => {
   const navigate = useNavigate();
   return (
     <>
-    <ThemeProvider theme={theme}>
+    
     <Container component='main' maxWidth='xs'>
       <Box sx={{marginTop:10, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
@@ -57,11 +57,11 @@ const Signin = () => {
               <Link onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
           </Grid>
         </Grid>
-        <Button startIcon={<GoogleIcon/>} fullWidth color='google' sx={{mt:2, mb:2}}>Login With Google</Button>
+        <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2}}>Login With Google</Button>
         </Box>
 
         </Container>   
-        </ThemeProvider> 
+        
       </>
        
   )

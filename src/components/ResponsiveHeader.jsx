@@ -23,8 +23,8 @@ const ResponsiveHeader = () => {
     const navigate = useNavigate()
   return (
       <>
-      <ThemeProvider theme={theme}>
-      <CssBaseline/>
+      {/* <ThemeProvider theme={theme}> */}
+      {/* <CssBaseline/> */}
         <AppBar color='inherit' position="fixed">
         <Toolbar >
 
@@ -62,7 +62,7 @@ const ResponsiveHeader = () => {
         <LeftDrawer open={open} setOpen={setOpen}/>
 
     </AppBar>
-    </ThemeProvider>
+    {/* </ThemeProvider> */}
     </>
   )
 }

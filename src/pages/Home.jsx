@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import Category from "../components/Category";
 
 import Menu from "../components/Menu";
@@ -6,7 +6,7 @@ import Menu from "../components/Menu";
 const Home = () => {
   return (
       <>
-    
+   
     <Container>
         <Category/>
         <Menu/>
