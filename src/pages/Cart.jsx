@@ -30,42 +30,6 @@ const Cart = () => {
       </Box>
       <Grid container >
 
-        {/* <Grid item md={8}>
-        <Card sx={{ display: 'flex'}}>
-        <CardMedia
-        component="img"
-        sx={{ width: 151 }}
-        image={imgs}
-        alt="Live from space album cover"
-      />
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{display:'flex', justifyContent:'flex-end'}}>
-        <IconButton>
-          <CloseRoundedIcon/>
-        </IconButton>
-        </Box>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
-           Roasted Chicken
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          $250.00 x 1 $250.00
-          </Typography>
-        </CardContent>
-        
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton aria-label="add" onClick={increment}>
-            <AddRoundedIcon/>
-          </IconButton>
-         <Typography variant='h5'>{item}</Typography>
-          <IconButton aria-label="minus" onClick={decrement}>
-           <RemoveRoundedIcon/>
-          </IconButton>
-        </Box>
-      </Box>
-      
-      </Card>
-      </Grid> */}
 
         <Grid item md={4}>
 

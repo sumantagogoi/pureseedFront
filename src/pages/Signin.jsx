@@ -38,6 +38,7 @@ const Signin = () => {
            autoComplete='email'
            id='email'
            type='email'
+           sx={{borderColor:'brown'}}
            />
             <TextField
         type='password'
@@ -47,14 +48,14 @@ const Signin = () => {
         label='Password'
         margin='normal'
         />
-        <Button variant='contained' color='secondary' fullWidth sx={{mt:2, mb:2, bgcolor:'black', ":hover":{bgcolor:'black'}}}>Sing in</Button>
+        <Button fullWidth variant='outlined'  sx={{mt:2, mb:2, color:'inherit', borderColor:'brown', ':hover':{bgcolor:'brown'}}}>Sing in</Button>
 
         <Grid container>
           <Grid item xs> 
-            <Link underline='hover'>Forgot Password</Link>
+            <Link sx={{color:'inherit'}} underline='hover'>Forgot Password</Link>
           </Grid>
           <Grid item xs>
-              <Link onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
+              <Link  sx={{color:'inherit'}} onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
           </Grid>
         </Grid>
         <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2}}>Login With Google</Button>
