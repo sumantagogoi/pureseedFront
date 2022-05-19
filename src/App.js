@@ -48,10 +48,3 @@ function App() {
 }
 
 export default App;
-
-{/* <Header/> */}
-
-        {/* <Container>
-          <Category/>
-          <Menu/>
-        </Container> */}

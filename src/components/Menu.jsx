@@ -16,7 +16,7 @@ const Menu = () => {
     
   return (
    <Box sx={{flexGrow:1}}>
-       <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
+       <Typography sx={{mb:3,pt:2, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 
         {newItems.map((item)=>(

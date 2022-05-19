@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia, Container, Grid, Typography, CardContent, IconButton, Paper, Stack, Button } from '@mui/material'
+import { Box, Card, CardMedia, Container, Grid, Typography, CardContent, IconButton, Paper, Stack, Button, Divider } from '@mui/material'
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
@@ -16,13 +16,13 @@ const Cart = () => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
 
-  const [item, setItem] = useState(0)
+  const [IncreaseCartitem, setIncreaseCartitem] = useState(0)
 
   const increment = ()=>{
-        setItem((prev)=>prev +1)
+    setIncreaseCartitem((prev)=>prev +1)
   }
   const decrement = ()=>{
-    setItem((prev)=>prev -1)
+    setIncreaseCartitem((prev)=>prev -1)
   }
 
 
@@ -33,11 +33,12 @@ const Cart = () => {
         {tempItem.map((item,index)=>(
          <>
          <Grid item xs={12} md={4}>
-            <CartItem item={item}/>
+            <CartItem item={item} IncreaseCartitem={IncreaseCartitem} setIncreaseCartitem={setIncreaseCartitem}  />
          </Grid>
          </>
         ))}
       </Grid>
+      <Divider sx={{border:1}}/>
       <Box sx={{display:'flex', mt:'7%', width:'100%', alignItems:'center', justifyContent:'space-between'}}>
         <Typography variant='h5'>Subtotal: &#8377; 24545</Typography>
         <Box>

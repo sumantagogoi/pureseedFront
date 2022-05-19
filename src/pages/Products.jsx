@@ -6,7 +6,7 @@ import { Items } from '../data';
 const Products = () => {
   return (
     <Container>
-      <Box sx={{flexFlow:1, mt:14 }}>
+      <Box sx={{flexFlow:1, pt:14 }}>
         <Typography variant='h3' sx={{textAlign:'center', mb:3}}>Menus</Typography>
         <Grid container spacing={2}>
           {Items.map(item=>(
