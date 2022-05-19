@@ -38,7 +38,10 @@ const Signin = () => {
            autoComplete='email'
            id='email'
            type='email'
-           sx={{borderColor:'brown'}}
+           sx={{
+            "& .MuiInputLabel-root": {color: 'white'}//styles the label
+          }}
+          variant='outlined'
            />
             <TextField
         type='password'
@@ -47,6 +50,10 @@ const Signin = () => {
         fullWidth
         label='Password'
         margin='normal'
+        sx={{
+          "& .MuiInputLabel-root": {color: 'white'}//styles the label
+        }}
+        
         />
         <Button fullWidth variant='outlined'  sx={{mt:2, mb:2, color:'inherit', borderColor:'brown', ':hover':{bgcolor:'brown'}}}>Sing in</Button>
 
@@ -58,7 +65,7 @@ const Signin = () => {
               <Link  sx={{color:'inherit'}} onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
           </Grid>
         </Grid>
-        <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2}}>Login With Google</Button>
+        <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button>
         </Box>
 
         </Container>   

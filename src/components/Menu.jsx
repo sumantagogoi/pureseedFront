@@ -15,7 +15,7 @@ const Menu = () => {
     const navigate = useNavigate()
     
   return (
-   <Box sx={{flexGrow:1, mt:4}}>
+   <Box sx={{flexGrow:1}}>
        <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 

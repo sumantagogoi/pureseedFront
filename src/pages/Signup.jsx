@@ -85,10 +85,10 @@ const Signup = () => {
           <Button variant='outlined' fullWidth sx={{mt:2, mb:2, color:'inherit', ':hover':{bgcolor:'brown'}}}>Signup</Button>
           <Grid container justifyContent='flex-end'>
               <Grid item >
-                  <Link onClick={()=>navigate('/signin')} variant='body2'>Already have an account? Sign in</Link>
+                  <Link onClick={()=>navigate('/signin')} variant='body2' sx={{color:'inherit'}}>Already have an account? Sign in</Link>
               </Grid>
           </Grid>
-          <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2}}>Signup With Google</Button>
+          <Button color='inherit' startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, ":hover":{bgcolor:'red'}}}>Signup With Google</Button>
         </Box>
 
      </Box>
