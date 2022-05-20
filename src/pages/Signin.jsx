@@ -67,7 +67,6 @@ const Signin = () => {
         </Grid>
         <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button>
         </Box>
-
         </Container>   
         
       </>

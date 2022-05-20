@@ -9,10 +9,10 @@ const Products = () => {
       <Box sx={{flexFlow:1, pt:14 }}>
         <Typography variant='h3' sx={{textAlign:'center', mb:3}}>Menus</Typography>
         <Grid container spacing={2}>
-          {Items.map(item=>(
+          {Items.map((item, index)=>(
             <>
-            <Grid item xs={6} md={4} lg={3}>
-              <Item item={item}/>
+            <Grid  item xs={6} md={4} lg={3}>
+              <Item item={item}  key={index}/>
             </Grid>
             </>
           ))}
