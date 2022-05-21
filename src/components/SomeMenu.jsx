@@ -7,27 +7,30 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import './App.css';
 import Item from './Item';
+import ProductContext from '../components/context/product/productcontext';
 import { useNavigate } from 'react-router-dom';
-let newItems = Items.slice(0, 8)
+import { useContext } from 'react';
 
 
-const Menu = () => {
+const SomeMenu = () => {
     const navigate = useNavigate()
+    const {products} = useContext(ProductContext)
+    let someProduct = products.slice(0,8)
     
   return (
-   <Box sx={{flexGrow:1}}>
-       <Typography sx={{pb:10,pt:2, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
+   <Box sx={{flexGrow:1, pt:2, pb:10}}>
+       <Typography sx={{pb:2, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 
-        {newItems.map((item)=>(
+        {someProduct.map((item)=>(
             <>
             <Grid item xs={6} md={4} lg={3} sx={{mb:2}}>
-                <Item item={item}/>     
+                <Item item={item} />     
            </Grid>
             </>
         ))} 
        </Grid>
-       <Box onClick={()=>navigate('/products')} sx={{textAlign:'center', mt:2}}>
+       <Box onClick={()=>navigate('/menu')} sx={{textAlign:'center', mt:2}}>
          <Button variant='outlined' sx={{bgcolor:'brown', color:'white', ':hover':{bgcolor:'brown'}}}>Show All Items</Button>
        </Box>
        
@@ -35,4 +38,4 @@ const Menu = () => {
   )
 }
 
-export default Menu
+export default SomeMenu

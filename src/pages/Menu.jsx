@@ -1,18 +1,21 @@
 import { Box, Container, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import Item from '../components/Item';
 import { Items } from '../data';
+import ProductContext from '../components/context/product/productcontext';
+import Loader from '../components/Loader';
 
-const Products = () => {
+const Menu = () => {
+  const {products, loading} = useContext(ProductContext)
   return (
     <Container>
       <Box sx={{flexFlow:1, pt:14 }}>
         <Typography variant='h3' sx={{textAlign:'center', mb:3}}>Menus</Typography>
         <Grid container spacing={2}>
-          {Items.map((item, index)=>(
+          {products.map((product)=>(
             <>
-            <Grid  item xs={6} md={4} lg={3}>
-              <Item item={item}  key={index}/>
+            <Grid item xs={6} md={4} lg={3} key={product._id}>
+              <Item item={product}  />
             </Grid>
             </>
           ))}
@@ -23,4 +26,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Menu

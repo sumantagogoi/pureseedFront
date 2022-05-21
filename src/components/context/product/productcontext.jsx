@@ -11,7 +11,8 @@ export const  ProductContextProvider = ({children}) =>{
 
     const initialState = {
         products:[],
-        loading:false,
+        categories:[],
+        loading:true,
     }
 
     const [state, dispatch] = useReducer(ProductReducer, initialState)
@@ -26,18 +27,32 @@ export const  ProductContextProvider = ({children}) =>{
                 payload: data
               })
         } catch (error) {
+           
+        }
+    }
+
+    // Get all the categories from the backend
+    const getCategories = async()=>{
+        try {
+            const {data} = await axios.get('/api/categories/')
+            dispatch({
+                type:'GET_ALL_CATEGORIES',
+                payload:data
+            })
+        } catch (error) {
             console.log(error)
         }
-      
     }
 
 
     return <ProductContext.Provider value={{
         products:state.products,
+        categories:state.categories,
         loading:state.loading,
 
         // functions
         getProducts:getProducts,
+        getCategories:getCategories,
 
     }}>
         {children}

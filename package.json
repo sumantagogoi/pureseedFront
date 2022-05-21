@@ -1,6 +1,6 @@
 {
   "name": "manxho",
-  "proxy":"https://abdulrasid82.pythonanywhere.com",
+  "proxy": "https://abdulrasid82.pythonanywhere.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

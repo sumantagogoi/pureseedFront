@@ -2,25 +2,30 @@ import { Container, Paper } from "@mui/material";
 import { useContext, useEffect } from "react";
 import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
+import Loader from "../components/Loader";
 
-import Menu from "../components/Menu";
+import SomeMenu from "../components/SomeMenu";
 
 
 const Home = () => {
-  const {products, loading, getProducts} = useContext(ProductContext)
+  const {getCategories, loading, getProducts} = useContext(ProductContext)
 
   useEffect (()=>{
     getProducts()
+    getCategories()
   }, [])
 
   return (
+
+    loading ? (<Loader/>) : (
       <>
-   
-    <Container>
-        <Category/>
-        <Menu/>
-    </Container>
-    </>
+      <Container>
+        <Category />
+        <SomeMenu />
+      </Container>
+      </>
+    )
+
   )
 }
 

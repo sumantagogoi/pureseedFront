@@ -43,7 +43,7 @@ function LeftDrawer({open, setOpen}) {
           <ListItem button onClick={()=>navigateHandler('profile')} >
               <ListItemText primary={'Profile'}/>
           </ListItem>
-          <ListItem button onClick={()=>navigateHandler('products')} >
+          <ListItem button onClick={()=>navigateHandler('menu')} >
               <ListItemText primary={'Products'}/>
           </ListItem>
           <ListItem button onClick={()=>navigateHandler('signin')} >

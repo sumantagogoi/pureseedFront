@@ -45,7 +45,7 @@ const ResponsiveHeader = () => {
         ):(
             <>
             <Typography onClick={()=>navigate('/')} variant='h4' sx={{ flexGrow:1, ml:4, fontFamily:'Lato', fontWeight:900, color:'inherit'}}>Manxho</Typography>
-            <Button onClick={()=>navigate('/products')} size='large' color='inherit'>Product</Button>
+            <Button onClick={()=>navigate('/menu')} size='large' color='inherit'>Menu</Button>
             <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Signin</Button>
             <Button onClick={()=>navigate('/signup')} size='large' color='inherit'>Signup</Button>
 

@@ -1,25 +1,28 @@
-import { Card, CardHeader, CardMedia, IconButton } from '@mui/material'
+import { Card, CardActionArea, CardHeader, CardMedia, IconButton } from '@mui/material'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import React from 'react'
 
 const Item = ({item}) => {
   return (
-    <Card sx={{maxWidth:300}}>
+    <Card  sx={{maxWidth:300}}>
+        <CardActionArea>
                     <CardMedia
                         component='img'
                         height='200'
-                        image={item.img}
+                        image={item.image}
 
                     />
                      <CardHeader
                     title={item.title}
-                    subheader= {`Rs. ${item.price} /Kg`}
+                    subheader= {`Rs. ${item.price} / ${item.size}`}
                     action={
                         <IconButton>
-                            <FavoriteBorderRoundedIcon/>
+                            <AddShoppingCartRoundedIcon/>
                         </IconButton>
                     }
-                />     
+                /> 
+                </CardActionArea>    
                 </Card>
   )
 }

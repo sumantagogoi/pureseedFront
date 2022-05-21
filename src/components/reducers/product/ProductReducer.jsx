@@ -6,6 +6,12 @@ const ProductReducer = (state, action) =>{
                 products : action.payload,
                 loading : false
             }
+        case 'GET_ALL_CATEGORIES':
+            return {
+                ...state,
+                categories : action.payload,
+                loading : false
+            }
         default:
             return state
     }
