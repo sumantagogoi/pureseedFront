@@ -27,7 +27,7 @@ const Cart = () => {
 
 
   return (
-    <Container sx={{mt:10, mb:2}}>
+    <Container sx={{pt:12, pb:2, height:'100vh'}}>
       <Typography gutterBottom variant='h3'>Your Shopping Cart</Typography>
       <Grid container spacing={2}>
         {tempItem.map((item,index)=>(

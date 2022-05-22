@@ -26,7 +26,7 @@ const Category = () => {
                  <CardMedia 
                    component='img'
                     height='230'
-                    image= {category.image}
+                    image={`https://abdulrasid82.pythonanywhere.com/${category.image}`}
                     />
                     <CardContent> 
                        <Typography variant='h5' component='h5' sx={{textAlign:'center'}}>{category.title}</Typography>

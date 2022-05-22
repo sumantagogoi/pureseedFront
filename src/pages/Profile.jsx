@@ -3,8 +3,8 @@ import React from 'react'
 
 const Profile = () => {
   return (
-    <Container>
-      <Box sx={{mt:12}}>
+    <Container sx={{height:'100vh'}}>
+      <Box sx={{pt:11}}>
       <Typography sx={{textAlign:'center'}} variant='h3'>Profile</Typography>
       </Box>
     </Container>
