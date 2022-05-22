@@ -22,7 +22,7 @@ const Category = () => {
              <>
                 <Grid  item xs={6} md={4} lg={3}>
                 <Card key={category._id}  sx={{maxWidth:345}}>
-                     <CardActionArea onClick={()=>navigate(`/category/${category._id}`)}>
+                     <CardActionArea onClick={()=>navigate(`/cat/${category._id}`)}>
                  <CardMedia 
                    component='img'
                     height='230'

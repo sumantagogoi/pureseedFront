@@ -38,7 +38,7 @@ function App() {
       
         <Route path='/' exact element={<Home/>}/>
         <Route path='/menu' element={<Menu/>}/>
-        <Route path='/category/:id' element={<FilteredMenu/>}/>
+        <Route path='/cat/:id' element={<FilteredMenu/>}/>
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/profile' element={<Profile/>}/>

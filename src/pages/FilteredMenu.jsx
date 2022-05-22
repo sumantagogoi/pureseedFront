@@ -6,13 +6,7 @@ import ProductContext from '../components/context/product/productcontext'
 const FilteredMenu = () => {
   const {products} = useContext(ProductContext)
   const params = useParams()
-  // const filProduct = products.map((product)=>{
-  //   return (
-  //     product.category._id === params.id
-  //   )
-  // })
-  // console.log(products)
-
+  
   return (
     <Container>
       <Box sx={{flexFlow:1, height:'100vh', pt:12}}>
