@@ -16,7 +16,7 @@ const Category = () => {
             <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Category</Typography>
        <Grid container spacing={2}>
 
-        {categories.map((category)=>(
+        {categories?.map((category)=>(
              <>
                 <Grid  item xs={6} md={4} lg={3}>
                 <Card key={category._id}  sx={{maxWidth:345}}>

@@ -16,13 +16,14 @@ const SomeMenu = () => {
     const navigate = useNavigate()
     const {products} = useContext(ProductContext)
     let someProduct = products.slice(0,8)
+    console.log(someProduct)
     
   return (
    <Box sx={{flexGrow:1, pt:2, pb:10}}>
        <Typography sx={{pb:2, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 
-        {someProduct.map((item)=>(
+        {someProduct?.map((item)=>(
             <>
             <Grid item xs={6} md={4} lg={3} sx={{mb:2}}>
                 <Item item={item} />     
