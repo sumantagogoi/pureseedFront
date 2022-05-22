@@ -7,7 +7,7 @@ import LeftDrawer from './LeftDrawer'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/Images/logo.png'
-import textlogowhite from '../assets/Images/text_logo_white.jpg'
+import textlogowhite from '../assets/Images/log.png'
 
 
 
@@ -41,8 +41,11 @@ const ResponsiveHeader = () => {
               src='https://img1.wsimg.com/isteam/ip/0feef9a5-f7be-48d5-b948-d2fcb2003283/manxho_%20transparent%20logo%202021-01.png/:/rs=w:320,h:320,cg:true,m/cr=w:320,h:320/qt=q:95'
               sx={{width:60, height:80,pt:0.5, alignItems:'left'}}
             /> */}
-            {/* <Typography onClick={()=>navigate('/')} variant='h4' sx={{ flexGrow:1, ml:1, fontFamily:'Lato', fontWeight:900, color:'inherit'}}>Manxho</Typography> */}
+            
             <Box component='img' onClick={()=>navigate('/')} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
+            {/* <Typography onClick={()=>navigate('/')} variant='h4' sx={{fontFamily:'Lato', fontSize:20, color:'inherit'}}>
+                Local . Hygienic . Fresh
+            </Typography> */}
            
            <Avatar onClick={()=>navigate('/profile')}  sx={{ml:2, mr:2, marginLeft:'auto'}} />
 
@@ -63,9 +66,9 @@ const ResponsiveHeader = () => {
             /> */}
            <Box component='img' onClick={()=>navigate('/')}  src={textlogowhite} sx={{height:50, m:2, cursor:'pointer'}}/>
 
-            {/* <Typography onClick={()=>navigate('/')} variant='h4' sx={{ flexGrow:1, ml:1, fontFamily:'Lato', fontWeight:2000, color:'inherit'}}>
-                
-            </Typography> */}
+            <Typography onClick={()=>navigate('/')} variant='h4' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:20, color:'inherit'}}>
+                Local . Hygienic . Fresh
+            </Typography>
             
             <Button onClick={()=>navigate('/menu')} size='large' color='inherit' sx={{marginLeft:'auto'}}>Menu</Button>
             <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Signin</Button>
