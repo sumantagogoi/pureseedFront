@@ -15,8 +15,9 @@ import { useContext } from 'react';
 const SomeMenu = () => {
     const navigate = useNavigate()
     const {products} = useContext(ProductContext)
-    let someProduct = products.slice(0,8)
-    console.log(someProduct)
+    const someProduct = products.slice(0,8)
+
+    
     
   return (
    <Box sx={{flexGrow:1, pt:2, pb:10}}>

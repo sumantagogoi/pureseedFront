@@ -9,6 +9,8 @@ const Category = () => {
      // const result = products.map((product)=>product.category)
      const navigate = useNavigate()
      const params = useParams()
+     const cat = categories
+   
      
     return (
          <Paper>
@@ -16,7 +18,7 @@ const Category = () => {
             <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Category</Typography>
        <Grid container spacing={2}>
 
-        {categories?.map((category)=>(
+        {cat?.map((category)=>(
              <>
                 <Grid  item xs={6} md={4} lg={3}>
                 <Card key={category._id}  sx={{maxWidth:345}}>
