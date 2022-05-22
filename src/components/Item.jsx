@@ -13,6 +13,7 @@ const Item = ({item}) => {
                         image={item.image}
 
                     />
+        </CardActionArea>   
                      <CardHeader
                     title={item.title}
                     subheader= {`Rs. ${item.price} / ${item.size}`}
@@ -22,7 +23,7 @@ const Item = ({item}) => {
                         </IconButton>
                     }
                 /> 
-                </CardActionArea>    
+                 
                 </Card>
   )
 }
