@@ -4,6 +4,7 @@ import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
 import Loader from "../components/Loader";
 
+
 import SomeMenu from "../components/SomeMenu";
 
 
@@ -18,8 +19,8 @@ const Home = () => {
   return (
 
     loading ? (<Loader/>) : (
-      <>
-      <Container sx={{height:'100vh'}}>
+      <>  
+      <Container>
         <Category />
         <SomeMenu />
       </Container>

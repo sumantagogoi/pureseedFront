@@ -13,6 +13,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Paper } from '@mui/material';
 import './index.css'
 import FilteredMenu from './pages/FilteredMenu';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 

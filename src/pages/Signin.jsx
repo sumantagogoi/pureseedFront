@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Avatar, Box, Button, Container, Grid, Link, Paper, SvgIcon, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import GoogleIcon from '@mui/icons-material/Google';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
 
 // const theme = createTheme({
 //   palette: {
@@ -14,11 +16,34 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // });
 
 const Signin = () => {
-  const navigate = useNavigate();
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('') 
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e)=>{
+      e.preventDefault();
+      try {
+        const {data} = await axios.post('https://abdulrasid82.pythonanywhere.com/api/users/login/', {'username':email, 'password':password}, 
+        {headers:{
+          'content-type': 'application/json'
+        }}
+        )
+        console.log(data)
+
+      } catch (error) {
+        alert(error)
+      }
+  } 
+
+
+
+
   return (
     <>
     
     <Container component='main' maxWidth='xs' sx={{height:'100vh'}}>
+    <ToastContainer/>
       <Box sx={{pt:10, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar
@@ -28,7 +53,7 @@ const Signin = () => {
             />
               <Typography component='h1' variant='h5'>Singin</Typography>
         </Box>
-        <Box sx={{mt:1}}>
+        <Box component='form' onSubmit={handleSubmit} sx={{mt:1}}>
         <TextField 
            label='Email'
            fullWidth
@@ -38,6 +63,8 @@ const Signin = () => {
            autoComplete='email'
            id='email'
            type='email'
+           value = {email}
+           onChange = {(e)=>setEmail(e.target.value)}
            sx={{
             "& .MuiInputLabel-root": {color: 'white'}//styles the label
           }}
@@ -50,12 +77,14 @@ const Signin = () => {
         fullWidth
         label='Password'
         margin='normal'
+        value = {password}
+        onChange = {(e)=>setPassword(e.target.value)}
         sx={{
           "& .MuiInputLabel-root": {color: 'white'}//styles the label
         }}
         
         />
-        <Button fullWidth variant='outlined'  sx={{mt:2, mb:2, color:'inherit', borderColor:'brown', ':hover':{bgcolor:'brown'}}}>Sing in</Button>
+        <Button type='submit' fullWidth variant='outlined'  sx={{mt:2, mb:2, color:'inherit', borderColor:'brown', ':hover':{bgcolor:'brown'}}}>Sing in</Button>
 
         <Grid container>
           <Grid item xs> 

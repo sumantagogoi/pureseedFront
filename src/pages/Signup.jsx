@@ -1,8 +1,10 @@
 import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GoogleIcon from '@mui/icons-material/Google';
+import axios from 'axios'
+import { toast } from 'react-toastify';
 
 // const theme = createTheme({
 //   palette: {
@@ -13,6 +15,34 @@ import GoogleIcon from '@mui/icons-material/Google';
 // });
 
 const Signup = () => {
+
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try {
+
+      if (password !== confirmPassword ) {
+       toast.error('Passowrd Doest Not Matched')
+      }else{
+        const {data} = await axios.post('https://abdulrasid82.pythonanywhere.com/api/users/register/',{'first_name':firstName, 'last_name':lastName, 'email':email,'password':password},
+        {headers:{
+            'content-type':'application/json'
+          }
+      })
+      }
+      navigate('/signin')
+      toast.success('User Successfully Created')
+    } catch (error) {
+      alert('Something went wrong')
+    }
+  }
+
+
 
   const navigate = useNavigate()
   return (
@@ -29,7 +59,7 @@ const Signup = () => {
             />
         <Typography component='h1' variant='h5'>Signup</Typography>
 
-        <Box component='form' sx={{mt:2}}>
+        <Box component='form' onSubmit={handleSubmit} sx={{mt:2}}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField name='firstName'
@@ -37,7 +67,10 @@ const Signup = () => {
               fullWidth
               id='firstName'
               label='First Name'
-              autoFocus/>
+              autoFocus
+              value={firstName}
+              onChange={(e)=>setFirstName(e.currentTarget.value)}
+              />
             </Grid>
 
             <Grid item xs={12} sm={6}>
@@ -46,7 +79,10 @@ const Signup = () => {
                   fullWidth
                   id='lastName'
                   label='Last Name'
-                  autoFocus/>
+                  autoFocus
+                  value={lastName}
+                  onChange={(e)=>setLastName(e.currentTarget.value)}
+                  />
             </Grid>
 
             <Grid item xs={12}>
@@ -56,6 +92,8 @@ const Signup = () => {
               id='email'
               name='email'
               label='Email Address'
+              value={email}
+              onChange={(e)=>setEmail(e.currentTarget.value)}
              
               />
             </Grid>
@@ -68,6 +106,8 @@ const Signup = () => {
               name='password'
               label='Password'
               type='password'
+              value={password}
+              onChange={(e)=>setPassword(e.currentTarget.value)}
               />
             </Grid>
 
@@ -79,10 +119,12 @@ const Signup = () => {
               name='confirmPassword'
               label='Confirm Password'
               type='password'
+              value={confirmPassword}
+              onChange={(e)=>setConfirmPassword(e.currentTarget.value)}
               />
             </Grid>
           </Grid>
-          <Button variant='outlined' fullWidth sx={{mt:2, mb:2, color:'inherit', ':hover':{bgcolor:'brown'}}}>Signup</Button>
+          <Button variant='outlined' type='submit' fullWidth sx={{mt:2, mb:2, color:'inherit', ':hover':{bgcolor:'brown'}}}>Signup</Button>
           <Grid container justifyContent='flex-end'>
               <Grid item >
                   <Link onClick={()=>navigate('/signin')} variant='body2' sx={{color:'inherit'}}>Already have an account? Sign in</Link>

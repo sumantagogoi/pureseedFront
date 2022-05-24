@@ -27,7 +27,7 @@ const Cart = () => {
 
 
   return (
-    <Container sx={{pt:12, pb:2, height:'100vh'}}>
+    <Container sx={{pt:12, pb:2}}>
       <Typography gutterBottom variant='h3'>Your Shopping Cart</Typography>
       <Grid container spacing={2}>
         {tempItem.map((item,index)=>(
@@ -38,7 +38,7 @@ const Cart = () => {
          </>
         ))}
       </Grid>
-      <Divider sx={{border:1}}/>
+      
       <Box sx={{display:'flex', mt:'7%', width:'100%', alignItems:'center', justifyContent:'space-between'}}>
         <Typography variant='h5'>Subtotal: &#8377; 24545</Typography>
         <Box>
