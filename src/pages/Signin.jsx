@@ -1,24 +1,13 @@
 import React, { useContext, useState } from 'react'
-import { Avatar, Box, Button, Container, Grid, Link, Paper, SvgIcon, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, Container, Grid, Link,TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import GoogleLogin from 'react-google-login';
 import GoogleIcon from '@mui/icons-material/Google';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import {toast, ToastContainer } from 'react-toastify';
-import AlertToast from '../components/AlertToast';
+import {toast} from 'react-toastify';
+
 import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext';
 import { useEffect } from 'react';
-
-
-
-// const theme = createTheme({
-//   palette: {
-//     google:{
-//       main:'#DB4437'
-//     }
-//   }
-// });
+import Logo from '../assets/Images/logo.png'
 
 const Signin = () => {
 
@@ -65,14 +54,14 @@ const Signin = () => {
   return (
     <>
     <Container component='main' maxWidth='xs' sx={{height:'100vh'}}>
-      <Box sx={{pt:10, display:'flex', flexDirection:'column', alignItems:'center',}}>
+      <Box sx={{pt:13, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar
               alt='logo'
-              src='https://img1.wsimg.com/isteam/ip/0feef9a5-f7be-48d5-b948-d2fcb2003283/manxho_%20transparent%20logo%202021-01.png/:/rs=w:320,h:320,cg:true,m/cr=w:320,h:320/qt=q:95'
+              src={Logo}
               sx={{width:170, height:170}}
             />
-              <Typography component='h1' variant='h5'>Singin</Typography>
+          <Typography component='h1' variant='h5' sx={{pt:2}}>Singin</Typography>
         </Box>
         <Box component='form' onSubmit={handleSubmit} sx={{mt:1}}>
         <TextField 

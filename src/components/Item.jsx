@@ -2,8 +2,12 @@ import { Card, CardActionArea, CardHeader, CardMedia, IconButton } from '@mui/ma
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import React from 'react'
+import ProductContext from './context/product/productcontext';
+import { useContext } from 'react';
 
 const Item = ({item}) => {
+    const {addtoCart} = useContext(ProductContext)
+    
   return (
     <Card  sx={{maxWidth:300}}>
         <CardActionArea>
@@ -18,7 +22,7 @@ const Item = ({item}) => {
                     title={item.title}
                     subheader= {`Rs. ${item.price} / ${item.size}`}
                     action={
-                        <IconButton>
+                        <IconButton onClick={()=>addtoCart(item)}>
                             <AddShoppingCartRoundedIcon/>
                         </IconButton>
                     }

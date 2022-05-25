@@ -12,6 +12,17 @@ const ProductReducer = (state, action) =>{
                 categories : action.payload,
                 loading : false
             }
+
+        case 'ADD_TO_CART':
+            const item = action.payload
+            const existItem = state.cartItems.find((x)=>x._id === item._id)
+                return {
+                    ...state,
+                    cartItems:[...state.cartItems, item]
+                }
+
+
+            
         default:
             return state
     }

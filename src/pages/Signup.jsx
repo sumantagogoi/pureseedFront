@@ -10,22 +10,14 @@ import {
 } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import GoogleIcon from "@mui/icons-material/Google";
 import axios from "axios";
 import { toast } from "react-toastify";
-import AlertToast from "../components/AlertToast";
+
 import { useEffect } from "react";
 import AuthenticationContext from "../components/context/authentication_context/AuthenticationContext";
+import Logo from '../assets/Images/logo.png'
 
-
-// const theme = createTheme({
-//   palette: {
-//     google:{
-//       main:'#DB4437'
-//     }
-//   }
-// });
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -84,18 +76,19 @@ const Signup = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ height: "100vh" }}>
+    <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          pt: 8,
+          pt: 12,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+         
         }}
       >
         <Avatar
           alt="logo"
-          src="https://img1.wsimg.com/isteam/ip/0feef9a5-f7be-48d5-b948-d2fcb2003283/manxho_%20transparent%20logo%202021-01.png/:/rs=w:320,h:320,cg:true,m/cr=w:320,h:320/qt=q:95"
+          src={Logo}
           sx={{ width: 170, height: 170 }}
         />
         <Typography component="h1" variant="h5">
@@ -176,6 +169,7 @@ const Signup = () => {
               mt: 2,
               mb: 2,
               color: "inherit",
+              borderColor:'brown',
               ":hover": { bgcolor: "brown" },
             }}
           >

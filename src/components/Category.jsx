@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import ProductContext from './context/product/productcontext';
 import { CardActionArea } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Category = () => {
      const {categories, loading} = useContext(ProductContext) 
@@ -10,11 +11,13 @@ const Category = () => {
      const navigate = useNavigate()
      const params = useParams()
      const cat = categories
+     
+
    
      
     return (
          <Paper>
-        <Box sx={{flexGrow:1, pt:12, pb:5, borderBottom:1, borderBottomColor:'divider'}}>
+        <Box sx={{flexGrow:1, pt:12, borderBottom:1, borderBottomColor:'divider'}}>
             <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Category</Typography>
        <Grid container spacing={2}>
 

@@ -20,7 +20,7 @@ const SomeMenu = () => {
     
     
   return (
-   <Box sx={{flexGrow:1, pt:2, pb:10}}>
+   <Box sx={{flexGrow:1}}>
        <Typography sx={{pb:2, textAlign:'center'}} variant='h4' component='h5'>Menu</Typography>
        <Grid container spacing={2}>
 

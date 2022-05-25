@@ -1,39 +1,38 @@
 import { Box, Card, CardMedia, Container, Grid, Typography, CardContent, IconButton, Paper, Stack, Button, Divider } from '@mui/material'
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import CartItem from './CartItem';
-import { Items } from '../data';
 
-
-let tempItem = Items.slice(0,5)
+import ProductContext from '../components/context/product/productcontext';
+import { useNavigate } from 'react-router-dom';
 
 
 const Cart = () => {
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('sm'))
-
-  const [IncreaseCartitem, setIncreaseCartitem] = useState(0)
-
-  const increment = ()=>{
-    setIncreaseCartitem((prev)=>prev +1)
-  }
-  const decrement = ()=>{
-    setIncreaseCartitem((prev)=>prev -1)
-  }
-
-
+  const {cartItems} = useContext(ProductContext)
+  const navigate = useNavigate()
+  
   return (
-    <Container sx={{pt:12, pb:2}}>
-      <Typography gutterBottom variant='h3'>Your Shopping Cart</Typography>
+    <Container sx={{pt:14, pb:2, height:'100vh'}}>
+      {cartItems?.length < 1 ? (
+        <>
+        <Typography gutterBottom variant='h3' sx={{textAlign:'center'}}>Sorry no Item in the cart!</Typography>
+        <Box sx={{textAlign:'center'}}>
+          <Button onClick={()=>navigate('/menu')} fullWidth variant='contained' sx={{color:'inherit', bgcolor:'brown', ":hover":{bgcolor:'#922724'}}}>Shop Now</Button>
+        </Box>
+        </>
+      ) : (
+        <>
+        
+        <Typography gutterBottom variant='h3'>Your Shopping Cart</Typography>
       <Grid container spacing={2}>
-        {tempItem.map((item,index)=>(
+        {cartItems?.map((item,index)=>(
          <>
          <Grid item xs={12} md={4}>
-            <CartItem item={item} IncreaseCartitem={IncreaseCartitem} setIncreaseCartitem={setIncreaseCartitem}  />
+            <CartItem item={item}/>
          </Grid>
          </>
         ))}
@@ -56,7 +55,9 @@ const Cart = () => {
           <Button sx={{ml:9, minWidth:'150px'}} size='large'  type='button' variant='contained'>Checkout</Button>
         </Box>
       </Box>
-      
+        
+        </>
+      )} 
     </Container>
   )
 }
