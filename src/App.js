@@ -14,7 +14,7 @@ import { CssBaseline, Paper } from '@mui/material';
 import './index.css'
 import FilteredMenu from './pages/FilteredMenu';
 import 'react-toastify/dist/ReactToastify.css';
-import AuthenticationContext, { AuthenticationProvider } from './components/context/authentication_context/AuthenticationContext';
+import AlertToast from './components/AlertToast';
 
 
 
@@ -49,6 +49,7 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
      </BrowserRouter>
+     <AlertToast/>
      </Paper>
      
      </ThemeProvider>

@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { toast } from "react-toastify";
 import UserAuthenticationReducer from "../../reducers/authentication/UserAuthentication";
 
 
@@ -20,6 +21,7 @@ export const AuthenticationProvider = ({children})=>{
         dispatch({
             type:'USER_LOGOUT'
         })
+        toast.success('Logout Successfully')
     }
 
     return <AuthenticationContext.Provider value={{

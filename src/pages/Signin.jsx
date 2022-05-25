@@ -45,16 +45,17 @@ const Signin = () => {
           'content-type': 'application/json'
         }}
         )
-        toast.success('Login successfully')
         dispatch({
           type :'USER_LOGIN',
           payload :data
         })
-        localStorage.setItem('userLoginDetails', JSON.stringify(data))
-        console.log(data)
+        localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+        navigate('/profile')
+        toast.success('Login in Successfully ')
+      
 
       } catch (error) {
-        toast.error(error)
+        toast.error('Bad Request')
       }
   } 
 
@@ -63,9 +64,7 @@ const Signin = () => {
 
   return (
     <>
-    
     <Container component='main' maxWidth='xs' sx={{height:'100vh'}}>
-    <AlertToast/>
       <Box sx={{pt:10, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar
