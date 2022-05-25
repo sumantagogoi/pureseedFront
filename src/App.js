@@ -14,6 +14,7 @@ import { CssBaseline, Paper } from '@mui/material';
 import './index.css'
 import FilteredMenu from './pages/FilteredMenu';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthenticationContext, { AuthenticationProvider } from './components/context/authentication_context/AuthenticationContext';
 
 
 
@@ -31,6 +32,7 @@ function App() {
   return (
     <>
     <ThemeProvider theme={darkTheme}>
+      
       <CssBaseline/>
       <Paper>
     <BrowserRouter>
@@ -48,6 +50,7 @@ function App() {
       </Routes>
      </BrowserRouter>
      </Paper>
+     
      </ThemeProvider>
     </>
    

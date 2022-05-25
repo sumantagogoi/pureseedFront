@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/Images/logo.png'
 import textlogowhite from '../assets/Images/log.png'
+import AuthenticationContext from './context/authentication_context/AuthenticationContext';
+import { useContext } from 'react';
 
 
 
@@ -24,6 +26,10 @@ const ResponsiveHeader = () => {
     const customTheme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const navigate = useNavigate()
+
+    const {userLoginDetails} = useContext(AuthenticationContext)
+
+
   return (
       <>
       {/* <ThemeProvider theme={theme}> */}
@@ -46,10 +52,16 @@ const ResponsiveHeader = () => {
             {/* <Typography onClick={()=>navigate('/')} variant='h4' sx={{fontFamily:'Lato', fontSize:20, color:'inherit'}}>
                 Local . Hygienic . Fresh
             </Typography> */}
-           
-           <Avatar onClick={()=>navigate('/profile')}  sx={{ml:2, mr:2, marginLeft:'auto'}} />
 
-            <IconButton onClick={()=>navigate('/cart')} sx={{}} >
+            {userLoginDetails && (
+                <>
+                <Avatar onClick={()=>navigate('/profile')}  sx={{ml:2, mr:2, marginLeft:'auto'}} />
+                </>
+            )}
+           
+           
+
+            <IconButton onClick={()=>navigate('/cart')} sx={{marginLeft:'auto'}} >
                 <Badge  badgeContent={4} color="primary">
                     <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                 </Badge>
@@ -71,6 +83,7 @@ const ResponsiveHeader = () => {
             </Typography>
             
             <Button onClick={()=>navigate('/menu')} size='large' color='inherit' sx={{marginLeft:'auto'}}>Menu</Button>
+
             <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Signin</Button>
             <Button onClick={()=>navigate('/signup')} size='large' color='inherit'>Signup</Button>
 

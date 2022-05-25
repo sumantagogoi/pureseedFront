@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Avatar, Box, Button, Container, Grid, Link, Paper, SvgIcon, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import GoogleIcon from '@mui/icons-material/Google';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { ToastContainer } from 'react-toastify';
+import {toast, ToastContainer } from 'react-toastify';
+import AlertToast from '../components/AlertToast';
+import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext';
+import { useEffect } from 'react';
+
+
 
 // const theme = createTheme({
 //   palette: {
@@ -21,6 +26,17 @@ const Signin = () => {
   const [password, setPassword] = useState('') 
   const navigate = useNavigate()
 
+  const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
+
+  useEffect(()=>{
+    if(userLoginDetails){
+      navigate('/profile')
+    }
+  }, [])
+
+  
+
+
   const handleSubmit = async (e)=>{
       e.preventDefault();
       try {
@@ -29,10 +45,16 @@ const Signin = () => {
           'content-type': 'application/json'
         }}
         )
+        toast.success('Login successfully')
+        dispatch({
+          type :'USER_LOGIN',
+          payload :data
+        })
+        localStorage.setItem('userLoginDetails', JSON.stringify(data))
         console.log(data)
 
       } catch (error) {
-        alert(error)
+        toast.error(error)
       }
   } 
 
@@ -43,7 +65,7 @@ const Signin = () => {
     <>
     
     <Container component='main' maxWidth='xs' sx={{height:'100vh'}}>
-    <ToastContainer/>
+    <AlertToast/>
       <Box sx={{pt:10, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar

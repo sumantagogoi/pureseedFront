@@ -3,16 +3,26 @@ import { useState } from 'react';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Box, Divider, List, ListItem, ListItemText, Typography } from '@mui/material';
 import {useNavigate} from 'react-router-dom'
+import AuthenticationContext from './context/authentication_context/AuthenticationContext';
+import { useContext } from 'react';
+import {toast } from 'react-toastify';
 
 
 
 function LeftDrawer({open, setOpen}) {
   const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const navigate = useNavigate()
+  const {userLoginDetails, Logout} = useContext(AuthenticationContext)
 
   const navigateHandler =(path)=>{
     navigate(`/${path}`)
     setOpen(false)
+}
+const logoutHandler = ()=>{
+  Logout()
+  
+  toast.success('Logout Successfully')
+  setOpen(false)
 }
   return (
     <>
@@ -40,21 +50,33 @@ function LeftDrawer({open, setOpen}) {
         <Divider sx={{border:1}}/>
         <Box sx={{mt:2}}>
         <List>
-          <ListItem button onClick={()=>navigateHandler('profile')} >
+          {userLoginDetails ? (<>
+            <ListItem button onClick={()=>navigateHandler('profile')} >
               <ListItemText primary={'Profile'}/>
+          </ListItem>
+          <ListItem onClick={Logout} button >
+              <ListItemText  primary={'Logout'}/>
           </ListItem>
           <ListItem button onClick={()=>navigateHandler('menu')} >
               <ListItemText primary={'Products'}/>
           </ListItem>
+          
+          </>):(
+            <>
+              <ListItem button onClick={()=>navigateHandler('menu')} >
+              <ListItemText primary={'Products'}/>
+          </ListItem>
+          
           <ListItem button onClick={()=>navigateHandler('signin')} >
               <ListItemText primary={'Signin'}/>
           </ListItem>
           <ListItem button onClick={()=>navigateHandler('signup')} >
               <ListItemText primary={'Signup'}/>
           </ListItem>
-          <ListItem button >
-              <ListItemText primary={'Logout'}/>
-          </ListItem>
+            </>
+          )}
+          
+          
         </List>
         </Box>
       </Box>

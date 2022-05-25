@@ -1,10 +1,13 @@
 import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import GoogleIcon from '@mui/icons-material/Google';
 import axios from 'axios'
-import { toast } from 'react-toastify';
+import { toast} from 'react-toastify';
+import AlertToast from '../components/AlertToast';
+import { useEffect } from 'react';
+import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext';
 
 // const theme = createTheme({
 //   palette: {
@@ -22,32 +25,45 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  const {userLoginDetails} = useContext(AuthenticationContext)
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+      if(userLoginDetails){
+        navigate('/profile')
+      }
+  },[])
+
   const handleSubmit = async(e)=>{
     e.preventDefault();
     try {
 
       if (password !== confirmPassword ) {
-       toast.error('Passowrd Doest Not Matched')
+        return (
+          toast.error('Passowrd Doest Not Matched')
+        )
+       
       }else{
         const {data} = await axios.post('https://abdulrasid82.pythonanywhere.com/api/users/register/',{'first_name':firstName, 'last_name':lastName, 'email':email,'password':password},
         {headers:{
             'content-type':'application/json'
           }
       })
-      }
-      navigate('/signin')
       toast.success('User Successfully Created')
+      }
+      
     } catch (error) {
-      alert('Something went wrong')
+      toast.error('Bad Request')
     }
   }
 
 
 
-  const navigate = useNavigate()
+  
   return (
    
    <Container component='main' maxWidth='xs' sx={{height:'100vh'}}>
+     <AlertToast/>
      <Box
      sx={{pt:8, display:'flex', flexDirection:'column', alignItems:'center',}}
      >
