@@ -16,7 +16,7 @@ const Cart = () => {
   const navigate = useNavigate()
   
   return (
-    <Container sx={{pt:14, pb:2, height:'100vh'}}>
+    <Container sx={{pt:14, pb:2,}}>
       {cartItems?.length < 1 ? (
         <>
         <Typography gutterBottom variant='h3' sx={{textAlign:'center'}}>Sorry no Item in the cart!</Typography>
@@ -39,7 +39,7 @@ const Cart = () => {
       </Grid>
       
       <Box sx={{display:'flex', mt:'7%', width:'100%', alignItems:'center', justifyContent:'space-between'}}>
-        <Typography variant='h5'>Subtotal: &#8377; 24545</Typography>
+        <Typography variant='h5'>Subtotal: &#8377;{cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0) }</Typography>
         <Box>
           {matches ? (
             <>

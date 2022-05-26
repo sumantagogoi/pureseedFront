@@ -54,11 +54,18 @@ export const  ProductContextProvider = ({children}) =>{
                 name:product.title,
                 image:product.image,
                 price:product.price,
-                qty:1
+                qty:1,
+                itemTotal: qty * Number(product.price * qty)
 
             }
         })
         toast.success('Added To Cart')
+    }
+    const removeFromCart = async (id)=>{
+        dispatch({
+            type:'REMOVE_FROM_CART',
+            payload:id
+        })
     }
 
 
@@ -72,6 +79,8 @@ export const  ProductContextProvider = ({children}) =>{
         getProducts:getProducts,
         getCategories:getCategories,
         addtoCart:addtoCart,
+        removeFromCart:removeFromCart,
+
 
     }}>
         {children}
