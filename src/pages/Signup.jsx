@@ -19,6 +19,9 @@ import AuthenticationContext from "../components/context/authentication_context/
 import Logo from '../assets/Images/logo.png'
 
 
+const ENDPOINT = process.env.REACT_APP_BASE_URL
+
+
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -45,7 +48,7 @@ const Signup = () => {
       } else {
         setLoading(true)
         const  response  = await axios.post(
-          "https://abdulrasid82.pythonanywhere.com/api/users/register/",
+          `${ENDPOINT}/api/users/register/`,
           {
             first_name: firstName,
             last_name: lastName,

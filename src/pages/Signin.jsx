@@ -9,6 +9,8 @@ import AuthenticationContext from '../components/context/authentication_context/
 import { useEffect } from 'react';
 import Logo from '../assets/Images/logo.png'
 
+const ENDPOINT = process.env.REACT_APP_BASE_URL
+
 const Signin = () => {
 
   const [email, setEmail] = useState('')
@@ -29,7 +31,7 @@ const Signin = () => {
   const handleSubmit = async (e)=>{
       e.preventDefault();
       try {
-        const {data} = await axios.post('https://abdulrasid82.pythonanywhere.com/api/users/login/', {'username':email, 'password':password}, 
+        const {data} = await axios.post(`${ENDPOINT}/api/users/login/`, {'username':email, 'password':password}, 
         {headers:{
           'content-type': 'application/json'
         }}
