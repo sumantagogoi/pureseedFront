@@ -19,14 +19,16 @@ const Cart = () => {
     <Container sx={{pt:14, pb:2,}}>
       {cartItems?.length < 1 ? (
         <>
+        <Box sx={{height:'100vh'}}>
         <Typography gutterBottom variant='h3' sx={{textAlign:'center'}}>Sorry no Item in the cart!</Typography>
         <Box sx={{textAlign:'center'}}>
           <Button onClick={()=>navigate('/menu')} fullWidth variant='contained' sx={{color:'inherit', bgcolor:'brown', ":hover":{bgcolor:'#922724'}}}>Shop Now</Button>
         </Box>
+        </Box>
         </>
       ) : (
         <>
-        
+        <Box sx={{height:'100vh'}}>
         <Typography gutterBottom variant='h3'>Your Shopping Cart</Typography>
       <Grid container spacing={2}>
         {cartItems?.map((item,index)=>(
@@ -55,7 +57,7 @@ const Cart = () => {
           <Button sx={{ml:9, minWidth:'150px'}} size='large'  type='button' variant='contained'>Checkout</Button>
         </Box>
       </Box>
-        
+      </Box>
         </>
       )} 
     </Container>

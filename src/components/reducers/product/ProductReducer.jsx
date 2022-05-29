@@ -39,6 +39,42 @@ const ProductReducer = (state, action) =>{
                     cartItems: state.cartItems.filter((item)=>item._id !== action.payload)
                 }
 
+            case 'INCREMENT':
+                const incrementItem = action.payload
+                const incrementExistItem = state.cartItems.find((x)=> x._id === incrementItem._id)
+                if (incrementExistItem){
+                    return {
+                        ...state,
+                        cartItems: state.cartItems.map((item)=>{
+                            if(item._id === incrementExistItem._id){
+                                return {...item, qty:item.qty+1}
+                            }
+                            return item;
+                        })
+    
+                    }
+                }
+
+                case 'DECREMENT':
+                    const decremnetItem = action.payload
+                    const decrementExistItem = state.cartItems.find((x)=> x._id === decremnetItem._id)
+                    if (decremnetItem){
+                        return {
+                            ...state,
+                            cartItems: state.cartItems.map((item)=>{
+                                if(item._id === decrementExistItem._id){
+                                    if(item.qty > 1){
+                                        return {...item, qty:item.qty - 1}
+                                    }
+                                    // return {...item, qty:item.qty - 1}
+                                }
+                                return item;
+                            })
+        
+                        }
+                    }
+                
+
 
 
             

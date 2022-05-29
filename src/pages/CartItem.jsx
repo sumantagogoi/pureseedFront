@@ -7,7 +7,20 @@ import ProductContext from '../components/context/product/productcontext';
 
 
 const CartItem = ({item}) => {
-  const {removeFromCart} = useContext(ProductContext)
+  const {removeFromCart, addtoCart, dispatch} = useContext(ProductContext)
+
+  const increment = (id)=>{
+    dispatch({
+      type:'INCREMENT',
+      payload:id
+    })
+  }
+  const decrement = (id)=>{
+    dispatch({
+      type:'DECREMENT',
+      payload: id
+    })
+  }
   
   
   return (
@@ -24,9 +37,9 @@ const CartItem = ({item}) => {
         </CardContent> 
         <CardActions sx={{justifyContent:'space-between'}}>
             <Box sx={{display:'flex', alignItems:'center'}}>
-               <IconButton ><RemoveRoundedIcon sx={{fontSize:'30px'}} /></IconButton>
+               <IconButton onClick={()=>decrement(item)} ><RemoveRoundedIcon sx={{fontSize:'30px'}} /></IconButton>
                  <Typography variant='h5'>{item.qty}</Typography>
-               <IconButton ><AddRoundedIcon sx={{fontSize:'30px'}} /></IconButton>
+               <IconButton onClick={()=>increment(item)} ><AddRoundedIcon sx={{fontSize:'30px'}} /></IconButton>
             </Box>
             <IconButton onClick={()=>removeFromCart(item._id)}><ClearRoundedIcon sx={{fontSize:'25px'}}/></IconButton>
         </CardActions>

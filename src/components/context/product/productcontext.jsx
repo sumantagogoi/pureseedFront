@@ -48,7 +48,7 @@ export const  ProductContextProvider = ({children}) =>{
         }
     }
 
-    const addtoCart = async (product, qty)=>{
+    const addtoCart = async (product)=>{
         dispatch({
             type:'ADD_TO_CART',
             payload: {
@@ -57,12 +57,12 @@ export const  ProductContextProvider = ({children}) =>{
                 image:product.image,
                 price:product.price,
                 qty:1,
-                itemTotal: qty * Number(product.price * qty)
-
             }
         })
         toast.success('Added To Cart')
     }
+
+
     const removeFromCart = async (id)=>{
         dispatch({
             type:'REMOVE_FROM_CART',
@@ -76,8 +76,10 @@ export const  ProductContextProvider = ({children}) =>{
         categories:state.categories,
         cartItems:state.cartItems,
         loading:state.loading,
+        
 
         // functions
+        dispatch:dispatch,
         getProducts:getProducts,
         getCategories:getCategories,
         addtoCart:addtoCart,
