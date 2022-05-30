@@ -20,8 +20,6 @@ function LeftDrawer({open, setOpen}) {
 }
 const logoutHandler = ()=>{
   Logout()
-  
-  toast.success('Logout Successfully')
   setOpen(false)
 }
   return (
@@ -54,7 +52,7 @@ const logoutHandler = ()=>{
             <ListItem button onClick={()=>navigateHandler('profile')} >
               <ListItemText primary={'Profile'}/>
           </ListItem>
-          <ListItem onClick={Logout} button >
+          <ListItem onClick={logoutHandler} button >
               <ListItemText  primary={'Logout'}/>
           </ListItem>
           <ListItem button onClick={()=>navigateHandler('menu')} >
