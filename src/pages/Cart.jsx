@@ -54,7 +54,7 @@ const Cart = () => {
             </>
           )}
           {/* <Button sx={{ml:9, minWidth:'150px', color:'inherit', bgcolor:'brown', ":hover":{bgcolor:'brown'}}} size='large'  type='button' variant='contained'>Empty</Button> */}
-          <Button sx={{ml:9, minWidth:'150px'}} size='large'  type='button' variant='contained'>Checkout</Button>
+          <Button onClick={()=> navigate('/checkout')} sx={{ml:9, minWidth:'150px'}} size='large'  type='button' variant='contained'>Checkout</Button>
         </Box>
       </Box>
       </Box>

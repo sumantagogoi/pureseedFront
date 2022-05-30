@@ -63,7 +63,7 @@ const Signup = () => {
         );
         console.log(response.request.status)
         setLoading(false)
-        if(response.request.status == 200){
+        if(response.request.status === 200){
           toast.success('Account Successfully Created');
           setFirstName('')
           setLastName('')

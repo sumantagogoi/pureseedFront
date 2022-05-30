@@ -15,6 +15,7 @@ import './index.css'
 import FilteredMenu from './pages/FilteredMenu';
 import 'react-toastify/dist/ReactToastify.css';
 import AlertToast from './components/AlertToast';
+import Checkout from './pages/Checkout';
 
 
 
@@ -47,6 +48,8 @@ function App() {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/checkout' element ={<Checkout/>}/>
+        
       </Routes>
      </BrowserRouter>
      <AlertToast/>
