@@ -1,6 +1,8 @@
-import { Box, Button, Container, Step, StepLabel, Stepper, Typography } from '@mui/material'
+import { Box, Button, Container, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import BasicDetails from './StepperDetails/BasicDetails'
+import OrderReview from './StepperDetails/OrderReview'
+import ShippingDetails from './StepperDetails/ShippingDetails'
 
 const Checkout = () => {
 
@@ -24,17 +26,27 @@ const Checkout = () => {
                    
                    <BasicDetails/>
                );
-            default: return 
+
+            case 1:
+                return (
+                    <ShippingDetails/>
+                );
+            case 2 :
+                return (
+                    <OrderReview/>
+                )
+                
+             default:
+                throw new Error('Unknown step');
        }
     }
 
 
   return (
-   <Container component='main' sx={{minHeight:'100vh', pt:13}}>
-        <Box>
+   <Container component='main' sx={{minHeight:'100vh', maxWidth:'sm',  pt:13}}>
+       <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
            <Typography variant='h3' align='center'>Checkout</Typography>
-        </Box>
-        <Box>
+       
             <Stepper activeStep={activeStep}>
                 <Step>
                     <StepLabel>Basic Details</StepLabel>
@@ -46,10 +58,12 @@ const Checkout = () => {
                     <StepLabel>Order Details</StepLabel>
                 </Step>
             </Stepper>
-            <Box component='form' sx={{justifyContent:'center'}}>
 
-                {getContent(activeStep)}
-            </Box>
+           <Box component='form'>
+           {getContent(activeStep)}
+           </Box>
+               
+           
             <Box sx={{mt:4, display:'flex',justifyContent:'flex-end'}}>
                 {activeStep > 1 ? (
                     <>
@@ -66,8 +80,8 @@ const Checkout = () => {
             )}
             </Box>
             
-        </Box>
-
+        
+            </Paper>
    </Container>
   )
 }

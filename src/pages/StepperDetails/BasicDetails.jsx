@@ -1,27 +1,53 @@
-import { Box, TextField } from '@mui/material'
+import { Box, Grid, TextField } from '@mui/material'
 import React from 'react'
 
 const BasicDetails = () => {
   return (
-    <Box>
-        <TextField 
-        id = 'first_name'
-        label ='First Name'
-        placeholder = 'Enter Your First Name'
-        fullwidth
-        margin ='normal'
-        name = 'firstname'
+   <>
+   <Grid container spacing={2}>
+     <Grid item xs={12} sm={6}>
+        <TextField
+        required
+        id='firstName'
+        name='firstName'
+        label='First Name'
+        fullWidth
+        margin='normal'
         />
-         <TextField 
-        id = 'last_name'
-        label ='Last Name'
-        placeholder = 'Enter Your Last Name'
-        fullwidth
-        margin ='normal'
-        name = 'lastname'
+     </Grid>
+     <Grid item xs={12} sm={6}>
+        <TextField
+        required
+        id='lastName'
+        name='lastName'
+        label='Last Name'
+        fullWidth
+        margin='normal'
         />
-
-    </Box>
+     </Grid>
+     <Grid item xs={12} sm={6}>
+        <TextField
+        required
+        id='email'
+        name='email'
+        label='Email Address'
+        fullWidth
+        type='email'
+        margin='normal'
+        />
+     </Grid>
+     <Grid item xs={12} sm={6}>
+        <TextField
+        required
+        id='phone'
+        name='phone'
+        label='Phone Number'
+        fullWidth
+        margin='normal'
+        />
+     </Grid>
+   </Grid>
+   </>
   )
 }
 
