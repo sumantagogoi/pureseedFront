@@ -73,11 +73,14 @@ const ProductReducer = (state, action) =>{
         
                         }
                     }
-                
+                case 'SHIPPING_DETAILS':
 
-
-
-            
+                    return {
+                        ...state,
+                        shippingDetails: action.payload,
+                        loading:false
+                    }
+ 
         default:
             return state
     }

@@ -11,11 +11,14 @@ const ProductContext = createContext();
 
 export const  ProductContextProvider = ({children}) =>{
 
+    const local_shipping_details = localStorage.getItem('shippingDetails') ? JSON.parse(localStorage.getItem('shippingDetails')): null
+
 
     const initialState = {
         products:[],
         categories:[],
         cartItems:[],
+        shippingDetails:local_shipping_details,
         loading:true,
     }
 
@@ -70,11 +73,20 @@ export const  ProductContextProvider = ({children}) =>{
         })
     }
 
+    const addShippingDetails = (data)=>{
+        dispatch({
+            type:'SHIPPING_DETAILS',
+            payload:data
+        })
+        localStorage.setItem('shippingDetails', JSON.stringify(data))
+    }
+
 
     return <ProductContext.Provider value={{
         products:state.products,
         categories:state.categories,
         cartItems:state.cartItems,
+        shippingDetails:state.shippingDetails,
         loading:state.loading,
         
 
@@ -84,6 +96,7 @@ export const  ProductContextProvider = ({children}) =>{
         getCategories:getCategories,
         addtoCart:addtoCart,
         removeFromCart:removeFromCart,
+        addShippingDetails:addShippingDetails,
 
 
     }}>

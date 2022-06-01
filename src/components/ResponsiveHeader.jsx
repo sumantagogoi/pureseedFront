@@ -9,7 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../assets/Images/logo.png'
 import textlogowhite from '../assets/Images/log.png'
 import AuthenticationContext from './context/authentication_context/AuthenticationContext';
+import ProductContext from './context/product/productcontext';
 import { useContext } from 'react';
+import CartItem from '../pages/CartItem';
 
 
 
@@ -28,11 +30,14 @@ const ResponsiveHeader = () => {
     const navigate = useNavigate()
 
     const {userLoginDetails, Logout} = useContext(AuthenticationContext)
+    const {cartItems} = useContext(ProductContext)
+    const totalItemInCart = cartItems?.length 
 
     const logoutHandler = ()=>{
         Logout()
         navigate('/')
     }
+  
 
 
   return (
@@ -57,7 +62,7 @@ const ResponsiveHeader = () => {
             )}
            
             <IconButton onClick={()=>navigate('/cart')} sx={{marginLeft:'auto'}} >
-                <Badge  badgeContent={4} color="primary">
+                <Badge  badgeContent={totalItemInCart} color="primary">
                     <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                 </Badge>
             </IconButton>
@@ -79,7 +84,7 @@ const ResponsiveHeader = () => {
                 <Button onClick={logoutHandler} size='large' color='inherit'>Logout</Button>
                 <Avatar onClick={()=>navigate('/profile')} sx={{ml:2, mr:2}} />
                  <IconButton onClick={()=>navigate('/cart')} sx={{justifyContent:'center'}} >
-                    <Badge  badgeContent={4} color="primary">
+                    <Badge  badgeContent={totalItemInCart} color="primary">
                         <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                     </Badge>
                 </IconButton>
@@ -88,7 +93,7 @@ const ResponsiveHeader = () => {
                  <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Signin</Button>
                 <Button onClick={()=>navigate('/signup')} size='large' color='inherit'>Signup</Button>
                 <IconButton onClick={()=>navigate('/cart')} sx={{justifyContent:'center'}} >
-                    <Badge  badgeContent={4} color="primary">
+                    <Badge  badgeContent={totalItemInCart} color="primary">
                         <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                     </Badge>
                 </IconButton>

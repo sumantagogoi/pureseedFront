@@ -16,6 +16,7 @@ import FilteredMenu from './pages/FilteredMenu';
 import 'react-toastify/dist/ReactToastify.css';
 import AlertToast from './components/AlertToast';
 import Checkout from './pages/Checkout';
+import OrderReview from './pages/OrderReview';
 
 
 
@@ -49,6 +50,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element ={<Checkout/>}/>
+        <Route path='/order_review' element={<OrderReview/>}/>
         
       </Routes>
      </BrowserRouter>

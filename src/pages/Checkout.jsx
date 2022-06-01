@@ -1,87 +1,128 @@
-import { Box, Button, Container, Paper, Step, StepLabel, Stepper, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import BasicDetails from './StepperDetails/BasicDetails'
-import OrderReview from './StepperDetails/OrderReview'
-import ShippingDetails from './StepperDetails/ShippingDetails'
+import { Box, Button, Container, Grid, MenuItem, Paper, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import ProductContext from '../components/context/product/productcontext'
 
 const Checkout = () => {
 
-    const [activeStep, setActiveStep] = useState(0)
 
-    const handleNext = ()=>{
-        if(activeStep < 2){
-            setActiveStep((preStep)=>preStep + 1)
-        }   
-    }
-    const handlePrevious = ()=>{
-        if(activeStep > 0){
-            setActiveStep((preStep)=>preStep - 1)
-        }
-    }
+    const navigate = useNavigate()
 
-    const getContent = (step)=>{
-       switch(step){
-           case 0:
-               return (
-                   
-                   <BasicDetails/>
-               );
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] =useState('')
+    const [address, setAddress] = useState('') 
+    const [city, setCity] = useState('') 
+    const [state, setState] = useState('')  
+    const [zipcode, setZipcode] = useState('')
+    const [country, setCountry] = useState('India')
 
-            case 1:
-                return (
-                    <ShippingDetails/>
-                );
-            case 2 :
-                return (
-                    <OrderReview/>
-                )
-                
-             default:
-                throw new Error('Unknown step');
-       }
+    const {addShippingDetails} = useContext(ProductContext)
+    
+
+    const onSubmitHandler=(e)=>{
+        e.preventDefault()
+        addShippingDetails({firstName, lastName, address, city, state, zipcode, country})
+        navigate('/order_review')
     }
 
 
   return (
-   <Container component='main' sx={{minHeight:'100vh', maxWidth:'sm',  pt:13}}>
-       <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-           <Typography variant='h3' align='center'>Checkout</Typography>
-       
-            <Stepper activeStep={activeStep}>
-                <Step>
-                    <StepLabel>Basic Details</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel>Shipping Details</StepLabel>
-                </Step>
-                <Step>
-                    <StepLabel>Order Details</StepLabel>
-                </Step>
-            </Stepper>
+   <Container component='main' sx={{minHeight:'100vh', maxWidth:'sm',pt:13}}>
+       <Box>
+           <Typography variant='h3' align='center'>Shipping Details</Typography>
+       </Box>
+       <Box component='form' onSubmit={onSubmitHandler} sx={{pb:4}}>
+        <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+                <TextField
+                id='firstName'
+                name='firstName'
+                label= 'First Name'
+                margin='normal'
+                fullWidth
+                required
+                value = {firstName}
+                onChange={(e)=>setFirstName(e.target.value)}
+                />
+                
+            </Grid>
+            <Grid item xs={12} md={6}>
+            <TextField
+                id='lastName'
+                name='lastName'
+                label= 'Last Name'
+                margin='normal'
+                fullWidth
+                required
+                value = {lastName}
+                onChange={(e)=>setLastName(e.target.value)}
+                />
+            </Grid>
+            <Grid item xs={12} md={12}>
+                <TextField
+                id='Address'
+                name='address'
+                label='Address'
+                fullWidth
+                margin='normal'
+                multiline
+                rows={4}
+                required
+                value = {address}
+                onChange={(e)=>setAddress(e.target.value)}
+                />
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField
+                id='city'
+                name='city'
+                label='City'
+                fullWidth
+                margin='normal'
+                required
+                value = {city}
+                onChange={(e)=>setCity(e.target.value)}
+                />
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField
+                id='state'
+                name='state'
+                label='State'
+                fullWidth
+                margin='normal'
+                required
+                value = {state}
+                onChange={(e)=>setState(e.target.value)}
+                />
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField
+                id='zipcode'
+                name='zipcode'
+                label='Zipcode'
+                fullWidth
+                margin='normal'
+                required
+                value = {zipcode}
+                onChange={(e)=>setZipcode(e.target.value)}
+                />
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <TextField
+                id='country'
+                name='country'
+                label='Country'
+                fullWidth
+                margin='normal'
+                value={country}
+                onChange={(e)=>setCountry(e.target.value)}
 
-           <Box component='form'>
-           {getContent(activeStep)}
-           </Box>
-               
-           
-            <Box sx={{mt:4, display:'flex',justifyContent:'flex-end'}}>
-                {activeStep > 1 ? (
-                    <>
-                     <Button onClick={handleNext} sx={{mr:2, bgcolor:'brown', color:'inherit', ":hover":{bgcolor:'brown'}}} variant='contained'>Pay Now</Button>
-                    </>
-                ): (
-                    <>
-                    <Button onClick={handleNext} sx={{mr:2,  bgcolor:'brown', color:'inherit', ":hover":{bgcolor:'brown'} }} variant='contained'>Next</Button>
-                    </>
-                )}
-                 
-            {activeStep > 0 && (
-                 <Button onClick={handlePrevious} variant='outlined' sx={{color:'inherit'}}>Previous</Button>
-            )}
-            </Box>
-            
-        
-            </Paper>
+                />
+            </Grid>
+        </Grid>
+        <Button type='submit' fullWidth variant='outlined'sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Next</Button>
+        </Box>
    </Container>
   )
 }

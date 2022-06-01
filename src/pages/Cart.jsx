@@ -16,10 +16,10 @@ const Cart = () => {
   const navigate = useNavigate()
   
   return (
-    <Container sx={{pt:14, pb:2,}}>
+    <Container sx={{pt:14, minHeight:'100vh'}}>
       {cartItems?.length < 1 ? (
         <>
-        <Box sx={{height:'100vh'}}>
+        <Box>
         <Typography gutterBottom variant='h3' sx={{textAlign:'center'}}>Sorry no Item in the cart!</Typography>
         <Box sx={{textAlign:'center'}}>
           <Button onClick={()=>navigate('/menu')} fullWidth variant='contained' sx={{color:'inherit', bgcolor:'brown', ":hover":{bgcolor:'#922724'}}}>Shop Now</Button>
