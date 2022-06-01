@@ -1,23 +1,28 @@
 import { Box, Button, Container, Grid, MenuItem, Paper, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material'
 import React, { useContext, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductContext from '../components/context/product/productcontext'
 
 const Checkout = () => {
 
-
+    const {addShippingDetails, shippingDetails, cartItems} = useContext(ProductContext)
     const navigate = useNavigate()
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] =useState('')
-    const [address, setAddress] = useState('') 
-    const [city, setCity] = useState('') 
-    const [state, setState] = useState('')  
-    const [zipcode, setZipcode] = useState('')
-    const [country, setCountry] = useState('India')
+    const [firstName, setFirstName] = useState(shippingDetails?.firstName)
+    const [lastName, setLastName] =useState(shippingDetails?.lastName)
+    const [address, setAddress] = useState(shippingDetails?.address) 
+    const [city, setCity] = useState(shippingDetails?.city) 
+    const [state, setState] = useState(shippingDetails?.state)  
+    const [zipcode, setZipcode] = useState(shippingDetails?.zipcode)
+    const [country, setCountry] = useState(shippingDetails?.country)
 
-    const {addShippingDetails} = useContext(ProductContext)
     
+    useEffect(()=>{
+        if(cartItems.length < 1){
+            navigate('/')
+        }
+    }, [])
 
     const onSubmitHandler=(e)=>{
         e.preventDefault()

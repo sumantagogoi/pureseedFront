@@ -56,13 +56,13 @@ const logoutHandler = ()=>{
               <ListItemText  primary={'Logout'}/>
           </ListItem>
           <ListItem button onClick={()=>navigateHandler('menu')} >
-              <ListItemText primary={'Products'}/>
+              <ListItemText primary={'Menu'}/>
           </ListItem>
           
           </>):(
             <>
               <ListItem button onClick={()=>navigateHandler('menu')} >
-              <ListItemText primary={'Products'}/>
+              <ListItemText primary={'Menu'}/>
           </ListItem>
           
           <ListItem button onClick={()=>navigateHandler('signin')} >

@@ -1,12 +1,22 @@
 import { Avatar, Box, Button, Container, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import ProductContext from '../components/context/product/productcontext'
 import { useContext } from 'react'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const base_url = process.env.REACT_APP_BASE_URL
 
 
 const OrderReview = () => {
   const {cartItems} = useContext(ProductContext)
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(cartItems.length < 1){
+      navigate('/')
+    }
+  })
+
   return (
    <>
      <Container sx={{pt:12,minHeight:'100vh'}}>
