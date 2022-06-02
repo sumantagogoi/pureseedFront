@@ -79,7 +79,7 @@ const Signup = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{minHeight:'100vh'}}>
       <Box
         sx={{
           pt: 12,

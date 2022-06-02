@@ -1,21 +1,46 @@
-import { Avatar, Box, Button, Container, Divider, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
+import { Avatar, Box, Button, Container, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
 import ProductContext from '../components/context/product/productcontext'
+import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext'
 import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const base_url = process.env.REACT_APP_BASE_URL
 
 
 const OrderReview = () => {
-  const {cartItems} = useContext(ProductContext)
+  const {cartItems, shippingDetails} = useContext(ProductContext)
+  const {userLoginDetails} = useContext(AuthenticationContext)
   const navigate = useNavigate()
 
   useEffect(()=>{
     if(cartItems.length < 1){
       navigate('/')
     }
+   
   })
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    // const order = {
+    //     'orderItems':cartItems,
+    //     'shippingAddress':shippingDetails,
+    //     'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+    // }
+
+    const response = await axios.post('http://127.0.0.1:8000/api/create_order/',{
+      'orderItems':cartItems,
+        'shippingAddress':shippingDetails,
+        'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+    }, {
+        headers:{
+          'content-type':'application/json',
+          Authorization: `Bearer ${userLoginDetails.token}`
+        }
+    })
+    return response;
+  }
 
   return (
    <>
@@ -45,7 +70,20 @@ const OrderReview = () => {
              <Typography variant='subtitle1'> &#8377;{cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)}</Typography>
            </ListItem>
          </List>
-         <Button variant='outlined' fullWidth sx={{borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
+        
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant='h5' gutterBottom>Shipping</Typography>
+            <Typography>{shippingDetails.firstName} {shippingDetails.lastName}</Typography>
+            <Typography>{shippingDetails.address}</Typography>
+            <Typography>{shippingDetails.city} - {shippingDetails.zipcode} </Typography> 
+            <Typography>{shippingDetails.state} - {shippingDetails.country}</Typography>
+          </Grid>
+
+        </Grid>
+
+
+         <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
        </Box>
 
      </Container>
