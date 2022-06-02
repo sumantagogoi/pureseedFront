@@ -20,7 +20,7 @@ const Home = () => {
 
     loading ? (<Loader/>) : (
       <>  
-      <Container sx={{height:'100vh'}}>
+      <Container sx={{minheight:'100vh'}}>
         <Category />
         <SomeMenu />
       </Container>

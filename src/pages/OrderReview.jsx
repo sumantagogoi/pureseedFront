@@ -5,12 +5,13 @@ import { useContext } from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const base_url = process.env.REACT_APP_BASE_URL
 
 
 const OrderReview = () => {
-  const {cartItems, shippingDetails} = useContext(ProductContext)
+  const {cartItems, shippingDetails, dispatch} = useContext(ProductContext)
   const {userLoginDetails} = useContext(AuthenticationContext)
   const navigate = useNavigate()
 
@@ -23,23 +24,35 @@ const OrderReview = () => {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    // const order = {
-    //     'orderItems':cartItems,
-    //     'shippingAddress':shippingDetails,
-    //     'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
-    // }
+    try {
+      if(!userLoginDetails){
+        navigate('/signin')
+        toast.error('Kindly Login First')
+       
+      }else{
+        const response = await axios.post(`${base_url}/api/create_order/`,{
+          'orderItems':cartItems,
+            'shippingAddress':shippingDetails,
+            'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+        }, {
+            headers:{
+              'content-type':'application/json',
+              'Authorization': `Bearer ${userLoginDetails?.token}`
+            }
+        })
+        if(response.request.status === 200){
+          navigate('/profile')
+          toast.success('Order Successfully Created')
+          dispatch({
+            type:'CLEAR_CART'
+          })
 
-    const response = await axios.post(`${base_url}/api/create_order/`,{
-      'orderItems':cartItems,
-        'shippingAddress':shippingDetails,
-        'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
-    }, {
-        headers:{
-          'content-type':'application/json',
-          'Authorization': `Bearer ${userLoginDetails?.token}`
         }
-    })
-    return response;
+      }
+      
+    } catch (error) {
+      toast.error('Something went wrong')
+    }
   }
 
   return (

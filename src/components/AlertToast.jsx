@@ -6,7 +6,7 @@ const AlertToast = () => {
     <ToastContainer
     theme='dark'
     position="top-right"
-    autoClose={3000}
+    autoClose={1000}
  
     />
   )

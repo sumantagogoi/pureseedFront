@@ -29,7 +29,7 @@ const CartItem = ({item}) => {
         <CardMedia
         image={`https://abdulrasid82.pythonanywhere.com/${item.image}`}
         alt={item.title}
-        height='260'
+        height='250'
         component='img'/>
         <CardContent sx={{display:'flex', justifyContent:'space-between'}}>
             <Typography variant='h5'>{item.name}</Typography>

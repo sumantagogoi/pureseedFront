@@ -39,6 +39,12 @@ const ProductReducer = (state, action) =>{
                     cartItems: state.cartItems.filter((item)=>item._id !== action.payload)
                 }
 
+            case 'CLEAR_CART':
+                return {
+                    ...state,
+                    cartItems:[]
+                }
+
             case 'INCREMENT':
                 const incrementItem = action.payload
                 const incrementExistItem = state.cartItems.find((x)=> x._id === incrementItem._id)

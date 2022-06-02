@@ -28,7 +28,7 @@ const Cart = () => {
         </>
       ) : (
         <>
-        <Box sx={{height:'100vh'}}>
+        <Box>
         <Typography gutterBottom variant='h3'>Your Shopping Cart</Typography>
       <Grid container spacing={2}>
         {cartItems?.map((item,index)=>(
