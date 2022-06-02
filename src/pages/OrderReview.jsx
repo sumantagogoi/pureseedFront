@@ -29,14 +29,14 @@ const OrderReview = () => {
     //     'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
     // }
 
-    const response = await axios.post('http://127.0.0.1:8000/api/create_order/',{
+    const response = await axios.post(`${base_url}/api/create_order/`,{
       'orderItems':cartItems,
         'shippingAddress':shippingDetails,
         'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
     }, {
         headers:{
           'content-type':'application/json',
-          Authorization: `Bearer ${userLoginDetails.token}`
+          'Authorization': `Bearer ${userLoginDetails?.token}`
         }
     })
     return response;
