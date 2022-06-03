@@ -68,7 +68,7 @@ const OrderReview = () => {
              <ListItem key={item._id}>
                <ListItemAvatar>
                 <Avatar 
-                src={`https://api.manxho.co.in/${item.image}`}
+                src={`https://api.manxho.co.in${item.image}`}
                 sx={{width:56, height:56}}
                 />
                </ListItemAvatar>

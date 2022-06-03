@@ -55,7 +55,7 @@ const Signin = () => {
 
   return (
     <>
-    <Container component='main' maxWidth='xs' sx={{height:'100vh'}}>
+    <Container component='main' maxWidth='xs' sx={{minHeight:'100vh'}}>
       <Box sx={{pt:13, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
               <Avatar
@@ -100,7 +100,7 @@ const Signin = () => {
 
         <Grid container>
           <Grid item xs> 
-            <Link sx={{color:'inherit'}} underline='hover'>Forgot Password</Link>
+            <Link onClick={()=>navigate('/forgot_password')} sx={{color:'inherit'}} underline='hover'>Forgot Password</Link>
           </Grid>
           <Grid item xs>
               <Link  sx={{color:'inherit'}} onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>

@@ -27,7 +27,7 @@ const CartItem = ({item}) => {
     <>
     <Card>
         <CardMedia
-        image={`https://api.manxho.co.in/${item.image}`}
+        image={`https://api.manxho.co.in${item.image}`}
         alt={item.title}
         height='250'
         component='img'/>

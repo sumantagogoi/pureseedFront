@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AlertToast from './components/AlertToast';
 import Checkout from './pages/Checkout';
 import OrderReview from './pages/OrderReview';
+import ForgotPassword from './pages/ForgotPassword';
 
 
 
@@ -45,9 +46,13 @@ function App() {
         <Route path='/' exact element={<Home/>}/>
         <Route path='/menu' element={<Menu/>}/>
         <Route path='/cat/:id' element={<FilteredMenu/>}/>
+
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/forgot_password' element={<ForgotPassword/>}/>
+
+
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element ={<Checkout/>}/>
         <Route path='/order_review' element={<OrderReview/>}/>
