@@ -28,7 +28,7 @@ export const  ProductContextProvider = ({children}) =>{
     // get all the products from the backend
     const getProducts = async ()=>{
         try {
-            const {data} = await axios.get(`${ENDPOINT}/api/products/`)
+            const {data} = await axios.get('https://api.manxho.co.in/api/products/')
             dispatch({
                 type: 'GET_ALL_PRODUCTS',
                 payload: data
@@ -41,7 +41,7 @@ export const  ProductContextProvider = ({children}) =>{
     // Get all the categories from the backend
     const getCategories = async()=>{
         try {
-            const {data} = await axios.get(`${ENDPOINT}/api/categories/`)
+            const {data} = await axios.get('https://api.manxho.co.in/api/categories/')
             dispatch({
                 type:'GET_ALL_CATEGORIES',
                 payload:data
