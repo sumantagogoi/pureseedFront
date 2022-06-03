@@ -14,7 +14,7 @@ const Item = ({item}) => {
                     <CardMedia
                         component='img'
                         height='200'
-                        image={`https://abdulrasid82.pythonanywhere.com/${item.image}`}
+                        image={`https://api.manxho.co.in/${item.image}`}
 
                     />
         </CardActionArea>   

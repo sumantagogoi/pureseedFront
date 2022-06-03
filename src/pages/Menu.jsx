@@ -8,7 +8,7 @@ import Loader from '../components/Loader';
 const Menu = () => {
   const {products, loading} = useContext(ProductContext)
   return (
-    <Container sx={{minheight:'100vh'}}>
+    <Container sx={{minHeight:'100vh'}}>
       <Box sx={{flexFlow:1, pt:14 }}>
         <Typography variant='h3' sx={{textAlign:'center', mb:3}}>Menus</Typography>
         <Grid container spacing={2}>

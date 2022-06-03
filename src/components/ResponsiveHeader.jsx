@@ -52,14 +52,21 @@ const ResponsiveHeader = () => {
             <IconButton onClick={()=>setOpen(!open)}>
                 <MenuIcon/>
             </IconButton>
+            <Box sx={{ml:'auto', display:'flex', flexDirection:'column',}}>
+                <Box component='img' onClick={()=>navigate('/')} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
+                <Typography onClick={()=>navigate('/')} variant='h4' align='center' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:13, mb:1, color:'inherit'}}>
+                Local . Hygienic . Fresh
+                 </Typography>
+            </Box>
             
-            <Box component='img' onClick={()=>navigate('/')} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
-        
-            {userLoginDetails && (
+            
+            
+
+            {/* {userLoginDetails && (
                 <>
                 <Avatar onClick={()=>navigate('/profile')}  sx={{ml:2, mr:2, marginLeft:'auto'}} />
                 </>
-            )}
+            )} */}
            
             <IconButton onClick={()=>navigate('/cart')} sx={{marginLeft:'auto'}} >
                 <Badge  badgeContent={totalItemInCart} color="primary">

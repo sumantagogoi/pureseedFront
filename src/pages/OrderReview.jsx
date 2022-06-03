@@ -30,7 +30,7 @@ const OrderReview = () => {
         toast.error('Kindly Login First')
        
       }else{
-        const response = await axios.post(`${base_url}/api/create_order/`,{
+        const response = await axios.post('https://api.manxho.co.in/api/create_order/',{
           'orderItems':cartItems,
             'shippingAddress':shippingDetails,
             'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
@@ -68,7 +68,7 @@ const OrderReview = () => {
              <ListItem key={item._id}>
                <ListItemAvatar>
                 <Avatar 
-                src={`https://abdulrasid82.pythonanywhere.com/${item.image}`}
+                src={`https://api.manxho.co.in/${item.image}`}
                 sx={{width:56, height:56}}
                 />
                </ListItemAvatar>

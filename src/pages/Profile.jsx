@@ -15,7 +15,6 @@ const Profile = () => {
 
   return (
     <Container sx={{height:'100vh'}}>
-      <AlertToast/>
       <Box sx={{pt:11}}>
       <Typography sx={{textAlign:'center'}} variant='h3'>Profile</Typography>
       <Typography>Welcome {userLoginDetails?.first_name} {userLoginDetails?.last_name} </Typography>
