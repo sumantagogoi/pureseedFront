@@ -63,7 +63,7 @@ const Signin = () => {
               src={Logo}
               sx={{width:170, height:170}}
             />
-          <Typography component='h1' variant='h5' sx={{pt:2}}>Singin</Typography>
+          <Typography component='h1' variant='h5' sx={{pt:2, fontFamily:'avenir'}}>Sign in</Typography>
         </Box>
         <Box component='form' onSubmit={handleSubmit} sx={{mt:1}}>
         <TextField 
@@ -96,7 +96,7 @@ const Signin = () => {
         }}
         
         />
-        <Button type='submit' fullWidth variant='outlined'  sx={{mt:2, mb:2, color:'inherit', borderColor:'brown', ':hover':{bgcolor:'brown'}}}>Sing in</Button>
+        <Button type='submit' fullWidth variant='outlined'  sx={{mt:2, mb:2, color:'inherit', borderColor:'brown', ':hover':{bgcolor:'brown'}}}>Sign in</Button>
 
         <Grid container>
           <Grid item xs> 

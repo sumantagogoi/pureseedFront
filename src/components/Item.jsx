@@ -23,8 +23,10 @@ const Item = ({item}) => {
                     action={
                         <IconButton onClick={()=>addtoCart(item)}>
                             <AddShoppingCartRoundedIcon/>
-                        </IconButton>
+                        </IconButton>  
                     }
+                    titleTypographyProps={{variant:'h6', fontFamily:'savoy'}}
+                    sx={{backgroundColor: "#2a2a2a"}}
                 /> 
                  
                 </Card>

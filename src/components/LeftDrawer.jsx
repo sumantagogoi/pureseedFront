@@ -27,7 +27,7 @@ const logoutHandler = ()=>{
     <SwipeableDrawer 
       PaperProps={{
         sx:{
-          backgroundColor:'#6B2010',
+          backgroundColor:'#4B2515',
           color:'white',
           borderRadius:'0px 100px 0 0'
           
