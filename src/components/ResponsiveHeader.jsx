@@ -97,8 +97,8 @@ const ResponsiveHeader = () => {
                 </IconButton>
             </>) : (
                 <>
-                 <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Signin</Button>
-                <Button onClick={()=>navigate('/signup')} size='large' color='inherit'>Signup</Button>
+                 <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Sign in</Button>
+                <Button onClick={()=>navigate('/signup')} size='large' color='inherit'>Sign up</Button>
                 <IconButton onClick={()=>navigate('/cart')} sx={{justifyContent:'center'}} >
                     <Badge  badgeContent={totalItemInCart} color="primary">
                         <ShoppingCartIcon sx={{fontSize:'33px', }}/>

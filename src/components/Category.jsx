@@ -18,7 +18,7 @@ const Category = () => {
     return (
          <Paper>
         <Box sx={{flexGrow:1, pt:12, borderBottom:1, borderBottomColor:'divider'}}>
-            <Typography sx={{mb:3, textAlign:'center'}} variant='h4' component='h5'>Category</Typography>
+            <Typography sx={{mb:3, fontFamily:'Roboto',  textAlign:'center'}} variant='h4' component='h5'>CATEGORIES</Typography>
        <Grid container spacing={2}>
 
         {cat?.map((category)=>(
@@ -32,7 +32,7 @@ const Category = () => {
                     image={`https://abdulrasid82.pythonanywhere.com/${category.image}`}
                     />
                     <CardContent> 
-                       <Typography variant='h5' component='h5' sx={{textAlign:'center'}}>{category.title}</Typography>
+                       <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
                     </CardContent>
                     </CardActionArea>
                </Card> 

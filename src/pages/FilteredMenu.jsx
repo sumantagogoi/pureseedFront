@@ -34,7 +34,7 @@ const FilteredMenu = () => {
   ) : (
     <Container>
       <Box sx={{ flexFlow: 1, height: "100vh", pt: 12 }}>
-        <Typography variant="h3" sx={{ textAlign: "center", mb: 3, pt:2 }}>
+        <Typography variant="h4" sx={{ textAlign: "center", textTransform: 'uppercase', fontFamily:'Roboto', mb: 3, pt:2 }}>
           {name[0]?.title}
         </Typography>
         {catergoryProducts.length < 1 ? (
