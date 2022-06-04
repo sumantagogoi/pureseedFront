@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 const TestingCategory = () => {
      const {categories, loading, products} = useContext(ProductContext) 
-     // const result = products.map((product)=>product.category)
+     
      const navigate = useNavigate()
      const params = useParams()
      const cat = categories

@@ -13,15 +13,15 @@ import { useContext } from 'react';
 
 
 const SomeMenu = ({localProducts}) => {
-    const navigate = useNavigate()
+
     const {products} = useContext(ProductContext)
-    const someProduct = products.slice(0,8)
+
 
     
     
   return (
-   <Box sx={{flexGrow:1}}>
-       <Typography sx={{pb:2, textAlign:'center', fontFamily:'Roboto',}} variant='h4' component='h5'>MENU</Typography>
+   <Box sx={{flexGrow:1, minHeight:'100vh'}}>
+       <Typography sx={{pb:2, mt:3, textAlign:'center', fontFamily:'Roboto',}} variant='h4' component='h5'>MENU</Typography>
        <Grid container spacing={2}>
 
         {localProducts?.map((item)=>(

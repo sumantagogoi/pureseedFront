@@ -22,7 +22,7 @@ const Home = () => {
       <>  
       <Container sx={{minheight:'100vh'}}>
         <Category />
-        <SomeMenu />
+        
       </Container>
       </>
     )
