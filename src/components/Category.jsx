@@ -23,12 +23,12 @@ const Category = () => {
 
         {cat?.map((category)=>(
              <>
-                <Grid  item xs={6} md={4} lg={3}>
+                <Grid  item xs={4} md={4} lg={3}>
                 <Card key={category._id}  sx={{maxWidth:345}}>
                      <CardActionArea onClick={()=>navigate(`/cat/${category._id}`)}>
                  <CardMedia 
                    component='img'
-                    height='230'
+                    height='150'
                     image={`https://abdulrasid82.pythonanywhere.com/${category.image}`}
                     />
                     <CardContent> 

@@ -22,13 +22,12 @@ const Item = ({item}) => {
                     subheader= {`Rs. ${item.price} / ${item.size}`}
                     action={
                         <IconButton onClick={()=>addtoCart(item)}>
-                            <AddShoppingCartRoundedIcon/>
+                            <AddShoppingCartRoundedIcon sx={{fontSize:15}}/>
                         </IconButton>  
                     }
                     titleTypographyProps={{variant:'h6', fontFamily:'savoy'}}
                     sx={{backgroundColor: "#2a2a2a"}}
-                /> 
-                 
+                />   
                 </Card>
   )
 }

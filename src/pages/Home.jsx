@@ -1,4 +1,4 @@
-import { Container, Paper } from "@mui/material";
+import { Container, Divider, Paper } from "@mui/material";
 import { useContext, useEffect } from "react";
 import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
