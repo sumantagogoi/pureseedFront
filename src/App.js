@@ -18,6 +18,7 @@ import AlertToast from './components/AlertToast';
 import Checkout from './pages/Checkout';
 import OrderReview from './pages/OrderReview';
 import ForgotPassword from './pages/ForgotPassword';
+import Test from './pages/Test';
 
 
 
@@ -46,6 +47,8 @@ function App() {
         <Route path='/' exact element={<Home/>}/>
         <Route path='/menu' element={<Menu/>}/>
         <Route path='/cat/:id' element={<FilteredMenu/>}/>
+
+        <Route path='/test' element={<Test/>}/>
 
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>

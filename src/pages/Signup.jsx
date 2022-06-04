@@ -94,8 +94,8 @@ const Signup = () => {
           src={Logo}
           sx={{ width: 170, height: 170 }}
         />
-        <Typography component="h1" variant="h5">
-          Signup
+        <Typography component="h1" variant="h5" sx={{fontFamily:'avenir', pt:2}}>
+          Sign up
         </Typography>
 
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
