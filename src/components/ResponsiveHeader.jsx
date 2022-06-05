@@ -12,6 +12,7 @@ import AuthenticationContext from './context/authentication_context/Authenticati
 import ProductContext from './context/product/productcontext';
 import { useContext } from 'react';
 import CartItem from '../pages/CartItem';
+import CartDrawer from './CartDrawer';
 
 
 
@@ -25,7 +26,8 @@ const theme = createTheme({
 
 const ResponsiveHeader = () => {
     const [open, setOpen] = useState(false)
-    const customTheme = useTheme();
+    const [showCart, setShowCart] = useState(false)
+    
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const navigate = useNavigate()
 
@@ -42,8 +44,6 @@ const ResponsiveHeader = () => {
 
   return (
       <>
-      {/* <ThemeProvider theme={theme}> */}
-      {/* <CssBaseline/> */}
         <AppBar color='inherit' position="fixed">
         <Toolbar >
 
@@ -58,17 +58,8 @@ const ResponsiveHeader = () => {
                 Local . Hygienic . Fresh
                  </Typography>
             </Box>
-            
-            
-            
-
-            {/* {userLoginDetails && (
-                <>
-                <Avatar onClick={()=>navigate('/profile')}  sx={{ml:2, mr:2, marginLeft:'auto'}} />
-                </>
-            )} */}
-           
-            <IconButton onClick={()=>navigate('/cart')} sx={{marginLeft:'auto'}} >
+               
+            <IconButton onClick={()=>setShowCart(!showCart)} sx={{marginLeft:'auto'}} >
                 <Badge  badgeContent={totalItemInCart} color="primary">
                     <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                 </Badge>
@@ -85,7 +76,7 @@ const ResponsiveHeader = () => {
                 Local . Hygienic . Fresh
             </Typography>
             
-            <Button onClick={()=>navigate('/menu')} size='large' color='inherit' sx={{marginLeft:'auto'}}>Menu</Button>
+            <Button onClick={()=>window.location ='https://manxho.co.in'} size='large' color='inherit' sx={{marginLeft:'auto'}}>Home</Button>
             
             {userLoginDetails ? (<>
                 <Button onClick={logoutHandler} size='large' color='inherit'>Logout</Button>
@@ -99,7 +90,7 @@ const ResponsiveHeader = () => {
                 <>
                  <Button onClick={()=>navigate('/signin')} size='large' color='inherit'>Sign in</Button>
                 <Button onClick={()=>navigate('/signup')} size='large' color='inherit'>Sign up</Button>
-                <IconButton onClick={()=>navigate('/cart')} sx={{justifyContent:'center'}} >
+                <IconButton onClick={()=>setShowCart(!showCart)} sx={{justifyContent:'center'}} >
                     <Badge  badgeContent={totalItemInCart} color="primary">
                         <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                     </Badge>
@@ -111,9 +102,10 @@ const ResponsiveHeader = () => {
         )}
         </Toolbar>
         <LeftDrawer open={open} setOpen={setOpen}/>
-
+        <CartDrawer showCart={showCart} setShowCart={setShowCart} />
+        
+       
     </AppBar>
-    {/* </ThemeProvider> */}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import ProductReducer from "../../reducers/product/ProductReducer";
 import axios from 'axios'
 import {toast} from 'react-toastify'
@@ -12,6 +12,8 @@ const ProductContext = createContext();
 export const  ProductContextProvider = ({children}) =>{
 
     const local_shipping_details = localStorage.getItem('shippingDetails') ? JSON.parse(localStorage.getItem('shippingDetails')): null
+
+    const [showCart, setShowCart] = useState(false);
 
 
     const initialState = {
@@ -88,6 +90,8 @@ export const  ProductContextProvider = ({children}) =>{
         cartItems:state.cartItems,
         shippingDetails:state.shippingDetails,
         loading:state.loading,
+        showCart:showCart,
+        setShowCart:setShowCart,
         
 
         // functions

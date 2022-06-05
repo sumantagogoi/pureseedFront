@@ -1,6 +1,6 @@
 
 import Home from './pages/Home'
-import Menu from './pages/Menu'
+
 import Signin from "./pages/Signin";
 import Signup from './pages/Signup'
 import Header from "./components/Header";
@@ -18,7 +18,7 @@ import AlertToast from './components/AlertToast';
 import Checkout from './pages/Checkout';
 import OrderReview from './pages/OrderReview';
 import ForgotPassword from './pages/ForgotPassword';
-import Test from './pages/Test';
+
 
 
 
@@ -45,11 +45,10 @@ function App() {
       <Routes>
       
         <Route path='/' exact element={<Home/>}/>
-        <Route path='/menu' element={<Menu/>}/>
+       
         <Route path='/cat/:id' element={<FilteredMenu/>}/>
 
-        <Route path='/test' element={<Test/>}/>
-
+       
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/profile' element={<Profile/>}/>

@@ -3,23 +3,24 @@ import React, { useContext, useState } from 'react';
 import ProductContext from './context/product/productcontext';
 import { CardActionArea } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import TestingMenu from './TestingMenu'
+import Menu from './Menu';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Loader from '../components/Loader'
 import "swiper/css";
 import "swiper/css/pagination";
 import { useTheme } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
+
 const theme = createTheme()
 
 
-
 const Category = () => {
-     const {categories, loading, products} = useContext(ProductContext) 
+     const {categories,products} = useContext(ProductContext) 
+     
     
      const matches = useMediaQuery(theme.breakpoints.down('sm'));
      const navigate = useNavigate()
-     const params = useParams()
      const cat = categories
      const [localProducts, setLocalProducts] = useState(products)
 
@@ -32,7 +33,7 @@ const Category = () => {
        
    
      
-    return (
+    return   (
          <>
          <Paper>
         <Box sx={{flexGrow:1, pt:12, borderBottom:1, borderBottomColor:'divider'}}>
@@ -42,9 +43,10 @@ const Category = () => {
 
         {cat?.map((category)=>(
              <>
-             <SwiperSlide>
+             
+             <SwiperSlide key={category._id}  > 
                 <Grid  item xs={4} md={4} lg={3}>
-                <Card key={category._id}  sx={{maxWidth:345}}>
+                <Card   sx={{maxWidth:345}}>
                      <CardActionArea onClick={()=>filterItem(category._id)}>
                  <CardMedia 
                    component='img'
@@ -52,7 +54,12 @@ const Category = () => {
                     image={`https://abdulrasid82.pythonanywhere.com/${category.image}`}
                     />
                     <CardContent> 
-                       <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                         {matches ? (
+                              <Typography variant='subtitle1' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                         ) : (
+                              <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                         ) }
+                       
                     </CardContent>
                     </CardActionArea>
                </Card> 
@@ -65,7 +72,7 @@ const Category = () => {
 
        </Box>
        </Paper>
-       <TestingMenu localProducts={localProducts}/>
+       <Menu localProducts={localProducts}/>
        </>
     );
 }

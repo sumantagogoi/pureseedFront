@@ -1,11 +1,12 @@
 import { Container, Divider, Paper } from "@mui/material";
 import { useContext, useEffect } from "react";
+import CartDrawer from "../components/CartDrawer";
 import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
 import Loader from "../components/Loader";
 
 
-import SomeMenu from "../components/SomeMenu";
+
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
   useEffect (()=>{
     getProducts()
     getCategories()
+    
   }, [])
 
   return (
@@ -22,8 +24,9 @@ const Home = () => {
       <>  
       <Container sx={{minheight:'100vh'}}>
         <Category />
-        
       </Container>
+      
+      
       </>
     )
 
