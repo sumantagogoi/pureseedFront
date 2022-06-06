@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Divider, IconButton, List, ListItem, ListItemText, SwipeableDrawer, Typography } from "@mui/material";
+import { Avatar, Box, Button, Divider, IconButton, List, ListItem, ListItemText, SwipeableDrawer, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -9,11 +9,19 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
+
+
 const CartDrawer = ({ showCart, setShowCart }) => {
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
   const {cartItems, dispatch, removeFromCart} = useContext(ProductContext)
+  if (cartItems?.length > 0){
+    cartItems.subTotal = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+    cartItems.shippingPrice = cartItems.subTotal + 500
+    cartItems.cashDiscount = cartItems?.shippingPrice < 1000 ? 0 : cartItems?.shippingPrice - (10/100)
+    cartItems.discountAmount = cartItems?.cashDiscount === 0 ? 0 : cartItems?.shippingPrice - cartItems?.cashDiscount
+  }
   const navigate = useNavigate()
 
   const navHandler = (path)=>{
@@ -45,15 +53,16 @@ const CartDrawer = ({ showCart, setShowCart }) => {
         disableDiscovery={iOS}
       >
         <Box sx={{width:350}}>
-          <Box>
-              <Typography align='center' variant="h5" sx={{mt:2}}>My Cart</Typography>
-          </Box>
+        
+              <Typography variant="h5" align="center" sx={{mt:2, fontFamily:'Roboto'}}>My Cart</Typography>
+              
+       
           
           <Divider sx={{border:.5}}/>
 
           {cartItems?.length<1 ? (
               <>
-              <Typography variant="h4" align="center" sx={{mt:2}}>No Items in the cart</Typography>
+              <Typography variant="h4" align="center" sx={{mt:2, fontFamily:'Roboto'}}>No Items in the cart</Typography>
               </>
           ) : (
               <>
@@ -63,7 +72,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                   <ListItem key={item._id}>
                       <Avatar
                       src={`https://api.manxho.co.in${item.image}`}
-                      sx={{width:50, height:50}}
+                      sx={{width:60, height:60}}
                       />
                       <ListItemText sx={{ml:2}}>{item.name}</ListItemText>
                       <Typography variant='body2'>{item.qty} x {item.price} &#8377; {Number(item.price * item.qty).toFixed(0)}</Typography>
@@ -85,9 +94,34 @@ const CartDrawer = ({ showCart, setShowCart }) => {
               ))}
               <Divider/>
               <ListItem>
-                  <ListItemText>Total:</ListItemText>
+                  <ListItemText>Subtotal:</ListItemText>
                   <Typography>&#8377; {cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)}</Typography>
               </ListItem>
+              <ListItem>
+                <ListItemText>Shipping:</ListItemText>
+                <Typography>&#8377; 500 </Typography>
+              </ListItem>
+              
+
+              <ListItem>
+                <ListItemText>Total:</ListItemText>
+                <Typography>&#8377; {cartItems.shippingPrice} </Typography>
+              </ListItem>
+              <ListItem>
+               
+                <TextField 
+              label='Coupon'
+              id='coupon'
+              name='coupon'
+              margin='normal'
+              fullWidth
+              sx={{
+                "& .MuiInputLabel-root": {color: 'white'}//styles the label
+              }}
+              />
+              <Button variant="outlined" sx={{ml:1, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>     
+              </ListItem>
+              
               <Button onClick={()=>navHandler('checkout')} variant='outlined' fullWidth sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Checkout</Button>
           </List>
               </>
