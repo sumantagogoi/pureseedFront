@@ -29,7 +29,7 @@ const Item = ({item}) => {
                     sx={{backgroundColor: "#2a2a2a", textAlign:'center'}}
                 />  
                 <CardActions>
-                    <Button onClick={()=>addtoCart(item)} fullWidth variant='contained' sx={{bgcolor:'inherit',color:'inherit',":hover":{bgcolor:'brown', color:'white'}}}>Add to Cart</Button>
+                    <Button onClick={()=>addtoCart(item)} fullWidth variant='contained' startIcon={<AddShoppingCartRoundedIcon/>} sx={{bgcolor:'inherit',color:'inherit',":hover":{bgcolor:'brown', color:'white'}}}>Add to Cart</Button>
                     </CardActions>
                 </Card>
   )

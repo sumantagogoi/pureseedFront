@@ -81,7 +81,7 @@ const ResponsiveHeader = () => {
             {userLoginDetails ? (<>
                 <Button onClick={logoutHandler} size='large' color='inherit'>Logout</Button>
                 <Avatar onClick={()=>navigate('/profile')} sx={{ml:2, mr:2}} />
-                 <IconButton onClick={()=>navigate('/cart')} sx={{justifyContent:'center'}} >
+                 <IconButton onClick={()=>setShowCart(!showCart)} sx={{justifyContent:'center'}} >
                     <Badge  badgeContent={totalItemInCart} color="primary">
                         <ShoppingCartIcon sx={{fontSize:'33px', }}/>
                     </Badge>
