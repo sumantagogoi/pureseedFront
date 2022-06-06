@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardHeader, CardMedia, IconButton } from '@mui/material'
+import { Button, Card, CardActionArea, CardActions, CardHeader, CardMedia, IconButton } from '@mui/material'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import React from 'react'
@@ -13,21 +13,24 @@ const Item = ({item}) => {
         <CardActionArea>
                     <CardMedia
                         component='img'
-                        height='200'
+                        height='160'
                         image={`https://api.manxho.co.in/${item.image}`}
                     />
         </CardActionArea>   
                      <CardHeader
                     title={item.title}
                     subheader= {`Rs. ${item.price} / ${item.size}`}
-                    action={
-                        <IconButton onClick={()=>addtoCart(item)}>
-                            <AddShoppingCartRoundedIcon sx={{fontSize:15}}/>
-                        </IconButton>  
-                    }
+                    // action={
+                    //     <IconButton onClick={()=>addtoCart(item)}>
+                    //         <AddShoppingCartRoundedIcon />
+                    //     </IconButton>  
+                    // }
                     titleTypographyProps={{variant:'h6', fontFamily:'savoy'}}
-                    sx={{backgroundColor: "#2a2a2a"}}
-                />   
+                    sx={{backgroundColor: "#2a2a2a", textAlign:'center'}}
+                />  
+                <CardActions>
+                    <Button onClick={()=>addtoCart(item)} fullWidth variant='contained' sx={{bgcolor:'inherit',color:'inherit',":hover":{bgcolor:'brown', color:'white'}}}>Add to Cart</Button>
+                    </CardActions>
                 </Card>
   )
 }

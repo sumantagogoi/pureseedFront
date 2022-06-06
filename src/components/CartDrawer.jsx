@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemText, SwipeableDrawer, Typography } from "@mui/material";
+import { Avatar, Box, Button, Divider, IconButton, List, ListItem, ListItemText, SwipeableDrawer, Typography } from "@mui/material";
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -10,7 +10,10 @@ import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 
 const CartDrawer = ({ showCart, setShowCart }) => {
-  const {cartItems, dispatch} = useContext(ProductContext)
+  const iOS =
+    typeof navigator !== "undefined" &&
+    /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const {cartItems, dispatch, removeFromCart} = useContext(ProductContext)
   const navigate = useNavigate()
 
   const navHandler = (path)=>{
@@ -33,17 +36,13 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
   return (
     <>
-      <Drawer
-        PaperProps={{
-          sx: {
-            // backgroundColor: "#4B2515",
-            color: "white",
-          },
-        }}
+      <SwipeableDrawer
         anchor="right"
         open={showCart}
         onClose={() => setShowCart(false)}
         onOpen={() => setShowCart(true)}
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
       >
         <Box sx={{width:350}}>
           <Box>
@@ -78,6 +77,9 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                     <IconButton onClick={()=>increment(item)}>
                         <AddRoundedIcon/>
                     </IconButton>
+                    <IconButton>
+                     <ClearRoundedIcon onClick={()=>removeFromCart(item._id)}/>
+                    </IconButton>
                  </Box>
                   </>
               ))}
@@ -93,7 +95,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
           
 
         </Box>
-      </Drawer>
+      </SwipeableDrawer>
     </>
   );
 };

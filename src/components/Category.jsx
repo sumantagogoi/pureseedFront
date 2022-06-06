@@ -8,8 +8,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Loader from '../components/Loader'
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { useTheme } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Pagination } from "swiper";
 
 
 const theme = createTheme()

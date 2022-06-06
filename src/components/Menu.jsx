@@ -1,14 +1,17 @@
 import { Box, Button, Card, CardHeader, CardMedia, Grid, IconButton, Typography } from '@mui/material'
+import ProductContext from './context/product/productcontext';
 
-import React from 'react'
+import React, { useContext } from 'react'
 import './App.css';
 import Item from './Item';
+import Loader from './Loader';
 
 
 
 const Menu = ({localProducts}) => {
+    const {loading} = useContext(ProductContext)
       
-  return (
+  return loading ? <Loader/> :  (
    <Box sx={{flexGrow:1, minHeight:'100vh'}}>
        <Typography sx={{pb:2, mt:3, textAlign:'center', fontFamily:'Roboto',}} variant='h4' component='h5'>MENU</Typography>
        <Grid container spacing={2}>
