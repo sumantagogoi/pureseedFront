@@ -50,7 +50,7 @@ const Category = () => {
                  <CardMedia 
                    component='img'
                     height='150'
-                    image='https://www.thespruceeats.com/thmb/vJUFf6L4p8y9Cn_1pE9Z7Ua9uok=/3000x2001/filters:fill(auto,1)/indian-style-burger-1957599-hero-01-266103a4bb4e4ee7b5feb4da2d2e99da.jpg'
+                    image='https://api.manxho.co.in/media/uploads/manxhologo.jpg'
                     />
                     <CardContent> 
                          {matches ? (
