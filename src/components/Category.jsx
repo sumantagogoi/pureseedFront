@@ -57,7 +57,7 @@ const Category = () => {
                    component='img'
                     height='150'
                     image='https://api.manxho.co.in/media/uploads/manxhologo.jpg'
-                    styles = {object-fit:'contain'}
+                    component="img"
                     />
                     <CardContent> 
                          {matches ? (
