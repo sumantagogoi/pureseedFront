@@ -1,23 +1,12 @@
 
-import Home from './pages/Home'
-
-import Signin from "./pages/Signin";
-import Signup from './pages/Signup'
-import Header from "./components/Header";
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Cart from './pages/Cart';
+import {BrowserRouter} from 'react-router-dom'
 import ResponsiveHeader from './components/ResponsiveHeader';
-import Profile from './pages/Profile';
-
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Paper } from '@mui/material';
 import './index.css'
-import FilteredMenu from './pages/FilteredMenu';
 import 'react-toastify/dist/ReactToastify.css';
 import AlertToast from './components/AlertToast';
-import Checkout from './pages/Checkout';
-import OrderReview from './pages/OrderReview';
-import ForgotPassword from './pages/ForgotPassword';
+import AnimatedRoutes from './components/AnimatedRoutes';
 
 
 
@@ -42,24 +31,9 @@ function App() {
     <BrowserRouter>
     {/* <Header/> */}
     <ResponsiveHeader/>
-      <Routes>
-      
-        <Route path='/' exact element={<Home/>}/>
-       
-        <Route path='/cat/:id' element={<FilteredMenu/>}/>
-
-       
-        <Route path='/signin' element={<Signin/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/forgot_password' element={<ForgotPassword/>}/>
-
-
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path='/checkout' element ={<Checkout/>}/>
-        <Route path='/order_review' element={<OrderReview/>}/>
-        
-      </Routes>
+    
+      <AnimatedRoutes/>
+    
      </BrowserRouter>
      <AlertToast/>
      </Paper>

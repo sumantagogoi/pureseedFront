@@ -8,6 +8,7 @@ import {useNavigate} from 'react-router-dom'
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
+import {motion} from 'framer-motion'
 
 
 
@@ -44,6 +45,14 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
   return (
     <>
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
+
+    
+    
       <SwipeableDrawer
         anchor="right"
         open={showCart}
@@ -130,6 +139,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
         </Box>
       </SwipeableDrawer>
+      </motion.div>
     </>
   );
 };

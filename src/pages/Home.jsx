@@ -4,6 +4,7 @@ import CartDrawer from "../components/CartDrawer";
 import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
 import Loader from "../components/Loader";
+import { motion } from "framer-motion";
 
 
 
@@ -21,11 +22,17 @@ const Home = () => {
   return (
 
     loading ? (<Loader/>) : (
-      <>  
+      <> 
+      <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity:0}}
+      
+      >
       <Container sx={{minheight:'100vh'}}>
         <Category />
       </Container>
-      
+      </motion.div> 
       
       </>
     )

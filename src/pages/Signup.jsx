@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import AuthenticationContext from "../components/context/authentication_context/AuthenticationContext";
 import Logo from '../assets/Images/logo.png'
+import { motion } from "framer-motion";
 
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
@@ -79,6 +80,12 @@ const Signup = () => {
   };
 
   return (
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    
+    >
     <Container component="main" maxWidth="xs" sx={{minHeight:'100vh'}}>
       <Box
         sx={{
@@ -86,6 +93,7 @@ const Signup = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          
          
         }}
       >
@@ -200,6 +208,7 @@ const Signup = () => {
         </Box>
       </Box>
     </Container>
+  </motion.div>
   );
 };
 

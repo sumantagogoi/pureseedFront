@@ -14,6 +14,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Pagination } from "swiper";
 import Logo from "../assets/Images/logo.png"
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
 
 const theme = createTheme()
@@ -45,6 +46,7 @@ const Category = () => {
         <Box sx={{flexGrow:1, pt:12, borderBottom:1, borderBottomColor:'divider'}}>
             <Typography sx={{mb:3, fontFamily:'Roboto',  textAlign:'center'}} variant='h4' component='h5'>CATEGORIES</Typography>
      <Swiper slidesPerView={matches ? 2 : 4}  className='mySwiper' >
+          
        <Grid container spacing={2}>
             <SwiperSlide>
             <Grid  item xs={4} md={4} lg={3}>
@@ -68,6 +70,8 @@ const Category = () => {
                     </CardActionArea>
                </Card> 
                </Grid> 
+              
+              
             </SwiperSlide>
 
         {cat?.map((category)=>(

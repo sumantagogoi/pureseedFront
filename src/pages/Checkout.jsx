@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductContext from '../components/context/product/productcontext'
+import {motion} from 'framer-motion'
 
 const Checkout = () => {
 
@@ -32,6 +33,12 @@ const Checkout = () => {
 
 
   return (
+      <>
+      <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      >
    <Container component='main' sx={{minHeight:'100vh', maxWidth:'sm',pt:13}}>
        <Box>
            <Typography variant='h3' align='center'>Shipping Details</Typography>
@@ -129,6 +136,8 @@ const Checkout = () => {
         <Button type='submit' fullWidth variant='outlined'sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Next</Button>
         </Box>
    </Container>
+   </motion.div>
+   </>
   )
 }
 

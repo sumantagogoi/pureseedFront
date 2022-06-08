@@ -2,11 +2,18 @@ import { Avatar, Box, Button, Container, TextField, Typography } from '@mui/mate
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Logo from '../assets/Images/logo.png'
+import {motion} from 'framer-motion'
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState()
+    const [email, setEmail] = useState('')
     const navigate = useNavigate()
   return (
+    <>
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    >
     <Container component='main' maxWidth='xs' sx={{minHeight:'100vh', pt:12}}>
         <Box sx={{display:'flex',flexDirection:'column', alignItems:'center', pt:4}}>
             <Avatar
@@ -16,6 +23,7 @@ const ForgotPassword = () => {
             />
             <Typography variant='h4' sx={{pt:2}}>Forgot Password</Typography>
         </Box>
+        
         <Box component='form' sx={{mt:1}}>
                 <TextField
                 type='email'
@@ -39,6 +47,8 @@ const ForgotPassword = () => {
         </Box>
 
     </Container>
+    </motion.div>
+    </>
   )
 }
 

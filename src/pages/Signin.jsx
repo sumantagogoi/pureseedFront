@@ -8,6 +8,7 @@ import {toast} from 'react-toastify';
 import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext';
 import { useEffect } from 'react';
 import Logo from '../assets/Images/logo.png'
+import { motion } from 'framer-motion';
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
 
@@ -55,6 +56,12 @@ const Signin = () => {
 
   return (
     <>
+    <motion.div
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
+    exit={{opacity: 0}}
+    
+    >
     <Container component='main' maxWidth='xs' sx={{minHeight:'100vh'}}>
       <Box sx={{pt:13, display:'flex', flexDirection:'column', alignItems:'center',}}>
 
@@ -109,7 +116,7 @@ const Signin = () => {
         <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button>
         </Box>
         </Container>   
-        
+        </motion.div> 
       </>
        
   )

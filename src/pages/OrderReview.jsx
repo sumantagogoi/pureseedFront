@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import {motion} from 'framer-motion'
 
 const base_url = process.env.REACT_APP_BASE_URL
 
@@ -57,6 +58,11 @@ const OrderReview = () => {
 
   return (
    <>
+   <motion.div
+   initial={{opacity: 0}}
+   animate={{opacity: 1}}
+   exit={{opacity: 0}}
+   >
      <Container sx={{pt:12,minHeight:'100vh'}}>
        <Box>
          <Typography variant='h3' align='center'>Order Review</Typography>
@@ -100,6 +106,7 @@ const OrderReview = () => {
        </Box>
 
      </Container>
+     </motion.div>
    </>
   )
 }
