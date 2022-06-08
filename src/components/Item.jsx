@@ -15,6 +15,7 @@ const Item = ({item}) => {
                         component='img'
                         height='160'
                         image={`https://api.manxho.co.in/${item.image}`}
+                        sx={{objectFit:'contain'}}
                     />
         </CardActionArea>   
                      <CardHeader

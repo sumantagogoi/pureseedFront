@@ -13,13 +13,16 @@ import { useTheme } from '@mui/material/styles';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Pagination } from "swiper";
 import Logo from "../assets/Images/logo.png"
+import styled from '@emotion/styled';
 
 
 const theme = createTheme()
 
 
+
 const Category = () => {
      const {categories,products} = useContext(ProductContext) 
+
      
     
      const matches = useMediaQuery(theme.breakpoints.down('sm'));
@@ -33,12 +36,6 @@ const Category = () => {
           })
           setLocalProducts(updatedItems)  
        }
-       
-     const styles = {
-          media: {
-              <object-fit></object-fit>
-          }
-     };
      
    
      
@@ -47,21 +44,22 @@ const Category = () => {
          <Paper>
         <Box sx={{flexGrow:1, pt:12, borderBottom:1, borderBottomColor:'divider'}}>
             <Typography sx={{mb:3, fontFamily:'Roboto',  textAlign:'center'}} variant='h4' component='h5'>CATEGORIES</Typography>
-     <Swiper slidesPerView={3}>
+     <Swiper slidesPerView={matches ? 2 : 4}  className='mySwiper' >
        <Grid container spacing={2}>
             <SwiperSlide>
             <Grid  item xs={4} md={4} lg={3}>
-                <Card   sx={{maxWidth:345}}>
+                <Card sx={{maxWidth:345}}  >
                      <CardActionArea onClick={()=>setLocalProducts(products)}>
                  <CardMedia 
-                   component='img'
-                    height='150'
-                    image='https://api.manxho.co.in/media/uploads/manxhologo.jpg'
-                    component="img"
+                    component='img'
+                    sx={{height:150, objectFit:'contain'}}
+                    image={Logo}
+                    
+                    
                     />
                     <CardContent> 
                          {matches ? (
-                              <Typography variant='subtitle1' sx={{textAlign:'center', fontFamily:'Roboto'}}>All</Typography>
+                              <Typography variant='h6' sx={{textAlign:'center', fontFamily:'Roboto'}}>All</Typography>
                          ) : (
                               <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>All</Typography>
                          ) }
@@ -76,16 +74,17 @@ const Category = () => {
              <>
              <SwiperSlide key={category._id} > 
                 <Grid  item xs={4} md={4} lg={3}>
-                <Card   sx={{maxWidth:345}}>
+                <Card sx={{maxWidth:345}} >
                      <CardActionArea onClick={()=>filterItem(category._id)}>
                  <CardMedia 
                    component='img'
-                    height='150'
+                   
                     image={`https://api.manxho.co.in${category.image}`}
+                    sx={{height:150}}
                     />
                     <CardContent> 
                          {matches ? (
-                              <Typography variant='subtitle1' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                              <Typography variant='h6' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
                          ) : (
                               <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
                          ) }
