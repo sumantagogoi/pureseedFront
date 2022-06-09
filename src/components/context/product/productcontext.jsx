@@ -83,6 +83,8 @@ export const  ProductContextProvider = ({children}) =>{
         localStorage.setItem('shippingDetails', JSON.stringify(data))
     }
 
+    
+
 
     return <ProductContext.Provider value={{
         products:state.products,

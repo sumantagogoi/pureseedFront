@@ -4,6 +4,8 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductContext from '../components/context/product/productcontext'
 import {motion} from 'framer-motion'
+import {Pincode} from '../assets/DATA/pincode'
+import { toast } from 'react-toastify'
 
 const Checkout = () => {
 
@@ -27,8 +29,15 @@ const Checkout = () => {
 
     const onSubmitHandler=(e)=>{
         e.preventDefault()
-        addShippingDetails({firstName, lastName, address, city, state, zipcode, country})
-        navigate('/order_review')
+        const pin = Pincode.includes(parseInt(zipcode))
+        if(pin){
+            addShippingDetails({firstName, lastName, address, city, state, zipcode, country})
+            navigate('/order_review')
+        }else{
+            toast.error('Sorry Your Area is not Servicable')
+        }
+
+        
     }
 
 
@@ -133,7 +142,11 @@ const Checkout = () => {
                 />
             </Grid>
         </Grid>
-        <Button type='submit' fullWidth variant='outlined'sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Next</Button>
+        <Box sx={{display:'flex', justifyContent:'space-between'}}>
+        <Button onClick={()=>navigate(-1)}  variant='outlined'sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Back</Button>
+        <Button type='submit'  variant='outlined'sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Next</Button> 
+        </Box>
+        
         </Box>
    </Container>
    </motion.div>

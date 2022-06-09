@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Divider, IconButton, List, ListItem, ListItemText, SwipeableDrawer, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Divider, FormControl, FormControlLabel, FormLabel, IconButton, List, ListItem, ListItemText, Radio, RadioGroup, SwipeableDrawer, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -9,6 +9,8 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import {motion} from 'framer-motion'
+import { Pincode } from "../assets/DATA/pincode";
+import { toast } from "react-toastify";
 
 
 
@@ -23,6 +25,9 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     cartItems.cashDiscount = cartItems?.shippingPrice < 1000 ? 0 : cartItems?.shippingPrice - (10/100)
     cartItems.discountAmount = cartItems?.cashDiscount === 0 ? 0 : cartItems?.shippingPrice - cartItems?.cashDiscount
   }
+
+
+  const [code, setCode] = useState('')
   const navigate = useNavigate()
 
   const navHandler = (path)=>{
@@ -43,6 +48,15 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     })
   }
 
+  const checkPincode = (code)=>{
+    const pin = Pincode.includes(parseInt(code))
+    if (pin){
+      toast.success('Your Area is servicable')
+    }else{
+      toast.error('Sorry! your area is not serviceable yet!')
+    }
+  }
+
   return (
     <>
     <motion.div
@@ -61,7 +75,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
       >
-        <Box sx={{width:350}}>
+        <Box sx={{width:370}}>
         
               <Typography variant="h5" align="center" sx={{mt:2, fontFamily:'Roboto'}}>My Cart</Typography>
               
@@ -117,18 +131,14 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                 <Typography>&#8377; {cartItems.shippingPrice} </Typography>
               </ListItem>
               <ListItem>
-               
-                <TextField 
-              label='Coupon'
-              id='coupon'
-              name='coupon'
-              margin='normal'
-              fullWidth
-              sx={{
-                "& .MuiInputLabel-root": {color: 'white'}//styles the label
-              }}
-              />
-              <Button variant="outlined" sx={{ml:1, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>     
+               <FormControl>
+                 <FormLabel>Shipping:</FormLabel>
+                 <RadioGroup row>
+                    <FormControlLabel value = 'Assam' control={<Radio/>} label='Assam'/>
+                    <FormControlLabel value = 'India' control={<Radio/>} label='Within India'/>
+                 </RadioGroup>
+               </FormControl>
+                  
               </ListItem>
               
               <Button onClick={()=>navHandler('checkout')} variant='outlined' fullWidth sx={{mt:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Checkout</Button>

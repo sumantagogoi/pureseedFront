@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Container, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
+import { Avatar, Box, Button, Container, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography } from '@mui/material'
 import ProductContext from '../components/context/product/productcontext'
 import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext'
 import { useContext } from 'react'
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import {motion} from 'framer-motion'
+import { useState } from 'react'
 
 const base_url = process.env.REACT_APP_BASE_URL
 
@@ -14,14 +15,29 @@ const base_url = process.env.REACT_APP_BASE_URL
 const OrderReview = () => {
   const {cartItems, shippingDetails, dispatch} = useContext(ProductContext)
   const {userLoginDetails} = useContext(AuthenticationContext)
+  
+  const [couponCode, setCouponCode] = useState('')
+  const [coupon, setCoupon] = useState([])
   const navigate = useNavigate()
+  {if (cartItems?.length > 0){
+    cartItems.cartTotalAmount = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+    if(coupon){
+      const discount = coupon.discount
+      const discounPrecentage = Number(discount / 100)
+      cartItems.amountAfterDiscount = cartItems?.cartTotalAmount  - (cartItems?.cartTotalAmount * discounPrecentage)
+     
+    }
+  }}
+   
 
   useEffect(()=>{
     if(cartItems.length < 1){
       navigate('/')
     }
    
-  })
+  }, [])
+
+  
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
@@ -56,6 +72,25 @@ const OrderReview = () => {
     }
   }
 
+  const applyCoupon = async (e)=>{
+    
+    try {
+      const data = await axios.post('http://127.0.0.1:8000/api/validate_coupon/', {"coupon_code":couponCode})
+      console.log(data)
+      if(data.request.status === 200){
+        setCoupon(data.data)
+        toast.success('Coupon Applied Successfully')
+        
+      }
+    } catch (error) {
+      toast.error('Invalid Coupon')
+    }
+  }
+
+  const removeCoupon = ()=>{
+    localStorage.removeItem('coupon')
+  }
+
   return (
    <>
    <motion.div
@@ -85,8 +120,46 @@ const OrderReview = () => {
            ))}
            <Divider/>
            <ListItem>
-             <ListItemText>Subtotal:</ListItemText>
-             <Typography variant='subtitle1'> &#8377;{cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)}</Typography>
+           
+             <ListItemText>Total:</ListItemText>
+             <Typography variant='subtitle1'> &#8377;{cartItems?.cartTotalAmount}</Typography>
+           </ListItem>
+          { coupon < 1 ? '' : (
+            <>
+            <ListItem>
+           
+           <ListItemText>Discounted Amount:</ListItemText>
+           <Typography variant='subtitle1'> &#8377;{cartItems?.amountAfterDiscount}</Typography>
+         </ListItem>
+            </>
+          ) }
+
+           <ListItem sx={{justifyContent:'flex-end'}}>
+           <TextField
+             label='Coupon'
+             id='coupon'
+             name='coupon'
+             margin='normal'
+             value={couponCode}
+             onChange={(e)=>setCouponCode(e.target.value)}
+
+             
+             
+             
+             
+             
+             />
+            {coupon < 1 ? (
+              <>
+              <Button onClick={()=>applyCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>
+              </>
+            ): (
+              <>
+                <Button onClick={()=>removeCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Remove</Button>
+              </>
+            )}
+            
+
            </ListItem>
          </List>
         
