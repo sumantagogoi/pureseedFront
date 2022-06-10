@@ -15,16 +15,59 @@ import { toast } from "react-toastify";
 
 
 const CartDrawer = ({ showCart, setShowCart }) => {
+
+
+  const shipping_price = (tweight, place)=>{
+    if(place === 'Assam'){
+      switch(tweight){
+        case tweight > 1000 && tweight < 2000:
+          return 90;
+        case tweight > 2000 && tweight < 3000:
+          return 180;
+        default: return 0
+      }
+    }else{
+      switch(tweight){
+        case tweight <= 500:
+          return 100;
+        case tweight > 500 && tweight <= 1000:
+          return 190;
+        case tweight >=1000 && tweight<=1500:
+          return 290;
+        case tweight >=1500 && tweight <=2000:
+          return 390;
+        default:return 0
+      }
+    }
+}
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const {cartItems, dispatch, removeFromCart} = useContext(ProductContext)
+    const {cartItems, dispatch, removeFromCart, shippingValue, setShippingValue} = useContext(ProductContext)
+   
+ 
   if (cartItems?.length > 0){
     cartItems.subTotal = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
-    cartItems.shippingPrice = cartItems.subTotal + 500
+    cartItems.totalWeight = cartItems.reduce((acc, item)=> acc + item.qty * Number( item.weight), 0)
+    cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
     cartItems.cashDiscount = cartItems?.shippingPrice < 1000 ? 0 : cartItems?.shippingPrice - (10/100)
     cartItems.discountAmount = cartItems?.cashDiscount === 0 ? 0 : cartItems?.shippingPrice - cartItems?.cashDiscount
+
+    
+
+    if(shippingValue != null){
+        if(shippingValue === 'Assam'){
+          cartItems.shippingTotal = cartItems?.totalWeight + 90
+        }
+        if(shippingValue === 'India'){
+          cartItems.shippingTotal = cartItems?.totalWeight + 190 
+      }           
+    }
+
+    // cartItems.shippingTotal = 
   }
+
+  
 
 
   const [code, setCode] = useState('')
@@ -56,6 +99,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
       toast.error('Sorry! your area is not serviceable yet!')
     }
   }
+  
 
   return (
     <>
@@ -121,8 +165,12 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                   <Typography>&#8377; {cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)}</Typography>
               </ListItem>
               <ListItem>
-                <ListItemText>Shipping:</ListItemText>
-                <Typography>&#8377; 500 </Typography>
+                  <ListItemText>Total Weight:</ListItemText>
+                  <Typography>{cartItems?.totalWeight} grams</Typography>
+              </ListItem>
+              <ListItem>
+                <ListItemText>Shipping Price:</ListItemText>
+                <Typography>&#8377; {cartItems?.shippingPrice} </Typography>
               </ListItem>
               
 
@@ -132,8 +180,13 @@ const CartDrawer = ({ showCart, setShowCart }) => {
               </ListItem>
               <ListItem>
                <FormControl>
-                 <FormLabel>Shipping:</FormLabel>
-                 <RadioGroup row>
+                 <FormLabel id='shipping-location-label' >Shipping Locatio:</FormLabel>
+                 <RadioGroup row
+                  name='shipping-location-group'
+                  aria-labelledby = 'shipping-location-label'
+                  value={shippingValue}
+                  onChange={(e)=>setShippingValue(e.target.value)}
+                 >
                     <FormControlLabel value = 'Assam' control={<Radio/>} label='Assam'/>
                     <FormControlLabel value = 'India' control={<Radio/>} label='Within India'/>
                  </RadioGroup>

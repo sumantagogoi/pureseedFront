@@ -14,6 +14,7 @@ export const  ProductContextProvider = ({children}) =>{
     const local_shipping_details = localStorage.getItem('shippingDetails') ? JSON.parse(localStorage.getItem('shippingDetails')): null
 
     const [showCart, setShowCart] = useState(false);
+    const [shippingValue, setShippingValue] = useState('Assam')
 
 
     const initialState = {
@@ -61,6 +62,7 @@ export const  ProductContextProvider = ({children}) =>{
                 name:product.title,
                 image:product.image,
                 price:product.price,
+                weight:product.qty,
                 qty:1,
             }
         })
@@ -94,6 +96,8 @@ export const  ProductContextProvider = ({children}) =>{
         loading:state.loading,
         showCart:showCart,
         setShowCart:setShowCart,
+        shippingValue:shippingValue,
+        setShippingValue:setShippingValue,
         
 
         // functions

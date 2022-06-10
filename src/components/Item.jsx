@@ -29,7 +29,7 @@ const Item = ({item}) => {
         </CardActionArea>   
                      <CardHeader
                     title={item.title}
-                    subheader= {`Rs. ${item.price} / ${item.size}`}
+                    subheader= {`Rs. ${item.price} / ${item.qty} ${item.size}`}
                     // action={
                     //     <IconButton onClick={()=>addtoCart(item)}>
                     //         <AddShoppingCartRoundedIcon />
