@@ -1,7 +1,7 @@
-import { Avatar, Box, Button, Divider, FormControl, FormControlLabel, FormLabel, IconButton, List, ListItem, ListItemText, Radio, RadioGroup, SwipeableDrawer, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Divider, FormControl, FormControlLabel, FormLabel, IconButton, List, ListItem, ListItemText, Radio, RadioGroup, SwipeableDrawer, Typography } from "@mui/material";
 import React from "react";
 import { useContext } from "react";
-import { useState } from "react";
+
 import ProductContext from "./context/product/productcontext";
 import {useNavigate} from 'react-router-dom'
 
@@ -17,28 +17,36 @@ import { toast } from "react-toastify";
 const CartDrawer = ({ showCart, setShowCart }) => {
 
 
-  const shipping_price = (tweight, place)=>{
-    if(place === 'Assam'){
-      switch(tweight){
-        case tweight > 1000 && tweight < 2000:
-          return 90;
-        case tweight > 2000 && tweight < 3000:
-          return 180;
-        default: return 0
-      }
-    }else{
-      switch(tweight){
-        case tweight <= 500:
-          return 100;
-        case tweight > 500 && tweight <= 1000:
-          return 190;
-        case tweight >=1000 && tweight<=1500:
-          return 290;
-        case tweight >=1500 && tweight <=2000:
-          return 390;
-        default:return 0
-      }
+  const getAssamDeliveryCharge = (tweight)=>{
+      const weightInKg = tweight / 1000;
+      const roundedWeight = Math.floor(weightInKg);
+      return roundedWeight * 90
+  }
+
+
+  const getWithinIndiaDeliveryCharge = (tweight)=>{
+    const weightInKg = tweight / 1000
+    console.log("inside func",tweight)
+    
+    if (weightInKg <= 0.5){
+      return 100;
+    }else if(weightInKg > 0.5 && weightInKg <= 1){
+      return 190;
     }
+    const numberOf500s = Math.ceil((tweight - 1000) / 500);
+    console.log(numberOf500s * 100 + 190)
+  	return numberOf500s * 100 + 190;
+  }
+
+  const shipping_price = (tweight, place)=>{
+    console.log("called",tweight,place)
+   switch (place){
+    case "India":{
+      return getWithinIndiaDeliveryCharge(tweight)
+    }
+    default:
+      return getAssamDeliveryCharge(tweight)
+   }
 }
   const iOS =
     typeof navigator !== "undefined" &&
@@ -50,27 +58,13 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     cartItems.subTotal = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
     cartItems.totalWeight = cartItems.reduce((acc, item)=> acc + item.qty * Number( item.weight), 0)
     cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
-    cartItems.cashDiscount = cartItems?.shippingPrice < 1000 ? 0 : cartItems?.shippingPrice - (10/100)
-    cartItems.discountAmount = cartItems?.cashDiscount === 0 ? 0 : cartItems?.shippingPrice - cartItems?.cashDiscount
-
-    
-
-    if(shippingValue != null){
-        if(shippingValue === 'Assam'){
-          cartItems.shippingTotal = cartItems?.totalWeight + 90
-        }
-        if(shippingValue === 'India'){
-          cartItems.shippingTotal = cartItems?.totalWeight + 190 
-      }           
-    }
-
-    // cartItems.shippingTotal = 
   }
+  // calling the function here of shipping to calculate the shipping price but its not behaving as i should want, like the weight increase when user add more item and increment the item 
 
   
 
 
-  const [code, setCode] = useState('')
+
   const navigate = useNavigate()
 
   const navHandler = (path)=>{
@@ -135,8 +129,8 @@ const CartDrawer = ({ showCart, setShowCart }) => {
               <>
             <List>
               {cartItems?.map((item)=>(
-                  <>
-                  <ListItem key={item._id}>
+                  <div  key={item._id}>
+                  <ListItem>
                       <Avatar
                       src={`https://api.manxho.co.in${item.image}`}
                       sx={{width:60, height:60}}
@@ -153,11 +147,11 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                     <IconButton onClick={()=>increment(item)}>
                         <AddRoundedIcon/>
                     </IconButton>
-                    <IconButton>
-                     <ClearRoundedIcon onClick={()=>removeFromCart(item._id)}/>
+                    <IconButton onClick={()=>removeFromCart(item._id)}>
+                     <ClearRoundedIcon />
                     </IconButton>
                  </Box>
-                  </>
+                  </div>
               ))}
               <Divider/>
               <ListItem>
@@ -166,7 +160,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
               </ListItem>
               <ListItem>
                   <ListItemText>Total Weight:</ListItemText>
-                  <Typography>{cartItems?.totalWeight} grams</Typography>
+                  <Typography>{cartItems?.totalWeight} KG</Typography>
               </ListItem>
               <ListItem>
                 <ListItemText>Shipping Price:</ListItemText>
@@ -176,11 +170,11 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
               <ListItem>
                 <ListItemText>Total:</ListItemText>
-                <Typography>&#8377; {cartItems.shippingPrice} </Typography>
+                <Typography>&#8377;  </Typography>
               </ListItem>
               <ListItem>
                <FormControl>
-                 <FormLabel id='shipping-location-label' >Shipping Locatio:</FormLabel>
+                 <FormLabel id='shipping-location-label' >Shipping Location:</FormLabel>
                  <RadioGroup row
                   name='shipping-location-group'
                   aria-labelledby = 'shipping-location-label'

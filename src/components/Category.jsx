@@ -74,32 +74,31 @@ const Category = () => {
               
             </SwiperSlide>
 
-        {cat?.map((category)=>(
-             <>
-             <SwiperSlide key={category._id} > 
-                <Grid  item xs={4} md={4} lg={3}>
-                <Card sx={{maxWidth:345}} >
-                     <CardActionArea onClick={()=>filterItem(category._id)}>
-                 <CardMedia 
-                   component='img'
-                   
-                    image={`https://api.manxho.co.in${category.image}`}
-                    sx={{height:150}}
-                    />
-                    <CardContent> 
-                         {matches ? (
-                              <Typography variant='h6' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
-                         ) : (
-                              <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
-                         ) }
-                       
-                    </CardContent>
-                    </CardActionArea>
-               </Card> 
-               </Grid> 
-               </SwiperSlide>
-             </>
-        ))}
+        {cat?.map((category)=> (
+               <SwiperSlide key={category._id}> 
+                  <Grid  item xs={4} md={4} lg={3}>
+                  <Card sx={{maxWidth:345}} >
+                       <CardActionArea onClick={()=>filterItem(category._id)}>
+                   <CardMedia 
+                     component='img'
+                     
+                      image={`https://api.manxho.co.in${category.image}`}
+                      sx={{height:150}}
+                      />
+                      <CardContent> 
+                           {matches ? (
+                                <Typography variant='h6' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                           ) : (
+                                <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                           ) }
+                         
+                      </CardContent>
+                      </CardActionArea>
+                 </Card> 
+                 </Grid> 
+                 </SwiperSlide>
+          )
+        )}
        </Grid>
        </Swiper>
 

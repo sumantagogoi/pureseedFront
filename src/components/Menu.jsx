@@ -16,13 +16,12 @@ const Menu = ({localProducts}) => {
        <Typography sx={{pb:2, mt:3, textAlign:'center', fontFamily:'Roboto',}} variant='h4' component='h5'>MENU</Typography>
        <Grid container spacing={2}>
 
-        {localProducts?.map((item)=>(
-            <>
-            <Grid key={item._id} item xs={6} md={4} lg={3} sx={{mb:2}}>
-                <Item item={item}/>     
-           </Grid>
-            </>
-        ))} 
+        {localProducts?.map((item)=> (
+                <Grid  item xs={6} md={4} lg={3} sx={{mb:2}} key={item._id}>
+                    <Item item={item}/>     
+               </Grid>
+            )
+        )} 
        </Grid>
    </Box>
   )
