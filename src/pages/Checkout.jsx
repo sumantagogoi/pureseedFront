@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 
 const Checkout = () => {
 
-    const {addShippingDetails, shippingDetails, cartItems} = useContext(ProductContext)
+    const {addShippingDetails, shippingDetails, cartItems, shippingValue} = useContext(ProductContext)
     const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState(shippingDetails?.firstName)
@@ -18,7 +18,8 @@ const Checkout = () => {
     const [city, setCity] = useState(shippingDetails?.city) 
     const [state, setState] = useState(shippingDetails?.state)  
     const [zipcode, setZipcode] = useState(shippingDetails?.zipcode)
-    const [country, setCountry] = useState(shippingDetails?.country)
+    const [phoneNumber, setPhoneNumber] = useState(shippingDetails?.phoneNumber)
+    const [country, setCountry] = useState('India')
 
     
     useEffect(()=>{
@@ -31,7 +32,7 @@ const Checkout = () => {
         e.preventDefault()
         const pin = Pincode.includes(parseInt(zipcode))
         if(pin){
-            addShippingDetails({firstName, lastName, address, city, state, zipcode, country})
+            addShippingDetails({firstName, lastName, address, city, state, zipcode, phoneNumber, country})
             navigate('/order_review')
         }else{
             toast.error('Sorry Your Area is not Servicable')
@@ -115,6 +116,7 @@ const Checkout = () => {
                 required
                 value = {state}
                 onChange={(e)=>setState(e.target.value)}
+                disabled={shippingValue === "Assam" ? 'true' : ''}
                 />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -131,14 +133,13 @@ const Checkout = () => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <TextField
-                id='country'
-                name='country'
-                label='Country'
+                id='phoneNumber'
+                name='phoneNumber'
+                label='Phone'
                 fullWidth
                 margin='normal'
-                value={country}
-                onChange={(e)=>setCountry(e.target.value)}
-
+                value={phoneNumber}
+                onChange={(e)=>setPhoneNumber(e.target.value)}
                 />
             </Grid>
         </Grid>

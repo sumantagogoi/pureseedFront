@@ -19,27 +19,23 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
   const getAssamDeliveryCharge = (tweight)=>{
       const weightInKg = tweight / 1000;
-      const roundedWeight = Math.floor(weightInKg);
+      const roundedWeight = Math.floor(weightInKg); 
       return roundedWeight * 90
   }
 
 
   const getWithinIndiaDeliveryCharge = (tweight)=>{
-    const weightInKg = tweight / 1000
-    console.log("inside func",tweight)
-    
+    const weightInKg = tweight / 1000 
     if (weightInKg <= 0.5){
       return 100;
     }else if(weightInKg > 0.5 && weightInKg <= 1){
       return 190;
     }
     const numberOf500s = Math.ceil((tweight - 1000) / 500);
-    console.log(numberOf500s * 100 + 190)
   	return numberOf500s * 100 + 190;
   }
 
   const shipping_price = (tweight, place)=>{
-    console.log("called",tweight,place)
    switch (place){
     case "India":{
       return getWithinIndiaDeliveryCharge(tweight)
@@ -160,7 +156,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
               </ListItem>
               <ListItem>
                   <ListItemText>Total Weight:</ListItemText>
-                  <Typography>{cartItems?.totalWeight} KG</Typography>
+                  <Typography>{cartItems?.totalWeight / 1000 } KG</Typography>
               </ListItem>
               <ListItem>
                 <ListItemText>Shipping Price:</ListItemText>
@@ -170,7 +166,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
               <ListItem>
                 <ListItemText>Total:</ListItemText>
-                <Typography>&#8377;  </Typography>
+                <Typography>&#8377; {cartItems?.subTotal + cartItems.shippingPrice}  </Typography>
               </ListItem>
               <ListItem>
                <FormControl>

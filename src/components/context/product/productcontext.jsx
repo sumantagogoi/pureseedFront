@@ -14,7 +14,7 @@ export const  ProductContextProvider = ({children}) =>{
     const local_shipping_details = localStorage.getItem('shippingDetails') ? JSON.parse(localStorage.getItem('shippingDetails')): null
 
     const [showCart, setShowCart] = useState(false);
-    const [shippingValue, setShippingValue] = useState('')
+    const [shippingValue, setShippingValue] = useState('Assam')
 
 
     const initialState = {

@@ -13,16 +13,51 @@ const base_url = process.env.REACT_APP_BASE_URL
 
 
 const OrderReview = () => {
-  const {cartItems, shippingDetails, dispatch} = useContext(ProductContext)
+
+  const getAssamDeliveryCharge = (tweight)=>{
+    const weightInKg = tweight / 1000;
+    const roundedWeight = Math.floor(weightInKg); 
+    return roundedWeight * 90
+}
+
+
+    const getWithinIndiaDeliveryCharge = (tweight)=>{
+      const weightInKg = tweight / 1000 
+      if (weightInKg <= 0.5){
+        return 100;
+      }else if(weightInKg > 0.5 && weightInKg <= 1){
+        return 190;
+      }
+      const numberOf500s = Math.ceil((tweight - 1000) / 500);
+      return numberOf500s * 100 + 190;
+    }
+
+    const shipping_price = (tweight, place)=>{
+      switch (place){
+       case "India":{
+         return getWithinIndiaDeliveryCharge(tweight)
+       }
+       default:
+         return getAssamDeliveryCharge(tweight)
+      }
+   }
+
+
+  const {cartItems, shippingDetails, dispatch, shippingValue, setshippingValue} = useContext(ProductContext)
   const {userLoginDetails} = useContext(AuthenticationContext)
   
   const [couponCode, setCouponCode] = useState('')
   const [coupon, setCoupon] = useState([])
   const navigate = useNavigate()
   {if (cartItems?.length > 0){
-    cartItems.cartTotalAmount = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
-    if(coupon){
-      const discount = coupon.discount
+    cartItems.subTotal = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+    cartItems.totalWeight = cartItems.reduce((acc, item)=> acc + item.qty * Number( item.weight), 0)
+    cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
+    cartItems.totalPrice = cartItems?.subTotal + cartItems?.shippingPrice
+    
+    if(couponCode){
+      const discount = couponCode.discount
+      const discountType = couponCode.discount_type
       const discounPrecentage = Number(discount / 100)
       cartItems.amountAfterDiscount = cartItems?.cartTotalAmount  - (cartItems?.cartTotalAmount * discounPrecentage)
      
@@ -79,8 +114,7 @@ const OrderReview = () => {
       console.log(data)
       if(data.request.status === 200){
         setCoupon(data.data)
-        toast.success('Coupon Applied Successfully')
-        
+        toast.success('Coupon Applied Successfully')   
       }
     } catch (error) {
       toast.error('Invalid Coupon')
@@ -105,7 +139,7 @@ const OrderReview = () => {
        <Box>
          <List>
            {cartItems?.map((item)=>(
-             <>
+           
              <ListItem key={item._id}>
                <ListItemAvatar>
                 <Avatar 
@@ -116,24 +150,32 @@ const OrderReview = () => {
                <ListItemText sx={{pl:2}}>{item.name}</ListItemText>
                <Typography variant='body2'>{item.qty} x {item.price} &#8377; {Number(item.price * item.qty).toFixed(0)}</Typography>
              </ListItem>
-             </>
+            
            ))}
            <Divider/>
            <ListItem>
-           
-             <ListItemText>Total:</ListItemText>
-             <Typography variant='subtitle1'> &#8377;{cartItems?.cartTotalAmount}</Typography>
+             <ListItemText>Sub-Total:</ListItemText>
+             <Typography variant='subtitle1'> &#8377;{cartItems?.subTotal}</Typography>
            </ListItem>
-          { coupon < 1 ? '' : (
-            <>
-            <ListItem>
-           
-           <ListItemText>Discounted Amount:</ListItemText>
-           <Typography variant='subtitle1'> &#8377;{cartItems?.amountAfterDiscount}</Typography>
-         </ListItem>
-            </>
-          ) }
+           <ListItem>
+             <ListItemText>Total Weight:</ListItemText>
+             <Typography variant='subtitle1'>{cartItems?.totalWeight / 1000 } &#13199;</Typography>
+           </ListItem>
 
+           <ListItem>
+             <ListItemText>Shipping:</ListItemText>
+             <Typography variant='subtitle1'> &#8377;{cartItems?.shippingPrice}</Typography>
+           </ListItem>
+           <ListItem>
+             <ListItemText>Total:</ListItemText>
+             <Typography variant='subtitle1'> &#8377;{cartItems?.totalPrice}</Typography>
+           </ListItem>
+         
+          {coupon?.length > 0 ? (
+              <></>
+          ) : (
+            <></>
+          )}
            <ListItem sx={{justifyContent:'flex-end'}}>
            <TextField
              label='Coupon'
@@ -141,25 +183,9 @@ const OrderReview = () => {
              name='coupon'
              margin='normal'
              value={couponCode}
-             onChange={(e)=>setCouponCode(e.target.value)}
-
-             
-             
-             
-             
-             
+             onChange={(e)=>setCouponCode(e.target.value)}    
              />
-            {coupon < 1 ? (
-              <>
-              <Button onClick={()=>applyCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>
-              </>
-            ): (
-              <>
-                <Button onClick={()=>removeCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Remove</Button>
-              </>
-            )}
-            
-
+          <Button onClick={()=>applyCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>
            </ListItem>
          </List>
         
@@ -170,12 +196,16 @@ const OrderReview = () => {
             <Typography>{shippingDetails.address}</Typography>
             <Typography>{shippingDetails.city} - {shippingDetails.zipcode} </Typography> 
             <Typography>{shippingDetails.state} - {shippingDetails.country}</Typography>
+             <Typography>Phone: {shippingDetails.phoneNumber}</Typography>
           </Grid>
 
         </Grid>
-
-
-         <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
+        {cartItems?.totalWeight / 1000 > 8 ? (
+          <Typography variant='h4' align='center' sx={{pt:3}}>Sorry, we dont deliver product more than 8 Kg </Typography>
+        ) :(
+          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
+        ) }
+        
        </Box>
 
      </Container>
