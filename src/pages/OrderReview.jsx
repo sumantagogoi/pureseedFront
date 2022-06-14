@@ -64,7 +64,7 @@ const OrderReview = () => {
     }
   }}
    
-
+  console.log(coupon)
   useEffect(()=>{
     if(cartItems.length < 1){
       navigate('/')
@@ -122,7 +122,8 @@ const OrderReview = () => {
   }
 
   const removeCoupon = ()=>{
-    localStorage.removeItem('coupon')
+    setCoupon('')
+    toast.success('Coupon Removed Successfully!')
   }
 
   return (
@@ -132,7 +133,7 @@ const OrderReview = () => {
    animate={{opacity: 1}}
    exit={{opacity: 0}}
    >
-     <Container sx={{pt:12,minHeight:'100vh'}}>
+     <Container sx={{pt:12, minHeight:'100vh'}}>
        <Box>
          <Typography variant='h3' align='center'>Order Review</Typography>
        </Box>
@@ -166,16 +167,20 @@ const OrderReview = () => {
              <ListItemText>Shipping:</ListItemText>
              <Typography variant='subtitle1'> &#8377;{cartItems?.shippingPrice}</Typography>
            </ListItem>
+
+          { Object.keys(coupon).length > 0 ? (
+            <ListItem>
+            <ListItemText>Discount:</ListItemText>
+            <Typography variant='subtitle1'> &#8377;{cartItems?.shippingPrice}</Typography>
+          </ListItem>
+          ):('')}
+
+
            <ListItem>
              <ListItemText>Total:</ListItemText>
              <Typography variant='subtitle1'> &#8377;{cartItems?.totalPrice}</Typography>
            </ListItem>
-         
-          {coupon?.length > 0 ? (
-              <></>
-          ) : (
-            <></>
-          )}
+        
            <ListItem sx={{justifyContent:'flex-end'}}>
            <TextField
              label='Coupon'
@@ -185,7 +190,13 @@ const OrderReview = () => {
              value={couponCode}
              onChange={(e)=>setCouponCode(e.target.value)}    
              />
-          <Button onClick={()=>applyCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>
+
+          {Object.keys(coupon).length > 0 ? (
+              <Button onClick={()=>removeCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Remove</Button>
+          ):(
+            <Button onClick={()=>applyCoupon()} variant='outlined'  sx={{ml:2, borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Apply</Button>
+          )}
+          
            </ListItem>
          </List>
         
@@ -201,9 +212,9 @@ const OrderReview = () => {
 
         </Grid>
         {cartItems?.totalWeight / 1000 > 8 ? (
-          <Typography variant='h4' align='center' sx={{pt:3}}>Sorry, we dont deliver product more than 8 Kg </Typography>
+          <Typography variant='h4' align='center' sx={{pt:3, pb:5}}>Sorry, we dont deliver product more than 8 Kg </Typography>
         ) :(
-          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
+          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
         ) }
         
        </Box>
