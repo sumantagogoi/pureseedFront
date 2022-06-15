@@ -42,7 +42,7 @@ const Signin = () => {
           payload :data
         })
         localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
-        navigate('/profile')
+        navigate(-1)
         toast.success('Login in Successfully ')
       
 

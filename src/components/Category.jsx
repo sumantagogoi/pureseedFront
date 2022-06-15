@@ -15,6 +15,7 @@ import { Pagination } from "swiper";
 import Logo from "../assets/Images/logo.png"
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import { useId } from 'react';
 
 
 const theme = createTheme()
@@ -30,12 +31,15 @@ const Category = () => {
      const navigate = useNavigate()
      const cat = categories
      const [localProducts, setLocalProducts] = useState(products)
+     const [active, setActive] = useState()
+     const id = useId()
 
      const filterItem = (catid)=>{
           const updatedItems =  products.filter((elem)=>{
               return elem.category === catid     
           })
           setLocalProducts(updatedItems)  
+          setActive(catid)
        }
      
    
@@ -48,10 +52,13 @@ const Category = () => {
      <Swiper slidesPerView={matches ? 2 : 4}  className='mySwiper' >
           
        <Grid container spacing={2}>
-            <SwiperSlide>
+            <SwiperSlide id={id}>
             <Grid  item xs={4} md={4} lg={3}>
                 <Card sx={{maxWidth:345}}  >
-                     <CardActionArea onClick={()=>setLocalProducts(products)}>
+                     <CardActionArea onClick={()=>{
+                          setLocalProducts(products)
+                          setActive(id)
+                          }}>
                  <CardMedia 
                     component='img'
                     sx={{height:150, objectFit:'contain'}}
@@ -61,9 +68,9 @@ const Category = () => {
                     />
                     <CardContent> 
                          {matches ? (
-                              <Typography variant='h6' sx={{textAlign:'center', fontFamily:'Roboto'}}>All</Typography>
+                              <Typography variant= {id === active ? 'h5' : 'h6'} sx={{textAlign:'center', fontFamily:'Roboto',color:id === active ? 'brown' : ''}}>All</Typography>
                          ) : (
-                              <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>All</Typography>
+                              <Typography variant= {id === active ? 'h4' : 'h5'}  sx={{textAlign:'center', fontFamily:'Roboto', color:id === active ? 'brown' : ''}}>All</Typography>
                          ) }
                        
                     </CardContent>
@@ -87,9 +94,9 @@ const Category = () => {
                       />
                       <CardContent> 
                            {matches ? (
-                                <Typography variant='h6' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                                <Typography variant={category._id === active ? 'h5' : 'h6'} sx={{textAlign:'center', fontFamily:'Roboto',color:category._id === active ? 'brown' : ''}}>{category.title}</Typography>
                            ) : (
-                                <Typography variant='h5' component='h5' sx={{textAlign:'center', fontFamily:'Roboto'}}>{category.title}</Typography>
+                                <Typography variant={category._id === active ? 'h4' : 'h5'} sx={{textAlign:'center', fontFamily:'Roboto', color:category._id === active ? 'brown' : ''}}>{category.title}</Typography>
                            ) }
                          
                       </CardContent>

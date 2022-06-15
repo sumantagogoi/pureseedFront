@@ -15,6 +15,7 @@ export const  ProductContextProvider = ({children}) =>{
 
     const [showCart, setShowCart] = useState(false);
     const [shippingValue, setShippingValue] = useState('Assam')
+    const [coupon, setCoupon] = useState([])
 
 
     const initialState = {
@@ -22,6 +23,7 @@ export const  ProductContextProvider = ({children}) =>{
         categories:[],
         cartItems:[],
         shippingDetails:local_shipping_details,
+        allOrdersByUser:[],
         loading:true,
     }
 
@@ -85,6 +87,19 @@ export const  ProductContextProvider = ({children}) =>{
         localStorage.setItem('shippingDetails', JSON.stringify(data))
     }
 
+    const getAllOrdersByUser = async (token)=>{
+        const {data} = await axios.get('https://api.manxho.co.in/api/users/get_all_orders/', {
+            headers:{
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        dispatch({
+            type:'GET_ALL_ORDERS_BY_USER',
+            payload:data
+        })
+    }
+
     
 
 
@@ -93,17 +108,21 @@ export const  ProductContextProvider = ({children}) =>{
         categories:state.categories,
         cartItems:state.cartItems,
         shippingDetails:state.shippingDetails,
+        allOrdersByUser:state.allOrdersByUser,
         loading:state.loading,
         showCart:showCart,
         setShowCart:setShowCart,
         shippingValue:shippingValue,
         setShippingValue:setShippingValue,
+        coupon:coupon,
+        setCoupon:setCoupon,
         
 
         // functions
         dispatch:dispatch,
         getProducts:getProducts,
         getCategories:getCategories,
+        getAllOrdersByUser:getAllOrdersByUser,
         addtoCart:addtoCart,
         removeFromCart:removeFromCart,
         addShippingDetails:addShippingDetails,

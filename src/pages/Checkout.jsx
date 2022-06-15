@@ -21,6 +21,8 @@ const Checkout = () => {
     const [phoneNumber, setPhoneNumber] = useState(shippingDetails?.phoneNumber)
     const [country, setCountry] = useState('India')
 
+    var stateValue = shippingValue === "Assam" ? 'Assam' : state
+
     
     useEffect(()=>{
         if(cartItems.length < 1){
@@ -32,7 +34,7 @@ const Checkout = () => {
         e.preventDefault()
         const pin = Pincode.includes(parseInt(zipcode))
         if(pin){
-            addShippingDetails({firstName, lastName, address, city, state, zipcode, phoneNumber, country})
+            addShippingDetails({firstName, lastName, address, city,  stateValue , zipcode, phoneNumber, country})
             navigate('/order_review')
         }else{
             toast.error('Sorry Your Area is not Servicable')
@@ -114,9 +116,9 @@ const Checkout = () => {
                 fullWidth
                 margin='normal'
                 required
-                value = {state}
+                value = {shippingValue === 'Assam' ? 'Assam' : state}
                 onChange={(e)=>setState(e.target.value)}
-                disabled={shippingValue === "Assam" ? 'true' : ''}
+                disabled={shippingValue === "Assam" ? true : false}
                 />
             </Grid>
             <Grid item xs={12} md={6}>

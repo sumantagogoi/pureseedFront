@@ -86,6 +86,12 @@ const ProductReducer = (state, action) =>{
                         shippingDetails: action.payload,
                         loading:false
                     }
+                case 'GET_ALL_ORDERS_BY_USER':
+                    return {
+                        ...state,
+                        allOrdersByUser : action.payload,
+                        loading:false
+                    }
  
         default:
             return state

@@ -43,11 +43,11 @@ const OrderReview = () => {
    }
 
 
-  const {cartItems, shippingDetails, dispatch, shippingValue, setshippingValue} = useContext(ProductContext)
+  const {cartItems, shippingDetails, dispatch, shippingValue, coupon, setCoupon} = useContext(ProductContext)
   const {userLoginDetails} = useContext(AuthenticationContext)
   
   const [couponCode, setCouponCode] = useState('')
-  const [coupon, setCoupon] = useState([])
+  
   const navigate = useNavigate()
   {if (cartItems?.length > 0){
     cartItems.subTotal = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
@@ -55,16 +55,17 @@ const OrderReview = () => {
     cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
     cartItems.totalPrice = cartItems?.subTotal + cartItems?.shippingPrice
     
-    if(couponCode){
-      const discount = couponCode.discount
-      const discountType = couponCode.discount_type
+    if(Object.keys(coupon).length > 0){
+      const discount = coupon.discount
+      const discountType = coupon.discount_type
       const discounPrecentage = Number(discount / 100)
-      cartItems.amountAfterDiscount = cartItems?.cartTotalAmount  - (cartItems?.cartTotalAmount * discounPrecentage)
+      var  amountAfterDiscount = cartItems?.totalPrice  - (cartItems?.totalPrice * discounPrecentage)
+      cartItems.discountedAmount = Number(cartItems?.totalPrice) - Number(amountAfterDiscount)
      
     }
   }}
    
-  console.log(coupon)
+  console.log(coupon.discount)
   useEffect(()=>{
     if(cartItems.length < 1){
       navigate('/')
@@ -85,7 +86,10 @@ const OrderReview = () => {
         const response = await axios.post('https://api.manxho.co.in/api/create_order/',{
           'orderItems':cartItems,
             'shippingAddress':shippingDetails,
-            'totalPrice':cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
+            'shippingPrice':cartItems?.shippingPrice,
+            'coupon':Object.keys(coupon).length > 0 ? coupon.code : '',
+            'totalPrice': Object.keys(coupon).length > 0 ? amountAfterDiscount : cartItems?.totalPrice
+
         }, {
             headers:{
               'content-type':'application/json',
@@ -104,13 +108,14 @@ const OrderReview = () => {
       
     } catch (error) {
       toast.error('Something went wrong')
+      console.log(error);
     }
   }
 
   const applyCoupon = async (e)=>{
     
     try {
-      const data = await axios.post('http://127.0.0.1:8000/api/validate_coupon/', {"coupon_code":couponCode})
+      const data = await axios.post('https://api.manxho.co.in/api/validate_coupon/', {"coupon_code":couponCode})
       console.log(data)
       if(data.request.status === 200){
         setCoupon(data.data)
@@ -123,6 +128,7 @@ const OrderReview = () => {
 
   const removeCoupon = ()=>{
     setCoupon('')
+    
     toast.success('Coupon Removed Successfully!')
   }
 
@@ -171,14 +177,14 @@ const OrderReview = () => {
           { Object.keys(coupon).length > 0 ? (
             <ListItem>
             <ListItemText>Discount:</ListItemText>
-            <Typography variant='subtitle1'> &#8377;{cartItems?.shippingPrice}</Typography>
+            <Typography variant='subtitle1'> &#8377;{cartItems?.discountedAmount}</Typography>
           </ListItem>
           ):('')}
 
 
            <ListItem>
              <ListItemText>Total:</ListItemText>
-             <Typography variant='subtitle1'> &#8377;{cartItems?.totalPrice}</Typography>
+             <Typography variant='subtitle1'> &#8377;{amountAfterDiscount > 0 ? amountAfterDiscount : cartItems?.totalPrice}</Typography>
            </ListItem>
         
            <ListItem sx={{justifyContent:'flex-end'}}>
@@ -187,8 +193,9 @@ const OrderReview = () => {
              id='coupon'
              name='coupon'
              margin='normal'
-             value={couponCode}
-             onChange={(e)=>setCouponCode(e.target.value)}    
+             value={Object.keys(coupon).length > 0 ? coupon.code : couponCode}
+             onChange={(e)=>setCouponCode(e.target.value)}  
+             disabled = {Object.keys(coupon).length > 0 ? true : false}  
              />
 
           {Object.keys(coupon).length > 0 ? (
@@ -206,7 +213,7 @@ const OrderReview = () => {
             <Typography>{shippingDetails.firstName} {shippingDetails.lastName}</Typography>
             <Typography>{shippingDetails.address}</Typography>
             <Typography>{shippingDetails.city} - {shippingDetails.zipcode} </Typography> 
-            <Typography>{shippingDetails.state} - {shippingDetails.country}</Typography>
+            <Typography>{shippingDetails.stateValue} - {shippingDetails.country}</Typography>
              <Typography>Phone: {shippingDetails.phoneNumber}</Typography>
           </Grid>
 
@@ -214,7 +221,7 @@ const OrderReview = () => {
         {cartItems?.totalWeight / 1000 > 8 ? (
           <Typography variant='h4' align='center' sx={{pt:3, pb:5}}>Sorry, we dont deliver product more than 8 Kg </Typography>
         ) :(
-          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
+          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
         ) }
         
        </Box>
