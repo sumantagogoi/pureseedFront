@@ -4,6 +4,7 @@ import {motion} from 'framer-motion'
 import { Avatar, Box, Button, Container, Grid, TextField, Typography } from '@mui/material'
 import Logo from '../assets/Images/logo.png'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const ChangePassword = () => {
 
@@ -17,6 +18,13 @@ const ChangePassword = () => {
         try {
             if(password !== confirmPasword){
                 toast.error('Password does not matched')
+            }else{
+                const response = await axios.post('https://api.manxho.co.in/users/change_password/', {'token':params.token, 'password':password, 'confirm_password':confirmPasword},{
+                    headers:{
+                        'content-type': 'application/json'
+                    }
+                })
+                console.log(response)
             }
         } catch (error) {
             toast.error('Something Went Wrong')

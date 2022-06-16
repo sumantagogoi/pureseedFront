@@ -5,20 +5,21 @@ import { useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import ProductContext from '../components/context/product/productcontext'
 import { useState } from 'react'
+import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
 
 
 const OrderDetail = () => {
 
     const {allOrdersByUser} = useContext(ProductContext)
-    const [orderDetail, setOrderDetail] = useState([])
+    const [orderDetail, setOrderDetail] = useState()
     const params = useParams()
     
     const getSingleOrder = async ()=>{
-        const data = await allOrdersByUser.filter((elem)=>{
-            return elem._id === params.orderId  
+        const data = await allOrdersByUser.filter((order)=>{
+            return order._id == params.orderId  
         })
         setOrderDetail(data)
-        console.log(orderDetail)
+        console.log(data)
     }
     useEffect(()=>{ 
         getSingleOrder()   
@@ -32,15 +33,18 @@ const OrderDetail = () => {
     exit={{opacity: 0}}
     >
     <Container sx={{minHeight:'100vh',pt:13}}>
-        <Typography align='center' variant='h4'>Order Detail</Typography>
+        <Typography align='center' variant='h4'>Order-{params.orderId}</Typography>
         <List>
-            <ListItem>
+           
+                <ListItem>
                 <ListItemAvatar>
-                    <Avatar/>
+                   
                 </ListItemAvatar>
                 <ListItemText></ListItemText>
                 <Typography></Typography>
             </ListItem>
+            
+            
         </List>
     </Container>
     </motion.div>
