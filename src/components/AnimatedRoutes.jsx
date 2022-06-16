@@ -11,6 +11,7 @@ import Checkout from '../pages/Checkout'
 import OrderReview from '../pages/OrderReview'
 import {AnimatePresence} from 'framer-motion'
 import ChangePassword from '../pages/ChangePassword'
+import OrderDetail from '../pages/OrderDetail'
 
 
 const AnimatedRoutes = () => {
@@ -29,6 +30,7 @@ const AnimatedRoutes = () => {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/forgot_password' element={<ForgotPassword/>}/>
             <Route path ='/change_password/:token' element={<ChangePassword/>} />
+            <Route path='order_detail/:orderId' element={<OrderDetail/>}/>
 
 
             <Route path='/cart' element={<Cart/>}/>

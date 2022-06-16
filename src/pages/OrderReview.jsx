@@ -102,6 +102,7 @@ const OrderReview = () => {
           dispatch({
             type:'CLEAR_CART'
           })
+          setCoupon([])
 
         }
       }
@@ -221,7 +222,7 @@ const OrderReview = () => {
         {cartItems?.totalWeight / 1000 > 8 ? (
           <Typography variant='h4' align='center' sx={{pt:3, pb:5}}>Sorry, we dont deliver product more than 8 Kg </Typography>
         ) :(
-          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Pay Now</Button>
+          <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Place Order</Button>
         ) }
         
        </Box>

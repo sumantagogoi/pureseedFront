@@ -19,6 +19,9 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
   const getAssamDeliveryCharge = (tweight)=>{
       const weightInKg = tweight / 1000;
+      if(weightInKg < 1){
+        return 90
+      }
       const roundedWeight = Math.floor(weightInKg); 
       return roundedWeight * 90
   }

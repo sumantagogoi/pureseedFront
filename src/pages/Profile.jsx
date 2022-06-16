@@ -10,6 +10,13 @@ import { useState } from 'react'
 import UpdatePasswordDialog from '../components/UpdatePasswordDialog'
 import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
 import ArrowRightRoundedIcon from '@mui/icons-material/ArrowRightRounded';
+
+import Moment from 'react-moment'
+import 'moment-timezone';
+
+
+
+
 const Profile = () => {
   const {userLoginDetails} = useContext(AuthenticationContext)
   const {loading, getAllOrdersByUser, allOrdersByUser} = useContext(ProductContext)
@@ -28,6 +35,7 @@ const Profile = () => {
     }
   },[] )
 
+const someOrders = allOrdersByUser.slice(0, 3)
 
   return loading ? <Loader/> :(
     <>
@@ -105,18 +113,18 @@ const Profile = () => {
               </>
             ):(
               <Container sx={{ mb:8}}>
-            {allOrdersByUser?.map((order)=>(
+            {someOrders?.map((order)=>(
               <Box key={order._id}>
               <List>
               <ListItem>
-                <ListItemButton>
+                <ListItemButton onClick={()=>navigate(`/order_detail/${order._id}`)}>
                 <ListItemAvatar>
                   <Avatar>
                   <FactCheckRoundedIcon/>
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={order?._id} secondary= {`Status: ${order?.status}`} ></ListItemText>
-                <Typography>{order?.created_at}</Typography>
+                  <Moment  format="YYYY/MM/DD" date={order?.created_at} />
                 </ListItemButton>
               </ListItem> 
             </List>
