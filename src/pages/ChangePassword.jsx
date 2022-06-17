@@ -25,6 +25,10 @@ const ChangePassword = () => {
                     }
                 })
                 console.log(response)
+                if(response.request.status === 200){
+                    navigate('/')
+                    toast.success('Password Update Successfully!')
+                }
             }
         } catch (error) {
             toast.error('Something Went Wrong')
