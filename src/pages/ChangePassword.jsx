@@ -19,7 +19,7 @@ const ChangePassword = () => {
             if(password !== confirmPasword){
                 toast.error('Password does not matched')
             }else{
-                const response = await axios.post('https://api.manxho.co.in/users/change_password/', {'token':params.token, 'password':password, 'confirm_password':confirmPasword},{
+                const response = await axios.post('https://api.manxho.co.in/api/users/change_password/', {'token':params.token, 'password':password, 'confirm_password':confirmPasword},{
                     headers:{
                         'content-type': 'application/json'
                     }
