@@ -6,26 +6,32 @@ import { useContext } from 'react'
 import ProductContext from '../components/context/product/productcontext'
 import { useState } from 'react'
 import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
+import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext'
+import axios from 'axios'
 
 
 const OrderDetail = () => {
 
     const {allOrdersByUser} = useContext(ProductContext)
-    const [orderDetail, setOrderDetail] = useState()
+    const {userLoginDetails} = useContext(AuthenticationContext)
+   
     const params = useParams()
-    
-    const getSingleOrder = async ()=>{
-        const data = await allOrdersByUser.filter((order)=>{
-            return order._id == params.orderId  
-        })
-        setOrderDetail(data)
-        console.log(data)
+
+    const getOrderById = async ()=>{
+        const response = await axios.get(`https://api.manxho.co.in/api/users/order/${params.orderId}`,{
+            headers:{
+                'content-type':'application/json',
+                'Authorization': `Bearer ${userLoginDetails?.token}`
+            }
+        });
+        console.log(response)
     }
-    useEffect(()=>{ 
-        getSingleOrder()   
+
+    useEffect(()=>{
+        getOrderById()
     }, [])
-
-
+    
+   
   return (
     <motion.div
     initial={{opacity: 0}}

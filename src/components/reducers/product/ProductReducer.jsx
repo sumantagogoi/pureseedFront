@@ -89,7 +89,7 @@ const ProductReducer = (state, action) =>{
                 case 'GET_ALL_ORDERS_BY_USER':
                     return {
                         ...state,
-                        allOrdersByUser : action.payload,
+                        allOrders : action.payload,
                         loading:false
                     }
  

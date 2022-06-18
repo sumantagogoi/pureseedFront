@@ -19,7 +19,7 @@ import 'moment-timezone';
 
 const Profile = () => {
   const {userLoginDetails} = useContext(AuthenticationContext)
-  const {loading, getAllOrdersByUser, allOrdersByUser} = useContext(ProductContext)
+  const {loading, getAllOrdersByUser, allOrders} = useContext(ProductContext)
   const [openDialog, setOpenDialog] = useState(false)
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false)
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ const Profile = () => {
     }
   },[] )
 
-const someOrders = allOrdersByUser.slice(0, 3)
+const someOrders = allOrders.slice(0, 3)
 
   return loading ? <Loader/> :(
     <>
@@ -103,7 +103,7 @@ const someOrders = allOrdersByUser.slice(0, 3)
 
         <Grid item xs={12} md={6}>
             <Typography variant='h5' align='center' sx={{mb:2}}>Recent Orders</Typography>
-            {allOrdersByUser?.length < 1 ? (
+            {allOrders?.length < 1 ? (
               <>
               <Typography variant='h6' align='center'>Sorry No Orders Currently</Typography>
               <Grid container sx={{justifyContent:'center', mt:2}}>
@@ -131,7 +131,7 @@ const someOrders = allOrdersByUser.slice(0, 3)
             <Divider/>
             </Box>
             ))}
-            <Button  variant='outlined' fullWidth sx={{mt:2, color:'inherit', borderColor:'brown', ":hover":{borderColor:'brown'}}}>Show More</Button>
+            <Button onClick={()=>navigate('/all-orders')}  variant='outlined' fullWidth sx={{mt:2, color:'inherit', borderColor:'brown', ":hover":{borderColor:'brown'}}}>Show More</Button>
           </Container>
             ) }
             

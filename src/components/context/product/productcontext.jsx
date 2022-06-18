@@ -23,7 +23,7 @@ export const  ProductContextProvider = ({children}) =>{
         categories:[],
         cartItems:[],
         shippingDetails:local_shipping_details,
-        allOrdersByUser:[],
+        allOrders:[],
         loading:true,
     }
 
@@ -108,7 +108,7 @@ export const  ProductContextProvider = ({children}) =>{
         categories:state.categories,
         cartItems:state.cartItems,
         shippingDetails:state.shippingDetails,
-        allOrdersByUser:state.allOrdersByUser,
+        allOrders:state.allOrders,
         loading:state.loading,
         showCart:showCart,
         setShowCart:setShowCart,
