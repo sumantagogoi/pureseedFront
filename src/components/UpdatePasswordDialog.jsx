@@ -17,7 +17,11 @@ const UpdatePasswordDialog = ({openUpdateDialog, setOpenUpdateDialog}) => {
         'Authorization':`Bearer ${userLoginDetails?.token}`
       }
     })
-    console.log(response)
+      if (response.request.status === 200){
+        toast.success('Password Successfully Updated')
+        setOpenUpdateDialog(false)
+
+      }
     } catch (error) {
       toast.error('Something went wrong!')
     }
