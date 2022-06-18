@@ -28,6 +28,7 @@ function LeftDrawer({ open, setOpen }) {
   const logoutHandler = () => {
     Logout();
     setOpen(false);
+    navigate('/')
   };
   return (
     <>
