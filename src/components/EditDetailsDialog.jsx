@@ -5,7 +5,7 @@ import AuthenticationContext from './context/authentication_context/Authenticati
 
 const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
 
-  const {userLoginDetails} = useContext(AuthenticationContext)
+  const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
 
   const [first_name, setFirstName] = useState(userLoginDetails?.first_name)
   const [last_name, setLastName] = useState(userLoginDetails?.last_name)
@@ -17,7 +17,19 @@ const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
         'Authorization': `Bearer ${userLoginDetails?.token}`
       }
     })
-    console.log(response)
+    
+    if(response.request.status=== 200){
+      const latestUserInfo = JSON.parse(localStorage.getItem('userLoginDetails'))
+    
+    const first_name = response?.data?.first_name
+    const last_name = response?.data?.last_name
+    const newUserDetails = {
+      ...latestUserInfo, first_name, last_name,
+    }
+    const stateData = localStorage.setItem('userLoginDetails', JSON.stringify(newUserDetails))
+    }
+    
+    
   }
   return (
     <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}
