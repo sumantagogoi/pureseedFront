@@ -27,9 +27,12 @@ const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
       ...latestUserInfo, first_name, last_name,
     }
     const stateData = localStorage.setItem('userLoginDetails', JSON.stringify(newUserDetails))
-    }
-    
-    
+    dispatch({
+      type:'USER_LOGIN',
+      payload:newUserDetails
+    })
+    setOpenDialog(false)
+    }  
   }
   return (
     <Dialog open={openDialog} onClose={()=>setOpenDialog(false)}
