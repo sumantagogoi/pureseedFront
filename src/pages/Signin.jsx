@@ -9,6 +9,8 @@ import AuthenticationContext from '../components/context/authentication_context/
 import { useEffect } from 'react';
 import Logo from '../assets/Images/logo.png'
 import { motion } from 'framer-motion';
+import GoogleLogin from 'react-google-login';
+
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
 
@@ -20,10 +22,30 @@ const Signin = () => {
 
   const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
 
+  const handleCallbackResponse = (response)=>{
+    console.log(response.credential)
+  }
+
   useEffect(()=>{
+    /* global google */
+
+    google.accounts.id.initialize({
+      client_id:'596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    })
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {
+      // theme:"outlined",
+       size:'large'}
+    )
+
     if(userLoginDetails){
       navigate('/profile')
     }
+    
+    
+
   }, [])
 
   
@@ -50,7 +72,14 @@ const Signin = () => {
         toast.error('Bad Request')
       }
   } 
+  
+  const onSuccess = (google)=>{
+    console.log(google)
+  }
 
+  const onFailure = (error)=>{
+    console.log(error)
+  }
 
 
 
@@ -113,7 +142,10 @@ const Signin = () => {
               <Link  sx={{color:'inherit'}} onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
           </Grid>
         </Grid>
-        <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button>
+        {/* <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button> */}
+          <Box sx={{display:'flex',justifyContent:'center', mt:2}}>
+        <Button id='signInDiv'  >Sign In With Google</Button>
+        </Box>
         </Box>
         </Container>   
         </motion.div> 
