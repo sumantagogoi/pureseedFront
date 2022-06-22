@@ -86,7 +86,7 @@ const Signin = () => {
   
   const onSuccssHandler = async (response)=>{
     console.log(response.accessToken)
-    const {data} = await axios.post('http://127.0.0.1:8000/auth/google_login/', {'access_token':response.accessToken}, {
+    const {data} = await axios.post('https://api.manxho.co.in/api/auth/google_login/', {'access_token':response.accessToken}, {
       headers:{
         'content-type': 'application/json'
       }
