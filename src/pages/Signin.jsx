@@ -84,8 +84,20 @@ const Signin = () => {
       }
   } 
   
-  const onSuccssHandler = (response)=>{
-    console.log(response)
+  const onSuccssHandler = async (response)=>{
+    console.log(response.accessToken)
+    const {data} = await axios.post('http://127.0.0.1:8000/auth/google_login/', {'access_token':response.accessToken}, {
+      headers:{
+        'content-type': 'application/json'
+      }
+    })
+    dispatch({
+      type :'USER_LOGIN',
+      payload :data
+    })
+    localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+    navigate(-1)
+    toast.success('Login in Successfully ')
   }
 
   const onFailureHandler = (error)=>{
@@ -162,7 +174,6 @@ const Signin = () => {
          onSuccess={onSuccssHandler}
          onFailure={onFailureHandler}
          cookiePolicy={'single_host_origin'}
-         isSignedIn={true}
          />
         </Box>
         </Box>
