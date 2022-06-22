@@ -93,7 +93,7 @@ const OrderReview = () => {
         }, {
             headers:{
               'content-type':'application/json',
-              'Authorization': `Bearer ${userLoginDetails?.token}`
+              'Authorization': `Bearer ${userLoginDetails?.access_token}`
             }
         })
         if(response.request.status === 200){

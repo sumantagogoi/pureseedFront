@@ -31,7 +31,7 @@ const Profile = () => {
     if(!userLoginDetails){
       return navigate('/signin')
     }else{
-      getAllOrdersByUser(userLoginDetails?.token)
+      getAllOrdersByUser(userLoginDetails?.access_token)
     }
   },[] )
 

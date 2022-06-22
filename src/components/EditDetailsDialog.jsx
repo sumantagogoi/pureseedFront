@@ -14,7 +14,7 @@ const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
     const response = await axios.post('https://api.manxho.co.in/api/users/update_details/', {'first_name':first_name, 'last_name':last_name}, {
       headers:{
         'content-type':'application/json',
-        'Authorization': `Bearer ${userLoginDetails?.token}`
+        'Authorization': `Bearer ${userLoginDetails?.access_token}`
       }
     })
     

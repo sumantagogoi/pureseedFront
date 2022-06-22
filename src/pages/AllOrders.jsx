@@ -26,7 +26,7 @@ const AllOrders = () => {
             navigate(-1)
             toast.error('Login First')
         }else{
-            getAllOrdersByUser(userLoginDetails?.token)
+            getAllOrdersByUser(userLoginDetails?.access_token)
         }
     }, [])
   
