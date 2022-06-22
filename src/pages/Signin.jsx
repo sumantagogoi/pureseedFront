@@ -10,9 +10,11 @@ import { useEffect } from 'react';
 import Logo from '../assets/Images/logo.png'
 import { motion } from 'framer-motion';
 import GoogleLogin from 'react-google-login';
+import {gapi} from 'gapi-script'
 
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
+const clientId = '596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com'
 
 const Signin = () => {
 
@@ -22,30 +24,39 @@ const Signin = () => {
 
   const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
 
-  const handleCallbackResponse = (response)=>{
-    console.log(response.credential)
-  }
+  // const handleCallbackResponse = (response)=>{
+  //   console.log(response.credential)
+  // }
 
   useEffect(()=>{
+
+    function start(){
+      gapi.auth2.init({
+
+      client_id:clientId,
+      scope:'email'
+      })
+    }
+
+
     /* global google */
 
-    google.accounts.id.initialize({
-      client_id:'596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com',
-      callback: handleCallbackResponse
-    })
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      {
-      // theme:"outlined",
-       size:'large'}
-    )
-
+    // google.accounts.id.initialize({
+    //   client_id:'596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com',
+    //   callback: handleCallbackResponse
+    // })
+    // google.accounts.id.renderButton(
+    //   document.getElementById("signInDiv"),
+    //   {
+    //   // theme:"outlined",
+    //    size:'large'}
+    // )
+    gapi.load('client:auth2', start);
     if(userLoginDetails){
       navigate('/profile')
     }
+   
     
-    
-
   }, [])
 
   
@@ -73,11 +84,11 @@ const Signin = () => {
       }
   } 
   
-  const onSuccess = (google)=>{
-    console.log(google)
+  const onSuccssHandler = (response)=>{
+    console.log(response)
   }
 
-  const onFailure = (error)=>{
+  const onFailureHandler = (error)=>{
     console.log(error)
   }
 
@@ -144,7 +155,15 @@ const Signin = () => {
         </Grid>
         {/* <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button> */}
           <Box sx={{display:'flex',justifyContent:'center', mt:2}}>
-        <Button id='signInDiv'  >Sign In With Google</Button>
+         {/* <Button id='signInDiv'  >Sign In With Google</Button> */}
+         <GoogleLogin
+         id='signInButton'
+         clientId={clientId}
+         onSuccess={onSuccssHandler}
+         onFailure={onFailureHandler}
+         cookiePolicy={'single_host_origin'}
+         isSignedIn={true}
+         />
         </Box>
         </Box>
         </Container>   
