@@ -19,8 +19,13 @@ import AuthenticationContext from "../components/context/authentication_context/
 import Logo from '../assets/Images/logo.png'
 import { motion } from "framer-motion";
 
+import { gapi } from "gapi-script";
+import GoogleLogin from "react-google-login";
+
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
+const clientId = '596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com'
+
 
 
 const Signup = () => {
@@ -32,10 +37,19 @@ const Signup = () => {
 
   const [loading, setLoading] = useState(false)
 
-  const { userLoginDetails } = useContext(AuthenticationContext);
+  const { userLoginDetails, dispatch } = useContext(AuthenticationContext);
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    function start(){
+      gapi.auth2.init({
+
+      client_id:clientId,
+      scope:'email'
+      })
+    }
+    gapi.load('client:auth2', start);
     if (userLoginDetails) {
       navigate("/profile");
     }
@@ -78,6 +92,27 @@ const Signup = () => {
       toast.error("Something Went wrong!");
     }
   };
+
+  const onSuccssHandler = async (response)=>{
+    console.log(response.accessToken)
+    const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.accessToken}, {
+      headers:{
+        'content-type': 'application/json'
+      }
+    })
+    dispatch({
+      type :'USER_LOGIN',
+      payload :data
+    })
+    localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+    navigate(-1)
+    toast.success('Login in Successfully ')
+  }
+
+  const onFailureHandler = (error)=>{
+    console.log(error)
+  }
+
 
   return (
     <motion.div
@@ -197,14 +232,18 @@ const Signup = () => {
               </Link>
             </Grid>
           </Grid>
-          <Button
-            color="inherit"
-            startIcon={<GoogleIcon />}
-            fullWidth
-            sx={{ mt: 2, mb: 2, ":hover": { bgcolor: "red" } }}
-          >
-            Signup With Google
-          </Button>
+          <Box sx={{display:'flex',justifyContent:'center', mt:2, pb:4}}>
+          <GoogleLogin
+         id='signInButton'
+         clientId={clientId}
+         onSuccess={onSuccssHandler}
+         onFailure={onFailureHandler}
+         cookiePolicy={'single_host_origin'}
+         theme={'dark'}
+         buttonText='Signup with Google'
+
+         />
+         </Box>
         </Box>
       </Box>
     </Container>

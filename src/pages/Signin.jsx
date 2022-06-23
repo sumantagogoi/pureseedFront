@@ -86,7 +86,7 @@ const Signin = () => {
   
   const onSuccssHandler = async (response)=>{
     console.log(response.accessToken)
-    const {data} = await axios.post('http://127.0.0.1:8000/auth/google_login/', {'access_token':response.accessToken}, {
+    const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.accessToken}, {
       headers:{
         'content-type': 'application/json'
       }
@@ -166,7 +166,7 @@ const Signin = () => {
           </Grid>
         </Grid>
         {/* <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button> */}
-          <Box sx={{display:'flex',justifyContent:'center', mt:2}}>
+          <Box sx={{display:'flex',justifyContent:'center', mt:2, pb:4}}>
          {/* <Button id='signInDiv'  >Sign In With Google</Button> */}
          <GoogleLogin
          id='signInButton'
@@ -174,6 +174,8 @@ const Signin = () => {
          onSuccess={onSuccssHandler}
          onFailure={onFailureHandler}
          cookiePolicy={'single_host_origin'}
+         theme={'dark'}
+
          />
         </Box>
         </Box>

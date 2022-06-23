@@ -22,7 +22,7 @@ const OrderDetail = () => {
         const {data} = await axios.get(`https://api.manxho.co.in/api/users/order/${params.orderId}`,{
             headers:{
                 'content-type':'application/json',
-                'Authorization': `Bearer ${userLoginDetails?.token}`
+                'Authorization': `Bearer ${userLoginDetails?.access_token}`
             }
         });
         setOrder(data)
