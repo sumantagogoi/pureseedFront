@@ -5,10 +5,10 @@ import AuthenticationContext from './context/authentication_context/Authenticati
 
 const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
 
-  const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
+  const {userLoginDetails, dispatch, profile} = useContext(AuthenticationContext)
 
-  const [first_name, setFirstName] = useState(userLoginDetails?.first_name)
-  const [last_name, setLastName] = useState(userLoginDetails?.last_name)
+  const [first_name, setFirstName] = useState(profile?.first_name)
+  const [last_name, setLastName] = useState(profile?.last_name)
 
   const updateDetails = async ()=>{
     const response = await axios.post('https://api.manxho.co.in/api/users/update_details/', {'first_name':first_name, 'last_name':last_name}, {
@@ -19,18 +19,23 @@ const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
     })
     
     if(response.request.status=== 200){
-      const latestUserInfo = JSON.parse(localStorage.getItem('userLoginDetails'))
+      // const latestUserInfo = JSON.parse(localStorage.getItem('userLoginDetails'))
+
+      dispatch({
+        type:'GET_PROFILE',
+        payload:response.data
+      })
     
-    const first_name = response?.data?.first_name
-    const last_name = response?.data?.last_name
-    const newUserDetails = {
-      ...latestUserInfo, first_name, last_name,
-    }
-    const stateData = localStorage.setItem('userLoginDetails', JSON.stringify(newUserDetails))
-    dispatch({
-      type:'USER_LOGIN',
-      payload:newUserDetails
-    })
+    // const first_name = response?.data?.first_name
+    // const last_name = response?.data?.last_name
+    // const newUserDetails = {
+    //   ...latestUserInfo, first_name, last_name,
+    // }
+    // const stateData = localStorage.setItem('userLoginDetails', JSON.stringify(newUserDetails))
+    // dispatch({
+    //   type:'USER_LOGIN',
+    //   payload:newUserDetails
+    // })
     setOpenDialog(false)
     }  
   }

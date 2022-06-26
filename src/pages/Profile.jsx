@@ -18,7 +18,7 @@ import 'moment-timezone';
 
 
 const Profile = () => {
-  const {userLoginDetails} = useContext(AuthenticationContext)
+  const {userLoginDetails, profile, getProfile} = useContext(AuthenticationContext)
   const {loading, getAllOrdersByUser, allOrders} = useContext(ProductContext)
   const [openDialog, setOpenDialog] = useState(false)
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false)
@@ -32,6 +32,7 @@ const Profile = () => {
       return navigate('/signin')
     }else{
       getAllOrdersByUser(userLoginDetails?.access_token)
+      getProfile(userLoginDetails?.access_token)
     }
   },[] )
 
@@ -67,14 +68,14 @@ const someOrders = allOrders.slice(0, 3)
           <TextField 
           disabled
           label='First Name'
-          value={userLoginDetails?.first_name}
+          value={profile?.first_name}
           fullWidth
           margin='normal'
           />
           <TextField 
           disabled
           label='Last Name'
-          value={userLoginDetails?.last_name}
+          value={profile?.last_name}
           fullWidth
           margin='normal'
           />
@@ -82,7 +83,7 @@ const someOrders = allOrders.slice(0, 3)
           type='email'
           disabled
           label='Email '
-          value={userLoginDetails?.email}
+          value={profile?.email}
           fullWidth
           margin='normal'
           />

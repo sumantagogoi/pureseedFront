@@ -4,13 +4,20 @@ const UserAuthenticationReducer = (state, action) =>{
             return {
                 ...state,
                 userLoginDetails:action.payload,
-                loading:'false'
+                loading:false
+            }
+
+        case 'GET_PROFILE':
+            return {
+                ...state, 
+                profile:action.payload,
+                loading:false
             }
         case 'USER_LOGOUT':
             return {
                 ...state,
                 userLoginDetails:null,
-                loading:'false'
+                loading:false
             }
         default :
             return state
