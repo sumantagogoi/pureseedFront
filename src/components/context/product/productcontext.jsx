@@ -100,6 +100,18 @@ export const  ProductContextProvider = ({children}) =>{
         })
     }
 
+    const updateOrder = async (orderId, transactionId, token)=>{
+        const response = await axios.post('https://api.manxho.co.in/api/edit_order/', {'order_id':orderId, "transactionId":transactionId},
+        {
+            headers:{
+                'content-type':'application/json',
+                'Authorization':`Bearer ${token}`
+            }
+        }
+        )
+        console.log(response)
+    }
+
     
 
 
@@ -126,6 +138,7 @@ export const  ProductContextProvider = ({children}) =>{
         addtoCart:addtoCart,
         removeFromCart:removeFromCart,
         addShippingDetails:addShippingDetails,
+        updateOrder:updateOrder,
 
 
     }}>

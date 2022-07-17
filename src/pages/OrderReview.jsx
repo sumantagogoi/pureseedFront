@@ -43,7 +43,7 @@ const OrderReview = () => {
    }
 
 
-  const {cartItems, shippingDetails, dispatch, shippingValue, coupon, setCoupon} = useContext(ProductContext)
+  const {cartItems, shippingDetails, dispatch, shippingValue, coupon, setCoupon,updateOrder} = useContext(ProductContext)
   const {userLoginDetails} = useContext(AuthenticationContext)
   
   const [couponCode, setCouponCode] = useState('')
@@ -97,12 +97,16 @@ const OrderReview = () => {
             }
         })
         if(response.request.status === 200){
-          navigate('/profile')
-          toast.success('Order Successfully Created')
-          dispatch({
-            type:'CLEAR_CART'
-          })
-          setCoupon([])
+          console.log(response.data)
+          const orderID = `${response?.data?._id}`
+          const totalAmount = response?.data?.totalPrice
+          displayRazorpay(orderID,totalAmount)
+          // navigate('/profile')
+          // toast.success('Order Successfully Created')
+          // dispatch({
+          //   type:'CLEAR_CART'
+          // })
+          // setCoupon([])
 
         }
       }
@@ -131,6 +135,59 @@ const OrderReview = () => {
     setCoupon('')
     
     toast.success('Coupon Removed Successfully!')
+  }
+
+
+const loadScript = (url)=>{
+      return new Promise((resolve)=>{
+      const script = document.createElement('script')
+      script.src = url
+      script.onload = ()=>{
+        resolve(true)
+      }
+      script.onerror=()=>{
+        resolve(false)
+      }
+      document.body.appendChild(script)
+    })
+}
+
+  const displayRazorpay = async (orderID,totalAmount)=>{
+    const response = await loadScript(`https://checkout.razorpay.com/v1/checkout.js`)
+
+    if (!response){
+      toast.error('Something Went Wrong....')
+      return 
+    }
+
+    const options ={
+      key:"rzp_test_nkUWMpu73XcdmX",
+      currency:"INR",
+      amount : totalAmount *100,
+      name:"Manxho",
+      description : "Thanks For Purchasing From Manxho",
+  
+      
+      handler:function(response){
+        if(response.razorpay_payment_id){
+          updateOrder(orderID, response.razorpay_payment_id, userLoginDetails?.access_token)
+          navigate('/profile')
+          toast.success('Order Successfully Created')
+          dispatch({
+            type:'CLEAR_CART'
+          })
+          setCoupon([])
+        }
+
+      },
+      prefill:{
+        name:`${userLoginDetails?.first_name} ${userLoginDetails?.last_name}`,
+        email:`${userLoginDetails?.email}`,
+        contact:`${shippingDetails?.phoneNumber}`
+      }
+    };
+    const paymentObject = new window.Razorpay(options)
+    paymentObject.open()
   }
 
   return (
@@ -222,7 +279,10 @@ const OrderReview = () => {
         {cartItems?.totalWeight / 1000 > 8 ? (
           <Typography variant='h4' align='center' sx={{pt:3, pb:5}}>Sorry, we dont deliver product more than 8 Kg </Typography>
         ) :(
+          <>
           <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Place Order</Button>
+          {/* <Button onClick={displayRazorpay} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Buy Now</Button> */}
+          </>
         ) }
         
        </Box>

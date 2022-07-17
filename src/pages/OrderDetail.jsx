@@ -78,7 +78,7 @@ const OrderDetail = () => {
              <Typography variant='subtitle1'> &#8377;{order?.totalPrice}</Typography>
            </ListItem>
 
-           {order.ispaid ? (
+           {order.isPaid ? (
                 <ListItem>
                 <ListItemText>Payment Status:</ListItemText>
                 <Typography variant='subtitle1'> Paid</Typography>
@@ -95,7 +95,7 @@ const OrderDetail = () => {
               </ListItem>
            ): (<ListItem>
             <ListItemText>Delivery Status:</ListItemText>
-            <Typography variant='subtitle1'>On The Way</Typography>
+            <Typography variant='subtitle1'>{order?.status}</Typography>
           </ListItem>)}
 
         </List>
