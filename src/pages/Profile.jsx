@@ -67,14 +67,14 @@ const someOrders = allOrders.slice(0, 3)
         <Container>
           <TextField 
           disabled
-          label='First Name'
+          // label='First Name'
           value={profile?.first_name}
           fullWidth
           margin='normal'
           />
           <TextField 
           disabled
-          label='Last Name'
+          // label='Last Name'
           value={profile?.last_name}
           fullWidth
           margin='normal'
@@ -82,7 +82,7 @@ const someOrders = allOrders.slice(0, 3)
           <TextField
           type='email'
           disabled
-          label='Email '
+          // label='Email '
           value={profile?.email}
           fullWidth
           margin='normal'
