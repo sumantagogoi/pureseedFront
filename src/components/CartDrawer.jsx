@@ -11,6 +11,7 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import {motion} from 'framer-motion'
 import { Pincode } from "../assets/DATA/pincode";
 import { toast } from "react-toastify";
+import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 
 
 
@@ -112,9 +113,14 @@ const CartDrawer = ({ showCart, setShowCart }) => {
         disableBackdropTransition={!iOS}
         disableDiscovery={iOS}
       >
-        <Box sx={{width:370}}>
-        
-              <Typography variant="h5" align="center" sx={{mt:2, fontFamily:'Roboto'}}>My Cart</Typography>
+        <Box sx={{width:300}}>
+          <Box sx={{display:'flex', alignItems:'center', justifyContent:'flex-start', ml:3, mt:2}}>
+          <CancelRoundedIcon fontSize='large' onClick={()=>setShowCart(false)}/>
+          </Box>
+          <Typography variant="h5" align="center" sx={{mt:2, fontFamily:'Roboto'}}>My Cart</Typography>
+             
+              
+             
               
        
           
