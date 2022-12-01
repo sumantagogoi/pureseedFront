@@ -70,13 +70,13 @@ const ResponsiveHeader = () => {
         ):(
             <>
            
-           <Box component='img' onClick={()=>navigate('/')}  src={textlogowhite} sx={{height:50, m:2, cursor:'pointer'}}/>
+           <Box component='img' onClick={()=>window.location ='https://manxho.co.in'}  src={textlogowhite} sx={{height:50, m:2, cursor:'pointer'}}/>
 
             <Typography onClick={()=>navigate('/')} variant='h4' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:20, color:'inherit'}}>
                 Local . Hygienic . Fresh
             </Typography>
             
-            <Button onClick={()=>window.location ='https://manxho.co.in'} size='large' color='inherit' sx={{marginLeft:'auto'}}>Home</Button>
+            <Button onClick={()=>navigate('/')} size='large' color='inherit' sx={{marginLeft:'auto'}}>Home</Button>
             
             {userLoginDetails ? (<>
                 <Button onClick={logoutHandler} size='large' color='inherit'>Logout</Button>

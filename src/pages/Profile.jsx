@@ -63,7 +63,7 @@ const someOrders = allOrders.slice(0, 3)
       <Grid container spacing={3}>
         
         <Grid item xs={12} md={6} >
-        <Typography align='center' variant='h5' sx={{mb:2}}>User Deatils</Typography>
+        <Typography align='center' variant='h5' sx={{mb:2}}>User Details</Typography>
         <Container>
           <TextField 
           disabled
