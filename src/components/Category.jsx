@@ -75,9 +75,9 @@ const Category = () => {
                     />
                     <CardContent> 
                          {matches ? (
-                              <Typography variant= {id === active ? 'h5' : 'h6'} sx={{textAlign:'center', fontFamily:'Roboto',color:id === active ? 'brown' : ''}}>All</Typography>
+                              <Typography variant= {id === active ? 'h5' : 'h6'} sx={{textAlign:'center', fontFamily:'Avenir Book',color:id === active ? 'brown' : ''}}>All</Typography>
                          ) : (
-                              <Typography variant= {id === active ? 'h4' : 'h5'}  sx={{textAlign:'center', fontFamily:'Roboto', color:id === active ? 'brown' : ''}}>All</Typography>
+                              <Typography variant= {id === active ? 'h4' : 'h5'}  sx={{textAlign:'center', fontFamily:'Avenir Book', color:id === active ? 'brown' : ''}}>All</Typography>
                          ) }
                        
                     </CardContent>
@@ -103,9 +103,9 @@ const Category = () => {
                       />
                       <CardContent> 
                            {matches ? (
-                                <Typography variant={category._id === active ? 'h5' : 'h6'} sx={{textAlign:'center', fontFamily:'Roboto',color:category._id === active ? 'brown' : ''}}>{category.title}</Typography>
+                                <Typography variant={category._id === active ? 'h5' : 'h6'} sx={{textAlign:'center', fontFamily:'Avenir Book',color:category._id === active ? 'brown' : ''}}>{category.title}</Typography>
                            ) : (
-                                <Typography variant={category._id === active ? 'h4' : 'h5'} sx={{textAlign:'center', fontFamily:'Roboto', color:category._id === active ? 'brown' : ''}}>{category.title}</Typography>
+                                <Typography variant={category._id === active ? 'h4' : 'h5'} sx={{textAlign:'center', fontFamily:'Avenir Book', color:category._id === active ? 'brown' : ''}}>{category.title}</Typography>
                            ) }
                          
                       </CardContent>

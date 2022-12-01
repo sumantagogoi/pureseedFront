@@ -37,7 +37,6 @@ function App() {
      </BrowserRouter>
      <AlertToast/>
      </Paper>
-     
      </ThemeProvider>
     </>
    

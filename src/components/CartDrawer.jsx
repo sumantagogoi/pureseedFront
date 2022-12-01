@@ -128,7 +128,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
           {cartItems?.length<1 ? (
               <>
-              <Typography variant="h4" align="center" sx={{mt:2, fontFamily:'Roboto'}}>No Items in the cart</Typography>
+              <Typography variant="h5" align="center" sx={{mt:2, fontFamily:'Roboto'}}>No Items in the cart</Typography>
               </>
           ) : (
               <>

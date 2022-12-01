@@ -35,7 +35,7 @@ const Item = ({item}) => {
                     //         <AddShoppingCartRoundedIcon />
                     //     </IconButton>  
                     // }
-                    titleTypographyProps={{variant:'h6', fontFamily:'savoy'}}
+                    titleTypographyProps={{variant:'h6', fontFamily:'Avenir Book'}}
                     sx={{backgroundColor: "#2a2a2a", textAlign:'center'}}
                 />  
                 <CardActions>

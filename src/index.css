@@ -35,3 +35,6 @@
 .swiper-button-prev {
   color: white !important;
 }
+.MuiCardHeader-subheader{
+  font-family: Avenir Book !important;
+}

@@ -5,6 +5,7 @@ import Category from "../components/Category";
 import ProductContext from "../components/context/product/productcontext";
 import Loader from "../components/Loader";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer";
 
 
 
@@ -31,6 +32,7 @@ const Home = () => {
       >
       <Container sx={{minheight:'100vh'}}>
         <Category />
+        <Footer/>
       </Container>
       </motion.div> 
       
