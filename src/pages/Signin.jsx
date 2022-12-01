@@ -14,7 +14,7 @@ import {gapi} from 'gapi-script'
 
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
-const clientId = '596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com'
+const clientId = '223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleusercontent.com'
 
 const Signin = () => {
 
