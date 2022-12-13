@@ -161,7 +161,7 @@ const loadScript = (url)=>{
     }
 
     const options ={
-      key:"rzp_test_nkUWMpu73XcdmX",
+      key:"rzp_live_pTJJDu6eDHbg2w",
       currency:"INR",
       amount : totalAmount *100,
       name:"Manxho",
@@ -274,19 +274,20 @@ const loadScript = (url)=>{
             <Typography>{shippingDetails.stateValue} - {shippingDetails.country}</Typography>
              <Typography>Phone: {shippingDetails.phoneNumber}</Typography>
           </Grid>
-
         </Grid>
+
         {cartItems?.totalWeight / 1000 > 8 ? (
           <Typography variant='h4' align='center' sx={{pt:3, pb:5}}>Sorry, we dont deliver product more than 8 Kg </Typography>
         ) :(
           <>
           <Button onClick={handleSubmit} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Place Order</Button>
-          {/* <Button onClick={displayRazorpay} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Buy Now</Button> */}
+          {
+          /* <Button onClick={displayRazorpay} variant='outlined' fullWidth sx={{mb:4, mt:2,borderColor:'brown', color:'inherit', ":hover":{borderColor:'brown'}}}>Buy Now</Button> */
+          }
           </>
         ) }
         
        </Box>
-
      </Container>
      </motion.div>
    </>
