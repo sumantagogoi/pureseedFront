@@ -16,6 +16,9 @@ const OrderReview = () => {
 
   const getAssamDeliveryCharge = (tweight)=>{
     const weightInKg = tweight / 1000;
+    if(weightInKg < 1){
+      return 90
+    }
     const roundedWeight = Math.floor(weightInKg); 
     return roundedWeight * 90
 }
@@ -54,6 +57,7 @@ const OrderReview = () => {
     cartItems.totalWeight = cartItems.reduce((acc, item)=> acc + item.qty * Number( item.weight), 0)
     cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
     cartItems.totalPrice = cartItems?.subTotal + cartItems?.shippingPrice
+
     
     if(Object.keys(coupon).length > 0){
       const discount = coupon.discount
@@ -230,6 +234,7 @@ const loadScript = (url)=>{
            <ListItem>
              <ListItemText>Shipping:</ListItemText>
              <Typography variant='subtitle1'> &#8377;{cartItems?.shippingPrice}</Typography>
+             {/* <Typography variant='subtitle1'> &#8377; {}</Typography> */}
            </ListItem>
 
           { Object.keys(coupon).length > 0 ? (
