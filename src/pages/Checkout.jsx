@@ -21,7 +21,23 @@ const Checkout = () => {
     const [phoneNumber, setPhoneNumber] = useState(shippingDetails?.phoneNumber)
     const [country, setCountry] = useState('India')
 
+
+    const [zipcodeError, setZipcodeError] = useState(true)
+    const [pincodeColor, setPincodeColor]= useState('error')
+
     var stateValue = shippingValue === "Assam" ? 'Assam' : state
+
+
+    useEffect(()=>{
+        if(zipcode.length === 6 ) {
+            const pin = Pincode.includes(parseInt(zipcode))
+            if(pin) {
+                setZipcodeError(false)
+            }
+        }else{
+            setZipcodeError(true)
+        }
+    }, [zipcode])
 
     
     useEffect(()=>{
@@ -123,6 +139,7 @@ const Checkout = () => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <TextField
+                error = {zipcodeError ? true : false}
                 id='zipcode'
                 name='zipcode'
                 label='Zipcode'
@@ -131,6 +148,9 @@ const Checkout = () => {
                 required
                 value = {zipcode}
                 onChange={(e)=>setZipcode(e.target.value)}
+                helperText={zipcodeError ? "Pincode is not Servicable" : 'Pincode is Servicable'}
+                color={zipcodeError ?'error' :'success'}
+                inputProps={{maxLength:6}}
                 />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -142,6 +162,7 @@ const Checkout = () => {
                 margin='normal'
                 value={phoneNumber}
                 onChange={(e)=>setPhoneNumber(e.target.value)}
+                inputProps={{maxLength:10}}
                 />
             </Grid>
         </Grid>
