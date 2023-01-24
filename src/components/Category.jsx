@@ -39,7 +39,7 @@ const Category = () => {
 
      const filterItem = (catid)=>{
           const updatedItems =  products.filter((elem)=>{
-              return elem.category === catid     
+              return elem.category['_id'] === catid     
           })
           setLocalProducts(updatedItems)  
           setActive(catid)

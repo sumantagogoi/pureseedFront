@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardActions, CardHeader, CardMedia, IconButton } from '@mui/material'
+import { Button, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import React from 'react'
@@ -8,6 +8,7 @@ import {motion} from "framer-motion"
 
 const Item = ({item}) => {
     const {addtoCart} = useContext(ProductContext)
+    console.log(item?.category['status'])
     
   return (
       <>
@@ -37,10 +38,19 @@ const Item = ({item}) => {
                     // }
                     titleTypographyProps={{variant:'h6', fontFamily:'Avenir Book'}}
                     sx={{backgroundColor: "#2a2a2a", textAlign:'center'}}
-                />  
-                <CardActions>
-                    <Button onClick={()=>addtoCart(item)} fullWidth variant='contained' startIcon={<AddShoppingCartRoundedIcon/>} sx={{bgcolor:'inherit',color:'inherit',":hover":{bgcolor:'brown', color:'white'}}}>Add to Cart</Button>
+                /> 
+
+                {item?.category['status'] === false ? (
+                    <CardActions>
+                         <Button onClick={()=>addtoCart(item)} fullWidth variant='contained' startIcon={<AddShoppingCartRoundedIcon/>} sx={{bgcolor:'inherit',color:'inherit',":hover":{bgcolor:'brown', color:'white'}}}>Add to Cart</Button>
                     </CardActions>
+                ) : (
+                    <CardContent>
+                        <Typography sx={{textAlign:'center'}}>For Offline Sale</Typography>
+                    </CardContent>
+                ) } 
+               
+                
                 </Card>
                 </motion.div>
                 </>
