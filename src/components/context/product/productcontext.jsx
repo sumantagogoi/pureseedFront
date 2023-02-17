@@ -14,6 +14,9 @@ export const  ProductContextProvider = ({children}) =>{
     const local_shipping_details = localStorage.getItem('shippingDetails') ? JSON.parse(localStorage.getItem('shippingDetails')): null
 
     const [showCart, setShowCart] = useState(false);
+    const [openPaymentModal, setOpenPaymentModal] = useState(false)
+    const [orderTotalAmoount, setOrderTotalAmount] = useState('')
+    const [orderId, setOrderId] = useState('')
     const [shippingValue, setShippingValue] = useState('Assam')
     const [coupon, setCoupon] = useState([])
 
@@ -52,7 +55,7 @@ export const  ProductContextProvider = ({children}) =>{
                 payload:data
             })
         } catch (error) {
-            console.log(error)
+           
         }
     }
 
@@ -109,7 +112,7 @@ export const  ProductContextProvider = ({children}) =>{
             }
         }
         )
-        console.log(response)
+       
     }
 
     
@@ -125,6 +128,14 @@ export const  ProductContextProvider = ({children}) =>{
         showCart:showCart,
         setShowCart:setShowCart,
         shippingValue:shippingValue,
+        setOpenPaymentModal:setOpenPaymentModal,
+        openPaymentModal:openPaymentModal,
+        setOrderId:setOrderId,
+        setOrderTotalAmount:setOrderTotalAmount,
+        orderId:orderId,
+        orderTotalAmoount:orderTotalAmoount,
+
+
         setShippingValue:setShippingValue,
         coupon:coupon,
         setCoupon:setCoupon,

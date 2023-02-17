@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Avatar, Box, Button, Container, Grid, Link,TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import GoogleIcon from '@mui/icons-material/Google';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 
@@ -13,7 +12,8 @@ import GoogleLogin from 'react-google-login';
 import {gapi} from 'gapi-script'
 
 
-const ENDPOINT = process.env.REACT_APP_BASE_URL
+// const ENDPOINT = process.env.REACT_APP_BASE_URL
+const ENDPOINT = 'https://api.manxho.co.in'
 const clientId = '223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleusercontent.com'
 
 const Signin = () => {

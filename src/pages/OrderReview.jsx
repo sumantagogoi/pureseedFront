@@ -8,6 +8,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import {motion} from 'framer-motion'
 import { useState } from 'react'
+import PaymentDialog from '../components/PaymentDialog'
 
 const base_url = process.env.REACT_APP_BASE_URL
 
@@ -46,7 +47,7 @@ const OrderReview = () => {
    }
 
 
-  const {cartItems, shippingDetails, dispatch, shippingValue, coupon, setCoupon,updateOrder} = useContext(ProductContext)
+  const {cartItems, shippingDetails, dispatch, shippingValue, coupon, setCoupon,updateOrder, setOpenPaymentModal, setOrderTotalAmount, setOrderId} = useContext(ProductContext)
   const {userLoginDetails} = useContext(AuthenticationContext)
   
   const [couponCode, setCouponCode] = useState('')
@@ -104,7 +105,10 @@ const OrderReview = () => {
           console.log(response.data)
           const orderID = `${response?.data?._id}`
           const totalAmount = response?.data?.totalPrice
-          displayRazorpay(orderID,totalAmount)
+          setOrderTotalAmount(totalAmount)
+          setOrderId(orderID)
+          setOpenPaymentModal(true)
+          // displayRazorpay(orderID,totalAmount)
           // navigate('/profile')
           // toast.success('Order Successfully Created')
           // dispatch({
@@ -295,6 +299,7 @@ const loadScript = (url)=>{
        </Box>
      </Container>
      </motion.div>
+     <PaymentDialog/>
    </>
   )
 }

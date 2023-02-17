@@ -29,7 +29,7 @@ const Checkout = () => {
 
 
     useEffect(()=>{
-        if(zipcode.length === 6 ) {
+        if(zipcode?.length === 6 ) {
             const pin = Pincode.includes(parseInt(zipcode))
             if(pin) {
                 setZipcodeError(false)

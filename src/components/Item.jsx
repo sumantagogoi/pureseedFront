@@ -8,7 +8,6 @@ import {motion} from "framer-motion"
 
 const Item = ({item}) => {
     const {addtoCart} = useContext(ProductContext)
-    console.log(item?.category['status'])
     
   return (
       <>
