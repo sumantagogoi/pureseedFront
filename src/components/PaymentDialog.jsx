@@ -9,6 +9,10 @@ import { useState } from 'react';
 import QRCode from 'qrcode.react';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import { toast } from 'react-toastify';
+import axios from 'axios'
+import AuthenticationContext from '../components/context/authentication_context/AuthenticationContext'
+
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -26,17 +30,19 @@ const PaymentDialog = () => {
 
   const [showBox, setShowBox] = React.useState(false);
 
+  const {userLoginDetails} = useContext(AuthenticationContext)
+
   const UseUPI = async () => {
     try {
-      const response = await fetch("https://api.manxho.co.in/api/upi_order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ order_id: 104 })
-      });
-      const data = await response.json();
-      console.log(data); // Do something with the response data
+      const response = await axios.post('https://api.manxho.co.in/api/upi_order/',{
+          'order_id':'104',        
+        }, {
+            headers:{
+              'content-type':'application/json',
+              'Authorization': `Bearer ${userLoginDetails?.access_token}`
+            }
+        })
+
     } catch (error) {
       console.error(error);
     }
