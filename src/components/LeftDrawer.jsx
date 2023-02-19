@@ -56,15 +56,15 @@ function LeftDrawer({ open, setOpen }) {
             <List>
               {userLoginDetails ? (
                 <>
-                  <ListItem button onClick={() => navigateHandler("profile")}>
+                  <ListItem  onClick={() => navigateHandler("profile")}>
                     <ListItemText primary={"Profile"} />
                   </ListItem>
-                  <ListItem onClick={logoutHandler} button>
+                  <ListItem onClick={logoutHandler}>
                     <ListItemText primary={"Logout"} />
                   </ListItem>
                   <ListItem
-                    button
-                    onClick={() => (window.location = "https://manxho.co.in")}
+                    
+                    onClick={() => (window.location = "/")}
                   >
                     <ListItemText primary={"Home"} />
                   </ListItem>
@@ -73,7 +73,7 @@ function LeftDrawer({ open, setOpen }) {
                 <>
                   <ListItem
                     button
-                    onClick={() => (window.location = "https://manxho.co.in")}
+                    onClick={() => (window.location = "/")}
                   >
                     <ListItemText primary={"Home"} />
                   </ListItem>

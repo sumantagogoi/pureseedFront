@@ -35,7 +35,7 @@ const PaymentDialog = () => {
   const UseUPI = async () => {
     try {
       const response = await axios.post('https://api.manxho.co.in/api/upi_order/', {
-        'order_id': '104',
+        'order_id': orderId,
       }, {
         headers: {
           'content-type': 'application/json',
@@ -86,7 +86,7 @@ const PaymentDialog = () => {
       }
       {
         showBox && <Box>
-          <Box sx={{ textAlign: 'center' }}>
+          <Box sx={{ textAlign: 'center', p: 2 }}>
             <Button onClick={() => redirecttoPayment()}  size='medium' variant='contained' sx={{ mt: 4, mb: 2, margin: 'auto', textAlign: 'center' }}>Click Here to open your UPI App</Button>
           </Box>
 
