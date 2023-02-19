@@ -4,40 +4,24 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProductContext from '../components/context/product/productcontext'
 import {motion} from 'framer-motion'
-import {Pincode} from '../assets/DATA/pincode'
 import { toast } from 'react-toastify'
 
 const Checkout = () => {
 
-    const {addShippingDetails, shippingDetails, cartItems, shippingValue} = useContext(ProductContext)
+    const {addShippingDetails, shippingDetails, cartItems, shippingValue, zipcode, place} = useContext(ProductContext)
     const navigate = useNavigate()
 
     const [firstName, setFirstName] = useState(shippingDetails?.firstName)
     const [lastName, setLastName] =useState(shippingDetails?.lastName)
     const [address, setAddress] = useState(shippingDetails?.address) 
-    const [city, setCity] = useState(shippingDetails?.city) 
+    const [city, setCity] = useState(place) 
     const [state, setState] = useState(shippingDetails?.state)  
-    const [zipcode, setZipcode] = useState(shippingDetails?.zipcode)
+    // const [zipcode, setZipcode] = useState(shippingDetails?.zipcode)
     const [phoneNumber, setPhoneNumber] = useState(shippingDetails?.phoneNumber)
     const [country, setCountry] = useState('India')
 
 
-    const [zipcodeError, setZipcodeError] = useState(true)
-    const [pincodeColor, setPincodeColor]= useState('error')
-
-    var stateValue = shippingValue === "Assam" ? 'Assam' : state
-
-
-    useEffect(()=>{
-        if(zipcode?.length === 6 ) {
-            const pin = Pincode.includes(parseInt(zipcode))
-            if(pin) {
-                setZipcodeError(false)
-            }
-        }else{
-            setZipcodeError(true)
-        }
-    }, [zipcode])
+    var stateValue = shippingValue === "ASSAM" ? 'Assam' : state ;
 
     
     useEffect(()=>{
@@ -48,14 +32,9 @@ const Checkout = () => {
 
     const onSubmitHandler=(e)=>{
         e.preventDefault()
-        const pin = Pincode.includes(parseInt(zipcode))
-        if(pin){
-            addShippingDetails({firstName, lastName, address, city,  stateValue , zipcode, phoneNumber, country})
-            navigate('/order_review')
-        }else{
-            toast.error('Sorry Your Area is not Servicable')
-        }
 
+        addShippingDetails({firstName, lastName, address, city,  stateValue , zipcode, phoneNumber, country})
+        navigate('/order_review')
         
     }
 
@@ -132,24 +111,22 @@ const Checkout = () => {
                 fullWidth
                 margin='normal'
                 required
-                value = {shippingValue === 'Assam' ? 'Assam' : state}
+                value = {shippingValue === 'ASSAM' ? 'Assam' : shippingValue}
                 onChange={(e)=>setState(e.target.value)}
-                disabled={shippingValue === "Assam" ? true : false}
+                disabled={shippingValue === "ASSAM" ? true : false}
                 />
             </Grid>
             <Grid item xs={12} md={6}>
                 <TextField
-                error = {zipcodeError ? true : false}
+        
                 id='zipcode'
                 name='zipcode'
-                label='Zipcode'
+                label='Pincode'
                 fullWidth
                 margin='normal'
                 required
                 value = {zipcode}
-                onChange={(e)=>setZipcode(e.target.value)}
-                helperText={zipcodeError ? "Pincode is not Servicable" : 'Pincode is Servicable'}
-                color={zipcodeError ?'error' :'success'}
+                disabled={true}
                 inputProps={{maxLength:6}}
                 />
             </Grid>

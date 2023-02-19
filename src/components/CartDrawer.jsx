@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Divider, FormControl, FormControlLabel, FormLabel, IconButton, List, ListItem, ListItemText, TextField, SwipeableDrawer, Typography } from "@mui/material";
-import React from "react";
-import { useContext } from "react";
+import React, { useState } from "react";
+import { useContext, useEffect } from "react";
 
 import ProductContext from "./context/product/productcontext";
 import { useNavigate } from 'react-router-dom'
@@ -9,14 +9,14 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { motion } from 'framer-motion'
-import { Pincode } from "../assets/DATA/pincode";
+// import { Pincode } from "../assets/DATA/pincode";
 import { toast } from "react-toastify";
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
+import axios from 'axios';
 
 
 
 const CartDrawer = ({ showCart, setShowCart }) => {
-
 
   const getAssamDeliveryCharge = (tweight) => {
     const weightInKg = tweight / 1000;
@@ -41,28 +41,56 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
   const shipping_price = (tweight, place) => {
     switch (place) {
-      case "India": {
+      case "ASSAM": {
+        return getAssamDeliveryCharge(tweight)
+      }
+      case "INDIA": {
         return getWithinIndiaDeliveryCharge(tweight)
       }
       default:
-        return getAssamDeliveryCharge(tweight)
+        return 0;
     }
   }
   const iOS =
     typeof navigator !== "undefined" &&
     /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const { cartItems, dispatch, removeFromCart, shippingValue, setShippingValue } = useContext(ProductContext)
+  const { cartItems, dispatch, removeFromCart, shippingValue, setShippingValue, setZipcode, setPlace } = useContext(ProductContext)
+
+  const [pinCode, setPinCode] = useState('');
+  const [isAssam, setIsAssam] = useState('');
+  
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handlePinCodeChange = (event) => {
+    const value = event.target.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+    if (value.length <= 6) {
+      setPinCode(value);
+    }
+  };
+
+  const handlePinCodeKeyUp = async (event) => {
+    if (pinCode.length === 6) {
+      try {
+        const response = await axios.get(`https://api.manxho.co.in/api/check_pincode/${pinCode}/`);
+        setShippingValue(response.data.state);
+        setIsLoading(false);
+        setZipcode(pinCode);
+        setPlace(response.data.place)
+        setIsAssam(response.data.state.toLowerCase() === "assam" ? "ASSAM" : "INDIA")
+      } catch (error) {
+        console.error(error);
+        setIsLoading(true);
+      }
+    }
+  };
 
 
   if (cartItems?.length > 0) {
     cartItems.subTotal = cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)
     cartItems.totalWeight = cartItems.reduce((acc, item) => acc + item.qty * Number(item.weight), 0)
-    cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
+    cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, isAssam)
   }
   // calling the function here of shipping to calculate the shipping price but its not behaving as i should want, like the weight increase when user add more item and increment the item 
-
-
-
 
 
   const navigate = useNavigate()
@@ -85,14 +113,6 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     })
   }
 
-  const checkPincode = (code) => {
-    const pin = Pincode.includes(parseInt(code))
-    if (pin) {
-      toast.success('Your Area is servicable')
-    } else {
-      toast.error('Sorry! your area is not serviceable yet!')
-    }
-  }
 
 
   return (
@@ -118,11 +138,6 @@ const CartDrawer = ({ showCart, setShowCart }) => {
               <CancelRoundedIcon fontSize='large' onClick={() => setShowCart(false)} />
             </Box>
             <Typography variant="h5" align="center" sx={{ mt: 2, fontFamily: 'Roboto' }}>My Cart</Typography>
-
-
-
-
-
 
             <Divider sx={{ border: .5 }} />
 
@@ -169,7 +184,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                   </ListItem>
                   <ListItem>
                     <ListItemText>Shipping Price:</ListItemText>
-                    <Typography>&#8377; {cartItems?.shippingPrice} </Typography>
+                    <Typography>&#8377; {cartItems?.shippingPrice === 0 ? ' ' : cartItems?.shippingPrice} </Typography>
                   </ListItem>
 
 
@@ -179,29 +194,24 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                   </ListItem>
                   <ListItem>
                     <FormControl>
-                      <FormLabel id='shipping-location-label' >Enter Pincode:</FormLabel>
-                      {/* <RadioGroup row
-                  name='shipping-location-group'
-                  aria-labelledby = 'shipping-location-label'
-                  value={shippingValue}
-                  onChange={(e)=>setShippingValue(e.target.value)}
-                 >
-                    <FormControlLabel value = 'Assam' control={<Radio/>} label='Assam'/>
-                    <FormControlLabel val
-                    ue = 'India' control={<Radio/>} label='Within India'/>
-                 </RadioGroup> */}
+    
                       <TextField
-                        label="pin"
-                        value={value}
-                        onChange={handleChange}
+                        label="Enter your 6-digit Pincode"
+                        value={pinCode}
+                        onChange={handlePinCodeChange}
+                        onKeyUp={handlePinCodeKeyUp}
                         variant="outlined"
+                        inputProps={{ maxLength: 6, pattern: '[0-9]*' }}
                       />
                       <br />
                     </FormControl>
 
                   </ListItem>
 
-                  <Button onClick={() => navHandler('checkout')} variant='outlined' fullWidth sx={{ mt: 2, borderColor: 'brown', color: 'inherit', ":hover": { borderColor: 'brown' } }}>Checkout</Button>
+                  <Button onClick={() => navHandler('checkout')} variant='outlined' fullWidth disabled={isLoading}
+                  sx={{ mt: 2, borderColor: 'brown', color: 'inherit', ":hover": { borderColor: 'brown' } }}>
+                    Checkout
+                  </Button>
                 </List>
               </>
             )}

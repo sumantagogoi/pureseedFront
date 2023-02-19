@@ -19,6 +19,8 @@ export const  ProductContextProvider = ({children}) =>{
     const [orderId, setOrderId] = useState('')
     const [shippingValue, setShippingValue] = useState('Assam')
     const [coupon, setCoupon] = useState([])
+    const [zipcode, setZipcode] = useState('');
+    const [place, setPlace] = useState('');
 
 
     const initialState = {
@@ -126,6 +128,10 @@ export const  ProductContextProvider = ({children}) =>{
         allOrders:state.allOrders,
         loading:state.loading,
         showCart:showCart,
+        zipcode:zipcode,
+        place:place,
+        setPlace:setPlace,
+        setZipcode:setZipcode,
         setShowCart:setShowCart,
         shippingValue:shippingValue,
         setOpenPaymentModal:setOpenPaymentModal,
