@@ -87,7 +87,7 @@ const PaymentDialog = () => {
       {
         showBox && <Box>
           <Box sx={{ textAlign: 'center' }}>
-            <Button onClick={() => redirecttoPayment()} sx={{ mt: 2, mb: 2, margin: 'auto', textAlign: 'center' }}>Click to open your UPI App</Button>
+            <Button onClick={() => redirecttoPayment()}  size='medium' variant='contained' sx={{ mt: 4, mb: 2, margin: 'auto', textAlign: 'center' }}>Click Here to open your UPI App</Button>
           </Box>
 
 
