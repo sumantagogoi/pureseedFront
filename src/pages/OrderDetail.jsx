@@ -85,7 +85,7 @@ const OrderDetail = () => {
               </ListItem>
            ): (<ListItem>
             <ListItemText>Payment Status:</ListItemText>
-            <Typography variant='subtitle1'>Not Paid</Typography>
+            <Typography variant='subtitle1'>Awaiting Payment Confirmation</Typography>
           </ListItem>)}
 
           {order.isDelivered ? (
