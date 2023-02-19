@@ -85,8 +85,8 @@ const PaymentDialog = () => {
       </DialogActions></>
       }
       {
-        showBox && <Box><Button  onClick={() => redirecttoPayment()} sx={{ mt: 2, textAlign: 'center' }}>Click to open UPI APP</Button>
-        <br/>
+        showBox && <Box><Button  onClick={() => redirecttoPayment()} sx={{ mt: 2, mb: 2, textAlign: 'center' }}>Click to open UPI APP</Button>
+
           <Typography sx={{ mt: 2, textAlign: 'center' }}>Or Scan The code with your UPI App</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', margin: 4 }}>
             <QRCode value={`upi://pay?pa=manxho@icici&pn=Manxho&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`} />
