@@ -162,7 +162,7 @@ const Signin = () => {
             <Link onClick={()=>navigate('/forgot_password')} sx={{color:'inherit'}} underline='hover'>Forgot Password</Link>
           </Grid>
           <Grid item xs>
-              <Link  sx={{color:'inherit'}} onClick={()=>navigate('/signup')} variant='body2'>No Account?Sign up</Link>
+              <Link  sx={{color:'inherit'}} onClick={()=>navigate('/signup')} variant='body2'>No Account? Sign up</Link>
           </Grid>
         </Grid>
         {/* <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button> */}
