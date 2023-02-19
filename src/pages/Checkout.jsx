@@ -138,6 +138,7 @@ const Checkout = () => {
                 fullWidth
                 margin='normal'
                 value={phoneNumber}
+                required
                 onChange={(e)=>setPhoneNumber(e.target.value)}
                 inputProps={{maxLength:10}}
                 />
