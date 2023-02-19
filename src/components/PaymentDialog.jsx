@@ -30,18 +30,18 @@ const PaymentDialog = () => {
 
   const [showBox, setShowBox] = React.useState(false);
 
-  const {userLoginDetails} = useContext(AuthenticationContext)
+  const { userLoginDetails } = useContext(AuthenticationContext)
 
   const UseUPI = async () => {
     try {
-      const response = await axios.post('https://api.manxho.co.in/api/upi_order/',{
-          'order_id':'104',        
-        }, {
-            headers:{
-              'content-type':'application/json',
-              'Authorization': `Bearer ${userLoginDetails?.access_token}`
-            }
-        })
+      const response = await axios.post('https://api.manxho.co.in/api/upi_order/', {
+        'order_id': '104',
+      }, {
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${userLoginDetails?.access_token}`
+        }
+      })
 
     } catch (error) {
       console.error(error);
@@ -78,14 +78,18 @@ const PaymentDialog = () => {
       onClose={handleClose}
       aria-describedby="alert-dialog-slide-description"
     >
-   { !showBox &&   <><DialogTitle>Select Payment Method:</DialogTitle>
-      <DialogActions sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Button onClick={() => UseUPI()} size='small' variant='contained' endIcon={<Box component='img' src={UPI} sx={{ width: 40, height: 40, borderRadius: 10, }} />} sx={{ color: '#ffffff', backgroundColor: 'black', ':hover': { bgcolor: 'brown' } }}>Pay With UPI</Button>
-        <Button size='small' variant='contained' disabled>Pay With Razorpay</Button>
-      </DialogActions></>
+      {!showBox && <><DialogTitle>Select Payment Method:</DialogTitle>
+        <DialogActions sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button onClick={() => UseUPI()} size='small' variant='contained' endIcon={<Box component='img' src={UPI} sx={{ width: 40, height: 40, borderRadius: 10, }} />} sx={{ color: '#ffffff', backgroundColor: 'black', ':hover': { bgcolor: 'brown' } }}>Pay With UPI</Button>
+          <Button size='small' variant='contained' disabled>Pay With Razorpay</Button>
+        </DialogActions></>
       }
       {
-        showBox && <Box><Button  onClick={() => redirecttoPayment()} sx={{ mt: 2, mb: 2, textAlign: 'center' }}>Click to open your UPI App</Button>
+        showBox && <Box>
+          <Box sx={{ textAlign: 'center' }}>
+            <Button onClick={() => redirecttoPayment()} sx={{ mt: 2, mb: 2, margin: 'auto', textAlign: 'center' }}>Click to open your UPI App</Button>
+          </Box>
+
 
           <Typography sx={{ mt: 2, textAlign: 'center' }}>Or Scan The code with your UPI App</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', margin: 4 }}>
