@@ -33,9 +33,9 @@ const Category = () => {
      const matches = useMediaQuery(theme.breakpoints.down('sm'));
      const navigate = useNavigate()
      const cat = categories
-     const [localProducts, setLocalProducts] = useState(products)
-     const [active, setActive] = useState()
+     const [localProducts, setLocalProducts] = useState(products)    
      const id = useId()
+     const [active, setActive] = useState(id)
 
      const filterItem = (catid)=>{
           const updatedItems =  products.filter((elem)=>{
