@@ -12,7 +12,13 @@ import Footer from "../components/Footer";
 
 
 const Home = () => {
-  const {loading,} = useContext(ProductContext)
+  const {getCategories, loading, getProducts} = useContext(ProductContext)
+
+  useEffect (()=>{
+    getProducts()
+    getCategories()
+    
+  })
 
   return (
 

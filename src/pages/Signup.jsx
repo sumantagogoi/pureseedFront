@@ -53,7 +53,7 @@ const Signup = () => {
     if (userLoginDetails) {
       navigate("/profile");
     }
-  }, [navigate, userLoginDetails]);
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
