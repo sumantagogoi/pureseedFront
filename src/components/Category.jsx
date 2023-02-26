@@ -46,9 +46,8 @@ const Category = () => {
           setActive(catid)
        }
      
-     useEffect(()=>{
-          setLocalProducts(products)
-     },[])
+     console.log("PRODS: ")
+     console.log(products)
    
      
     return   (
