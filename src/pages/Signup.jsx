@@ -233,7 +233,7 @@ const Signup = () => {
             </Grid>
           </Grid>
           <Box sx={{display:'flex',justifyContent:'center', mt:2, pb:4}}>
-          <GoogleLogin
+          {/* <GoogleLogin
          id='signInButton'
          clientId={clientId}
          onSuccess={onSuccssHandler}
@@ -242,7 +242,7 @@ const Signup = () => {
          theme={'dark'}
          buttonText='Signup with Google'
 
-         />
+         /> */}
          </Box>
         </Box>
       </Box>

@@ -24,8 +24,19 @@ const Signin = () => {
 
   const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
 
-  const handleCallbackResponse = (response)=>{
-    console.log(response)
+  const handleCallbackResponse = async(response)=>{
+    const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.credential}, {
+      headers:{
+        'content-type': 'application/json'
+      }
+    })
+    dispatch({
+      type :'USER_LOGIN',
+      payload :data
+    })
+    localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+    navigate(-1)
+    toast.success('Login in Successfully ')
   }
 
   useEffect(()=>{
