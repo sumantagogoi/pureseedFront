@@ -38,30 +38,15 @@ const Signin = () => {
       })
     }
 
-
-    /* global google */
-
-    // google.accounts.id.initialize({
-    //   client_id:'596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com',
-    //   callback: handleCallbackResponse
-    // })
-    // google.accounts.id.renderButton(
-    //   document.getElementById("signInDiv"),
-    //   {
-    //   // theme:"outlined",
-    //    size:'large'}
-    // )
     gapi.load('client:auth2', start);
     if(userLoginDetails){
       navigate('/profile')
     }
    
     
-  }, [])
+  }, [navigate, userLoginDetails])
 
   
-
-
   const handleSubmit = async (e)=>{
       e.preventDefault();
       try {
