@@ -1,7 +1,7 @@
 import { Box, Button, Card, CardHeader, CardMedia, Grid, IconButton, Typography } from '@mui/material'
 import ProductContext from './context/product/productcontext';
 
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './App.css';
 import Item from './Item';
 import Loader from './Loader';
@@ -10,6 +10,11 @@ import Loader from './Loader';
 
 const Menu = ({localProducts}) => {
     const {loading} = useContext(ProductContext)
+
+    useEffect (()=>{
+        Menu(localProducts)
+        
+      }, [localProducts])
       
   return loading ? <Loader/> :  (
    <Box sx={{flexGrow:1, minHeight:'100vh'}}>

@@ -12,10 +12,8 @@ import Footer from "../components/Footer";
 
 
 const Home = () => {
-  const {getCategories, loading, getProducts} = useContext(ProductContext)
-    getProducts()
-    getCategories()
-    
+  const {loading,} = useContext(ProductContext)
+
   return (
 
     loading ? (<Loader/>) : (
