@@ -13,13 +13,9 @@ import Footer from "../components/Footer";
 
 const Home = () => {
   const {getCategories, loading, getProducts} = useContext(ProductContext)
-
-  useEffect (()=>{
     getProducts()
     getCategories()
     
-  }, [getProducts,getCategories ])
-
   return (
 
     loading ? (<Loader/>) : (
