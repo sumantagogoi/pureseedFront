@@ -7,6 +7,7 @@ import './index.css'
 import 'react-toastify/dist/ReactToastify.css';
 import AlertToast from './components/AlertToast';
 import AnimatedRoutes from './components/AnimatedRoutes';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 
@@ -24,6 +25,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <>
+    <GoogleOAuthProvider clientId='223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleusercontent.com'>
     <ThemeProvider theme={darkTheme}>
       
       <CssBaseline/>
@@ -38,6 +40,7 @@ function App() {
      <AlertToast/>
      </Paper>
      </ThemeProvider>
+     </GoogleOAuthProvider>
     </>
    
   );
