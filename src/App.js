@@ -12,6 +12,7 @@ import AnimatedRoutes from './components/AnimatedRoutes';
 
 
 
+
 const darkTheme = createTheme({
   palette: {
     mode:'dark',
@@ -24,6 +25,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <>
+    
     <ThemeProvider theme={darkTheme}>
       
       <CssBaseline/>
@@ -38,6 +40,7 @@ function App() {
      <AlertToast/>
      </Paper>
      </ThemeProvider>
+     
     </>
    
   );

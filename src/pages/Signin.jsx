@@ -29,7 +29,7 @@ const Signin = () => {
   // }
 
   useEffect(()=>{
-
+    /* global gapi */
     function start(){
       gapi.auth2.init({
 
@@ -39,6 +39,7 @@ const Signin = () => {
     }
 
     gapi.load('client:auth2', start);
+
     if(userLoginDetails){
       navigate('/profile')
     }
@@ -153,6 +154,7 @@ const Signin = () => {
         {/* <Button startIcon={<GoogleIcon/>} fullWidth  sx={{mt:2, mb:2, color:'inherit', ":hover":{bgcolor:'red'}}}>Login With Google</Button> */}
           <Box sx={{display:'flex',justifyContent:'center', mt:2, pb:4}}>
          {/* <Button id='signInDiv'  >Sign In With Google</Button> */}
+
          <GoogleLogin
          id='signInButton'
          clientId={clientId}
@@ -162,6 +164,15 @@ const Signin = () => {
          theme={'dark'}
 
          />
+
+         {/* For Testing */}
+         {/* <GoogleLogin
+         onSuccess={onSuccssHandler}
+         onFailure={onFailureHandler}
+         disabled={false}
+         /> */}
+
+
         </Box>
         </Box>
         </Container>   
