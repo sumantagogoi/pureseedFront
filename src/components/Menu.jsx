@@ -9,6 +9,8 @@ import Loader from './Loader';
 
 const Menu = ({localProducts}) => {
     const {loading} = useContext(ProductContext)
+
+    console.log(localProducts)
      
   return loading ? <Loader/> :  (
    <Box sx={{flexGrow:1, minHeight:'100vh'}}>

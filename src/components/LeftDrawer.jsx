@@ -35,9 +35,9 @@ function LeftDrawer({ open, setOpen }) {
       <SwipeableDrawer
         PaperProps={{
           sx: {
-            backgroundColor: "#4B2515",
-            color: "white",
-            borderRadius: "0px 100px 0 0",
+            backgroundColor: "#151515",
+            color: "#eee",
+            borderRadius: "0px 50px 0 0",
           },
         }}
         anchor="left"
@@ -72,16 +72,16 @@ function LeftDrawer({ open, setOpen }) {
               ) : (
                 <>
                   <ListItem
-                    button
+                  
                     onClick={() => (window.location = "/")}
                   >
                     <ListItemText primary={"Home"} />
                   </ListItem>
 
-                  <ListItem button onClick={() => navigateHandler("signin")}>
+                  <ListItem onClick={() => navigateHandler("signin")}>
                     <ListItemText primary={"Signin"} />
                   </ListItem>
-                  <ListItem button onClick={() => navigateHandler("signup")}>
+                  <ListItem onClick={() => navigateHandler("signup")}>
                     <ListItemText primary={"Signup"} />
                   </ListItem>
                 </>

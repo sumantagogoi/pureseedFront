@@ -133,7 +133,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
           disableBackdropTransition={!iOS}
           disableDiscovery={iOS}
         >
-          <Box sx={{ width: 300 }}>
+          <Box sx={{ width: 350, mr: 3 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', ml: 3, mt: 2 }}>
               <CancelRoundedIcon fontSize='large' onClick={() => setShowCart(false)} />
             </Box>
@@ -156,19 +156,28 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                           sx={{ width: 60, height: 60 }}
                         />
                         <ListItemText sx={{ ml: 2 }}>{item.name}</ListItemText>
-                        <Typography variant='body2'>{item.qty} x {item.price} &#8377; {Number(item.price * item.qty).toFixed(0)}</Typography>
+                        <Box>
+                        <Typography variant='body2' >{item.qty} x {item.price} &nbsp;&nbsp;</Typography>
+                        </Box>
+                        <br></br>
+                        <Box>
+                        <Typography variant='body2'> &#8377;{Number(item.price * item.qty).toFixed(0)}</Typography>
+                        </Box>
+                        
+                       
+                        
 
                       </ListItem>
-                      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', bgcolor: '#393939'}}>
                         <IconButton onClick={() => decrement(item)}>
-                          <RemoveRoundedIcon />
+                          <RemoveRoundedIcon sx={{bgcolor: '#494949'}} />
                         </IconButton>
                         <Typography variant='h6'>{item.qty}</Typography>
                         <IconButton onClick={() => increment(item)}>
-                          <AddRoundedIcon />
+                          <AddRoundedIcon sx={{bgcolor: '#494949'}}  />
                         </IconButton>
                         <IconButton onClick={() => removeFromCart(item._id)}>
-                          <ClearRoundedIcon />
+                          <ClearRoundedIcon  sx={{bgcolor: '#494949'}} />
                         </IconButton>
                       </Box>
                     </div>
