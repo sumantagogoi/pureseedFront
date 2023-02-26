@@ -18,7 +18,7 @@ const Home = () => {
     getProducts()
     getCategories()
     
-  }, [])
+  }, [getProducts,getCategories ])
 
   return (
 

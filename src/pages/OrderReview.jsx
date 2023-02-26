@@ -53,7 +53,8 @@ const OrderReview = () => {
   const [couponCode, setCouponCode] = useState('')
   
   const navigate = useNavigate()
-  {if (cartItems?.length > 0){
+  
+  if (cartItems?.length > 0){
     cartItems.subTotal = cartItems.reduce((acc, item)=> acc + item.qty * item.price, 0)
     cartItems.totalWeight = cartItems.reduce((acc, item)=> acc + item.qty * Number( item.weight), 0)
     cartItems.shippingPrice = shipping_price(cartItems?.totalWeight, shippingValue)
@@ -68,7 +69,7 @@ const OrderReview = () => {
       cartItems.discountedAmount = Number(cartItems?.totalPrice) - Number(amountAfterDiscount)
      
     }
-  }}
+  }
    
   console.log(coupon.discount)
   useEffect(()=>{
