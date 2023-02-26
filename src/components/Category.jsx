@@ -19,6 +19,7 @@ import { useId } from 'react';
 
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { useEffect } from 'react';
 
 
 const theme = createTheme()
@@ -45,6 +46,9 @@ const Category = () => {
           setActive(catid)
        }
      
+     useEffect(()=>{
+          setLocalProducts(products)
+     },[])
    
      
     return   (
