@@ -9,10 +9,10 @@ import Loader from './Loader';
 
 
 const Menu = ({localProducts}) => {
-    const {loading} = useContext(ProductContext)
+    const {loading,setLoading} = useContext(ProductContext)
 
     useEffect (()=>{
-        Menu(localProducts)
+        setLoading(false)
         
       }, [localProducts])
       
