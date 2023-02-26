@@ -84,19 +84,13 @@ const Category = () => {
                                    <SwiperSlide id={id}>
 
 
-                                        <Grid item xs={4} md={4} lg={3}>
-                                             <Card sx={{ maxWidth: 345 }}  >
+                                        <Grid item xs={2} md={2} lg={2}>
+                                             <Card sx={{ maxWidth: 245 }}  >
                                                   <CardActionArea onClick={() => {
                                                        setLocalProducts(products)
                                                        setActive(id)
                                                   }}>
-                                                       <CardMedia
-                                                            component='img'
-                                                            sx={{ height: 150, objectFit: 'contain' }}
-                                                            image={Logo}
-
-
-                                                       />
+                                               
                                                        <CardContent>
                                                             {matches ? (
                                                                  <Typography variant={id === active ? 'subtitle1' : 'body1'} sx={{ textAlign: 'center', fontFamily: 'Avenir Book', color: id === active ? '#cccccc' : '', textDecoration: id === active ? 'underline' : '' }}>All</Typography>
@@ -116,15 +110,10 @@ const Category = () => {
 
                                         <SwiperSlide key={category._id}>
 
-                                             <Grid item xs={4} md={4} lg={3}>
-                                                  <Card sx={{ maxWidth: 345 }} >
+                                             <Grid item xs={2} md={2} lg={2}>
+                                                  <Card sx={{ maxWidth: 245, color: "#888"}} >
                                                        <CardActionArea onClick={() => setCatid(category._id)}>
-                                                            <CardMedia
-                                                                 component='img'
-
-                                                                 image={`https://api.manxho.co.in${category.image}`}
-                                                                 sx={{ height: 150 }}
-                                                            />
+                                                         
                                                             <CardContent>
                                                                  {matches ? (
                                                                       <Typography variant={category._id === active ? 'subtitle1' : 'body1'} sx={{ textAlign: 'center', fontFamily: 'Avenir Book', color: category._id === active ? '#cccccc' : '', textDecoration: category._id === active ? 'underline' : '' }}>{category.title}</Typography>
