@@ -30,30 +30,15 @@ const Signin = () => {
 
   useEffect(()=>{
     /* global gapi */
+    function start(){
+      gapi.auth2.init({
 
-    function start() {
-      gapi.load('auth2', () => {
-        gapi.auth2.init({
-          client_id: clientId,
-          scope: 'email'
-        });
-      });
+      client_id:clientId,
+      scope:'email'
+      })
     }
 
-    if (gapi) {
-      start();
-    }
-
-
-    // function start(){
-    //   gapi.auth2.init({
-
-    //   client_id:clientId,
-    //   scope:'email'
-    //   })
-    // }
-
-    // gapi.load('client:auth2', start);
+    gapi.load('client:auth2', start);
 
     if(userLoginDetails){
       navigate('/profile')
