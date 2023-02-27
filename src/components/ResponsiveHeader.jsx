@@ -53,7 +53,7 @@ const ResponsiveHeader = () => {
                 <MenuIcon/>
             </IconButton>
             <Box sx={{ml:'auto', display:'flex', flexDirection:'column',}}>
-                <Box component='img' onClick={()=>navigate('/')} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
+                <Box component='img' onClick={()=>navigate('https://manxho.co.in')} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
                 <Typography onClick={()=>navigate('/')} variant='h4' align='center' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:13, mb:1, color:'inherit'}}>
                 Local . Hygienic . Fresh
                  </Typography>

@@ -48,11 +48,8 @@ function LeftDrawer({ open, setOpen }) {
         disableDiscovery={iOS}
       >
         <Box sx={{ width: 250 }}>
-          <Box textAlign="center" sx={{ mt: 3, mr: 4 }}>
-            <Typography variant="h4">Manxho</Typography>
-          </Box>
-          <Divider sx={{ border: 1 }} />
-          <Box sx={{ mt: 2 }}>
+
+          <Box sx={{ mt: 6, ml: 3}}>
             <List>
               {userLoginDetails ? (
                 <>
@@ -83,6 +80,16 @@ function LeftDrawer({ open, setOpen }) {
                   </ListItem>
                   <ListItem onClick={() => navigateHandler("signup")}>
                     <ListItemText primary={"Signup"} />
+                  </ListItem>
+                  
+                  <ListItem>
+                    <ListItemText primary={"Terms"} />
+                  </ListItem>
+                  <ListItem >
+                    <ListItemText primary={"Privacy Policy"} />
+                  </ListItem>
+                  <ListItem >
+                    <ListItemText primary={"Go to Main Site"} />
                   </ListItem>
                 </>
               )}
