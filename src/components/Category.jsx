@@ -15,8 +15,6 @@ import { Pagination, Navigation } from "swiper";
 import Logo from "../assets/Images/logo.png"
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { useId } from 'react';
-
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { useEffect } from 'react';
@@ -35,7 +33,7 @@ const Category = () => {
      const navigate = useNavigate()
      const cat = categories
      const [localProducts, setLocalProducts] = useState(products)
-     const id = useId()
+     const id = "a"
      const [active, setActive] = useState()
 
      const [catid, setCatid] = useState(id)
@@ -73,19 +71,21 @@ const Category = () => {
                <Paper>
                     <Box sx={{ flexGrow: 1, pt: 12, borderBottom: 1, borderBottomColor: 'divider' }}>
                          <Typography sx={{ mb: 3, fontFamily: 'Roboto', textAlign: 'center' }} variant='h4' component='h5'>CATEGORIES</Typography>
-                         <Swiper slidesPerView={matches ? 2 : 4} className='mySwiper' navigation={true} modules={[Navigation]}>
+                         <Swiper slidesPerView={matches ? 2 : 5} className='mySwiper' navigation={true} modules={[Navigation]}
+                         style={{"--swiper-navigation-size": "20px",}}>
 
 
-                              <Grid container spacing={2}>
+                              <Grid container spacing={4}>
 
-                                   <SwiperSlide id={id}>
+                                   <SwiperSlide id={id} >
 
 
-                                        <Grid item xs={2} md={2} lg={2}>
-                                             <Card sx={{ maxWidth: 245 }}  >
+                                        <Grid item xs={3} md={3} lg={3}>
+                                             <Card sx={{ maxWidth: 245 }} sx={{ backgroundColor: id === active ? "#333" : "#444", mr: 1}} >
                                                   <CardActionArea onClick={() => {
                                                        setLocalProducts(products)
                                                        setActive(id)
+                                                       setCatid("a")
                                                   }}>
                                                
                                                        <CardContent>
@@ -107,15 +107,15 @@ const Category = () => {
 
                                         <SwiperSlide key={category._id}>
 
-                                             <Grid item xs={2} md={2} lg={2}>
-                                                  <Card sx={{ maxWidth: 245, color: "#888"}} >
+                                             <Grid item xs={3} md={3} lg={3}>
+                                                  <Card sx={{ maxWidth: 245, color: "#999", backgroundColor: category._id === active ? "#333" : "#444" , mr: 1}} >
                                                        <CardActionArea onClick={() => setCatid(category._id)}>
                                                          
                                                             <CardContent>
                                                                  {matches ? (
-                                                                      <Typography variant={category._id === active ? 'subtitle1' : 'body1'} sx={{ textAlign: 'center', fontFamily: 'Avenir Book', color: category._id === active ? '#cccccc' : '', textDecoration: category._id === active ? 'underline' : '' }}>{category.title}</Typography>
+                                                                      <Typography variant={category._id === active ? 'subtitle1' : 'body1'} sx={{ textAlign: 'center', fontFamily: 'Avenir Book', color: category._id === active ? '#ddd' : '', textDecoration: category._id === active ? 'underline' : '' }}>{category.title}</Typography>
                                                                  ) : (
-                                                                      <Typography variant={category._id === active ? 'h5' : 'h6'} sx={{ textAlign: 'center', fontFamily: 'Avenir Book', color: category._id === active ? '#cccccc' : '', textDecoration: category._id === active ? 'underline' : '' }}>{category.title}</Typography>
+                                                                      <Typography variant={category._id === active ? 'h5' : 'h6'} sx={{ textAlign: 'center', fontFamily: 'Avenir Book', color: category._id === active ? '#ddd' : '', textDecoration: category._id === active ? 'underline' : '' }}>{category.title}</Typography>
                                                                  )}
 
                                                             </CardContent>

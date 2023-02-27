@@ -9,6 +9,8 @@ import { motion } from "framer-motion"
 const Item = ({ item }) => {
     const { addtoCart } = useContext(ProductContext)
 
+    item.size = item.size ? item.size : "";
+
     return (
         <>
 
