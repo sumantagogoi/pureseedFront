@@ -42,14 +42,14 @@ const Signup = () => {
 
   useEffect(() => {
 
-    function start(){
-      gapi.auth2.init({
+    // function start(){
+    //   gapi.auth2.init({
 
-      client_id:clientId,
-      scope:'email'
-      })
-    }
-    gapi.load('client:auth2', start);
+    //   client_id:clientId,
+    //   scope:'email'
+    //   })
+    // }
+    // gapi.load('client:auth2', start);
     if (userLoginDetails) {
       navigate("/profile");
     }
