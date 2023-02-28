@@ -21,6 +21,9 @@ import { motion } from "framer-motion";
 
 import { gapi } from "gapi-script";
 import GoogleLogin from "react-google-login";
+import { useGoogleLogin } from '@react-oauth/google';
+import GoogleLogo from '../assets/Images/googlelogo.png'
+
 
 
 const ENDPOINT = process.env.REACT_APP_BASE_URL
@@ -39,6 +42,29 @@ const Signup = () => {
 
   const { userLoginDetails, dispatch } = useContext(AuthenticationContext);
   const navigate = useNavigate();
+
+
+  const login = useGoogleLogin({
+    onSuccess: async(response)=>{
+      try {
+         const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.access_token}, {
+          headers:{
+            'content-type': 'application/json'
+          }
+        })
+        dispatch({
+          type :'USER_LOGIN',
+          payload :data
+        })
+        localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+        navigate(-1)
+        toast.success('Login in Successfully ')
+        console.log(response)
+      } catch (error) {
+       toast.error('Something Went Wrong')
+      }
+    }
+  })
 
   useEffect(() => {
 
@@ -233,6 +259,10 @@ const Signup = () => {
             </Grid>
           </Grid>
           <Box sx={{display:'flex',justifyContent:'center', mt:2, pb:4}}>
+
+          <Button  size='small' startIcon={<Box component='img' src={GoogleLogo} sx={{width:40, height:40}}/>} variant='contained' sx={{backgroundColor:'black', color:'white' , ':hover':{backgroundColor:'black'}}} onClick = {()=>{login()}}>
+                Sign up with Google
+          </Button>
           {/* <GoogleLogin
          id='signInButton'
          clientId={clientId}

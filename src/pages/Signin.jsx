@@ -11,6 +11,8 @@ import { motion } from 'framer-motion';
 import GoogleLogin from 'react-google-login';
 import {gapi} from 'gapi-script'
 import { useGoogleLogin } from '@react-oauth/google';
+import GoogleIcon from '@mui/icons-material/Google';
+import GoogleLogo from '../assets/Images/googlelogo.png'
 
 
 // const ENDPOINT = process.env.REACT_APP_BASE_URL
@@ -36,7 +38,7 @@ const Signin = () => {
         toast.success('Login in Successfully ')
         console.log(response)
       } catch (error) {
-        console.log(error)
+       toast.error('Something Went Wrong')
       }
     }
   })
@@ -208,8 +210,8 @@ const Signin = () => {
 
           </div> */}
 
-          <Button onClick = {()=>{login()}}>
-                Sign In Google
+          <Button  size='small' startIcon={<Box component='img' src={GoogleLogo} sx={{width:40, height:40}}/>} variant='contained' sx={{backgroundColor:'black', color:'white' , ':hover':{backgroundColor:'black'}}} onClick = {()=>{login()}}>
+                Sign in with Google
           </Button>
 
          {/* <GoogleLogin
