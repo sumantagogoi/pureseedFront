@@ -26,9 +26,7 @@ const theme = createTheme()
 
 const Category = () => {
      const { categories, products } = useContext(ProductContext)
-
-
-
+     
      const matches = useMediaQuery(theme.breakpoints.down('sm'));
      const navigate = useNavigate()
      const cat = categories
