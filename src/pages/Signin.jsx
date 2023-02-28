@@ -10,6 +10,7 @@ import Logo from '../assets/Images/logo.png'
 import { motion } from 'framer-motion';
 import GoogleLogin from 'react-google-login';
 import {gapi} from 'gapi-script'
+import { useGoogleLogin } from '@react-oauth/google';
 
 
 // const ENDPOINT = process.env.REACT_APP_BASE_URL
@@ -18,6 +19,10 @@ const clientId = '223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleuserc
 
 const Signin = () => {
 
+  const login = useGoogleLogin({
+    onSuccess: tokenResponse => console.log(tokenResponse),
+  });
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('') 
   const navigate = useNavigate()
@@ -25,33 +30,35 @@ const Signin = () => {
   const {userLoginDetails, dispatch} = useContext(AuthenticationContext)
 
   const handleCallbackResponse = async(response)=>{
-    const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.credential}, {
-      headers:{
-        'content-type': 'application/json'
-      }
-    })
-    dispatch({
-      type :'USER_LOGIN',
-      payload :data
-    })
-    localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
-    navigate(-1)
-    toast.success('Login in Successfully ')
+
+    console.log(response)
+    // const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.credential}, {
+    //   headers:{
+    //     'content-type': 'application/json'
+    //   }
+    // })
+    // dispatch({
+    //   type :'USER_LOGIN',
+    //   payload :data
+    // })
+    // localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+    // navigate(-1)
+    // toast.success('Login in Successfully ')
   }
 
   useEffect(()=>{
     /* global google */
 
 
-      /* global google */
-      google.accounts.id.initialize({
-        client_id:'179356127605-9qg2vbp7neq3fn5f15nd2kmv893f569t.apps.googleusercontent.com',
-        callback :handleCallbackResponse 
-       });
-       google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        {theme:"outline", size:"large"}
-       );
+      // /* global google */
+      // google.accounts.id.initialize({
+      //   client_id:'179356127605-9qg2vbp7neq3fn5f15nd2kmv893f569t.apps.googleusercontent.com',
+      //   callback :handleCallbackResponse 
+      //  });
+      //  google.accounts.id.renderButton(
+      //   document.getElementById("signInDiv"),
+      //   {theme:"outline", size:"large"}
+      //  );
 
     // function start(){
     //   gapi.auth2.init({
@@ -178,9 +185,13 @@ const Signin = () => {
           <Box sx={{display:'flex',justifyContent:'center', mt:2, pb:4}}>
          {/* <Button id='signInDiv'  >Sign In With Google</Button> */}
          
-         <div id='signInDiv'>
+         {/* <div id='signInDiv'>
 
-          </div>
+          </div> */}
+
+          <Button onClick = {()=>{login()}}>
+
+          </Button>
 
          {/* <GoogleLogin
          id='signInButton'
