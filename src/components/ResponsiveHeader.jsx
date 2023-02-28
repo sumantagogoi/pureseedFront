@@ -7,7 +7,7 @@ import LeftDrawer from './LeftDrawer'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/Images/logo.png'
-import textlogowhite from '../assets/Images/log.png'
+import textlogowhite from '../assets/Images/manxho-logo-tm.png'
 import AuthenticationContext from './context/authentication_context/AuthenticationContext';
 import ProductContext from './context/product/productcontext';
 import { useContext } from 'react';
@@ -53,7 +53,7 @@ const ResponsiveHeader = () => {
                 <MenuIcon/>
             </IconButton>
             <Box sx={{ml:'auto', display:'flex', flexDirection:'column',}}>
-                <Box component='img' onClick={()=>navigate('https://manxho.co.in')} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
+                <Box component='img' onClick={()=>window.location ='https://manxho.co.in'} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
                 <Typography onClick={()=>navigate('/')} variant='h4' align='center' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:13, mb:1, color:'inherit'}}>
                 Local . Hygienic . Fresh
                  </Typography>
