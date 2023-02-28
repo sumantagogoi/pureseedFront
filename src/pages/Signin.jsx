@@ -20,8 +20,27 @@ const clientId = '223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleuserc
 const Signin = () => {
 
   const login = useGoogleLogin({
-    onSuccess: tokenResponse => console.log(tokenResponse),
-  });
+    onSuccess: async(response)=>{
+      try {
+         const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.access_token}, {
+          headers:{
+            'content-type': 'application/json'
+          }
+        })
+        dispatch({
+          type :'USER_LOGIN',
+          payload :data
+        })
+        localStorage.setItem('userLoginDetails', JSON.stringify(data)) 
+        navigate(-1)
+        toast.success('Login in Successfully ')
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })
+  
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('') 
