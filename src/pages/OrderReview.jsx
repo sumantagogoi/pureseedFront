@@ -257,6 +257,7 @@ const loadScript = (url)=>{
            </ListItem>
         
            <ListItem sx={{justifyContent:'flex-end'}}>
+            <Typography sx={{mr: 2, fontSize: 13}}>Use Coupon MANXHO for 3% Discount!</Typography>
            <TextField
              label='Coupon'
              id='coupon'

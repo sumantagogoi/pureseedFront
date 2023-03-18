@@ -15,7 +15,7 @@ const Checkout = () => {
     const [lastName, setLastName] =useState(shippingDetails?.lastName)
     const [address, setAddress] = useState(shippingDetails?.address) 
     const [city, setCity] = useState(place) 
-    const [state, setState] = useState(shippingDetails?.state)  
+    const [state, setState] = useState(shippingValue)  
     // const [zipcode, setZipcode] = useState(shippingDetails?.zipcode)
     const [phoneNumber, setPhoneNumber] = useState(shippingDetails?.phoneNumber)
     const [country, setCountry] = useState('India')
