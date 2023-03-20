@@ -27,7 +27,7 @@ const OrderReview = () => {
 
 
     const getWithinIndiaDeliveryCharge = (tweight)=>{
-      const weightInKg = tweight / 1000 
+      const weightInKg = tweight / 960
       if (weightInKg <= 0.5){
         return 100;
       }else if(weightInKg > 0.5 && weightInKg <= 1){
@@ -39,11 +39,12 @@ const OrderReview = () => {
 
     const shipping_price = (tweight, place)=>{
       switch (place){
-       case "India":{
-         return getWithinIndiaDeliveryCharge(tweight)
+       case "ASSAM":{
+        return getAssamDeliveryCharge(tweight)
        }
        default:
-         return getAssamDeliveryCharge(tweight)
+        return getWithinIndiaDeliveryCharge(tweight)
+         
       }
    }
 
@@ -66,7 +67,7 @@ const OrderReview = () => {
       const discount = coupon.discount
       const discountType = coupon.discount_type
       const discounPrecentage = Number(discount / 100)
-      var  amountAfterDiscount = cartItems?.totalPrice  - (cartItems?.totalPrice * discounPrecentage)
+      var  amountAfterDiscount = Math.ceil(cartItems?.totalPrice  - (cartItems?.totalPrice * discounPrecentage))
       cartItems.discountedAmount = Number(cartItems?.totalPrice) - Number(amountAfterDiscount)
      
     }
