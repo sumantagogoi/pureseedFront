@@ -54,17 +54,14 @@ function LeftDrawer({ open, setOpen }) {
             <List>
               {userLoginDetails ? (
                 <>
+                  <ListItem onClick={() => (window.location = "/")} >
+                    <ListItemText primary={"Home"} />
+                  </ListItem>
                   <ListItem onClick={() => navigateHandler("profile")}>
                     <ListItemText primary={"Profile"} />
                   </ListItem>
                   <ListItem onClick={logoutHandler}>
                     <ListItemText primary={"Logout"} />
-                  </ListItem>
-                  <ListItem
-
-                    onClick={() => (window.location = "/")}
-                  >
-                    <ListItemText primary={"Home"} />
                   </ListItem>
                 </>
               ) : (
@@ -85,6 +82,13 @@ function LeftDrawer({ open, setOpen }) {
 
                 </>
               )}
+
+              <ListItem>
+                <ListItemText primary={""} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary={""} />
+              </ListItem>
 
               <ListItem>
                 <ListItemText primary={"Terms and Conditions"} />
