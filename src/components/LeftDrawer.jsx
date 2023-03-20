@@ -8,6 +8,7 @@ import {
   ListItem,
   ListItemText,
   Typography,
+  Link,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AuthenticationContext from "./context/authentication_context/AuthenticationContext";
@@ -49,18 +50,18 @@ function LeftDrawer({ open, setOpen }) {
       >
         <Box sx={{ width: 250 }}>
 
-          <Box sx={{ mt: 6, ml: 3}}>
+          <Box sx={{ mt: 6, ml: 3 }}>
             <List>
               {userLoginDetails ? (
                 <>
-                  <ListItem  onClick={() => navigateHandler("profile")}>
+                  <ListItem onClick={() => navigateHandler("profile")}>
                     <ListItemText primary={"Profile"} />
                   </ListItem>
                   <ListItem onClick={logoutHandler}>
                     <ListItemText primary={"Logout"} />
                   </ListItem>
                   <ListItem
-                    
+
                     onClick={() => (window.location = "/")}
                   >
                     <ListItemText primary={"Home"} />
@@ -69,7 +70,7 @@ function LeftDrawer({ open, setOpen }) {
               ) : (
                 <>
                   <ListItem
-                  
+
                     onClick={() => (window.location = "/")}
                   >
                     <ListItemText primary={"Home"} />
@@ -81,18 +82,21 @@ function LeftDrawer({ open, setOpen }) {
                   <ListItem onClick={() => navigateHandler("signup")}>
                     <ListItemText primary={"Signup"} />
                   </ListItem>
-                  
-                  <ListItem>
-                    <ListItemText primary={"Terms"} />
-                  </ListItem>
-                  <ListItem >
-                    <ListItemText primary={"Privacy Policy"} />
-                  </ListItem>
-                  <ListItem >
-                    <ListItemText primary={"Go to Main Site"} />
-                  </ListItem>
+
                 </>
               )}
+
+              <ListItem>
+                <ListItemText primary={"Terms and Conditions"} />
+              </ListItem>
+              <ListItem >
+                <ListItemText primary={"Privacy Policy"} />
+              </ListItem>
+              <ListItem >
+                <Link target="_blank" href="https://www.manxho.co.in/">
+                  <ListItemText primary={"Go to Main Site"} />
+                </Link>
+              </ListItem>
             </List>
           </Box>
         </Box>

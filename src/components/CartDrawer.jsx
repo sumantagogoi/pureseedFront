@@ -19,7 +19,7 @@ import axios from 'axios';
 const CartDrawer = ({ showCart, setShowCart }) => {
 
   const getAssamDeliveryCharge = (tweight) => {
-    const weightInKg = tweight / 1050;
+    const weightInKg = tweight / 1100;
     if (weightInKg < 1) {
       return 90
     }
@@ -32,10 +32,10 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     const weightInKg = tweight / 1000
     if (weightInKg <= 0.55) {
       return 100;
-    } else if (weightInKg > 0.55 && weightInKg <= 1.05) {
+    } else if (weightInKg > 0.55 && weightInKg <= 1.1) {
       return 190;
     }
-    const numberOf500s = Math.ceil((tweight - 1050) / 520);
+    const numberOf500s = Math.ceil((tweight - 1100) / 520);
     return numberOf500s * 100 + 190;
   }
 
