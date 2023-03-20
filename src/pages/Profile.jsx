@@ -34,7 +34,7 @@ const Profile = () => {
       getAllOrdersByUser(userLoginDetails?.access_token)
       getProfile(userLoginDetails?.access_token)
     }
-  },[navigate, userLoginDetails, getAllOrdersByUser],  )
+  },[navigate, userLoginDetails],  )
 
 const someOrders = allOrders.slice(0, 3)
 
