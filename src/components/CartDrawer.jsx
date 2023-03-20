@@ -19,7 +19,7 @@ import axios from 'axios';
 const CartDrawer = ({ showCart, setShowCart }) => {
 
   const getAssamDeliveryCharge = (tweight) => {
-    const weightInKg = tweight / 1000;
+    const weightInKg = tweight / 1050;
     if (weightInKg < 1) {
       return 90
     }
@@ -35,7 +35,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     } else if (weightInKg > 0.55 && weightInKg <= 1.05) {
       return 190;
     }
-    const numberOf500s = Math.ceil((tweight - 1050) / 500);
+    const numberOf500s = Math.ceil((tweight - 1050) / 520);
     return numberOf500s * 100 + 190;
   }
 
@@ -58,8 +58,9 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
   const [pinCode, setPinCode] = useState('');
   const [isAssam, setIsAssam] = useState('');
-  
+
   const [isLoading, setIsLoading] = useState(true);
+  const [isMore300, setIsMore300] = useState(false);
 
   const handlePinCodeChange = (event) => {
     const value = event.target.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
@@ -76,13 +77,26 @@ const CartDrawer = ({ showCart, setShowCart }) => {
         setIsLoading(false);
         setZipcode(pinCode);
         setPlace(response.data.place)
-        setIsAssam(response.data.state.toLowerCase() === "assam" ? "ASSAM" : "INDIA")
-      } catch (error) {
+        setIsAssam(response.data.state.toLowerCase() === "assam" ? "ASSAM" : "INDIA");
+
+      }
+
+      catch (error) {
         console.error(error);
         setIsLoading(true);
       }
     }
   };
+
+  useEffect(() => {
+    if (cartItems?.subTotal >= 300) {
+      setIsMore300(true);
+    }
+    else {
+      setIsMore300(false);
+    }
+  }, [cartItems?.subTotal]
+  );
 
 
   if (cartItems?.length > 0) {
@@ -113,8 +127,6 @@ const CartDrawer = ({ showCart, setShowCart }) => {
     })
   }
 
-
-
   return (
     <>
       <motion.div
@@ -122,8 +134,6 @@ const CartDrawer = ({ showCart, setShowCart }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-
-
 
         <SwipeableDrawer
           anchor="right"
@@ -157,32 +167,31 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                         />
                         <ListItemText sx={{ ml: 2 }}>{item.name}</ListItemText>
                         <Box>
-                        <Typography variant='body2' >{item.qty} x {item.price} &nbsp;&nbsp;</Typography>
+                          <Typography variant='body2' >{item.qty} x {item.price} &nbsp;&nbsp;</Typography>
                         </Box>
                         <br></br>
                         <Box>
-                        <Typography variant='body2'> &#8377;{Number(item.price * item.qty).toFixed(0)}</Typography>
+                          <Typography variant='body2'> &#8377;{Number(item.price * item.qty).toFixed(0)}</Typography>
                         </Box>
-                        
-                       
-                        
 
                       </ListItem>
-                      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', bgcolor: '#393939'}}>
+                      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', bgcolor: '#393939' }}>
                         <IconButton onClick={() => decrement(item)}>
-                          <RemoveRoundedIcon sx={{bgcolor: '#494949'}} />
+                          <RemoveRoundedIcon sx={{ bgcolor: '#494949' }} />
                         </IconButton>
                         <Typography variant='h6'>{item.qty}</Typography>
                         <IconButton onClick={() => increment(item)}>
-                          <AddRoundedIcon sx={{bgcolor: '#494949'}}  />
+                          <AddRoundedIcon sx={{ bgcolor: '#494949' }} />
                         </IconButton>
                         <IconButton onClick={() => removeFromCart(item._id)}>
-                          <ClearRoundedIcon  sx={{bgcolor: '#494949'}} />
+                          <ClearRoundedIcon sx={{ bgcolor: '#494949' }} />
                         </IconButton>
                       </Box>
                     </div>
                   ))}
+
                   <Divider />
+
                   <ListItem>
                     <ListItemText>Subtotal:</ListItemText>
                     <Typography>&#8377; {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}</Typography>
@@ -196,14 +205,13 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                     <Typography>&#8377; {cartItems?.shippingPrice === 0 ? ' ' : cartItems?.shippingPrice} </Typography>
                   </ListItem>
 
-
                   <ListItem>
                     <ListItemText>Total:</ListItemText>
                     <Typography>&#8377; {cartItems?.subTotal + cartItems.shippingPrice}  </Typography>
                   </ListItem>
                   <ListItem>
                     <FormControl>
-    
+
                       <TextField
                         label="PINCODE of delivery address:"
                         value={pinCode}
@@ -217,14 +225,15 @@ const CartDrawer = ({ showCart, setShowCart }) => {
 
                   </ListItem>
 
-                  <Button onClick={() => navHandler('checkout')} variant='outlined' fullWidth disabled={isLoading}
-                  sx={{ mt: 2, borderColor: 'brown', color: 'inherit', ":hover": { borderColor: 'brown' } }}>
-                    Checkout
+                  <Button onClick={() => navHandler('checkout')} variant='outlined' fullWidth disabled={isLoading || !isMore300}
+                    sx={{ mt: 2, borderColor: 'brown', color: 'inherit', ":hover": { borderColor: 'brown' } }}>
+                    {
+                      isMore300 ? ("Checkout") : ("300 Min Order!")
+                    }
                   </Button>
                 </List>
               </>
             )}
-
 
           </Box>
         </SwipeableDrawer>

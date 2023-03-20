@@ -17,7 +17,7 @@ const base_url = process.env.REACT_APP_BASE_URL
 const OrderReview = () => {
 
   const getAssamDeliveryCharge = (tweight)=>{
-    const weightInKg = tweight / 1000;
+    const weightInKg = tweight / 1050;
     if(weightInKg < 1){
       return 90
     }
@@ -27,13 +27,13 @@ const OrderReview = () => {
 
 
     const getWithinIndiaDeliveryCharge = (tweight)=>{
-      const weightInKg = tweight / 960
-      if (weightInKg <= 0.5){
+      const weightInKg = tweight / 1000
+      if (weightInKg <= 0.55){
         return 100;
-      }else if(weightInKg > 0.5 && weightInKg <= 1){
+      }else if(weightInKg > 0.55 && weightInKg <= 1.05){
         return 190;
       }
-      const numberOf500s = Math.ceil((tweight - 1000) / 500);
+      const numberOf500s = Math.ceil((tweight - 1050) / 520);
       return numberOf500s * 100 + 190;
     }
 
