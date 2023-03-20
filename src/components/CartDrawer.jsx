@@ -205,7 +205,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                     <FormControl>
     
                       <TextField
-                        label="Enter your 6-digit Pincode"
+                        label="PINCODE of delivery address:"
                         value={pinCode}
                         onChange={handlePinCodeChange}
                         onKeyUp={handlePinCodeKeyUp}
