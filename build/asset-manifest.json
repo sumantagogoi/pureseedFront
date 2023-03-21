@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.894d299e.css",
-    "main.js": "/static/js/main.14f3a638.js",
+    "main.js": "/static/js/main.4a4123e3.js",
     "static/media/logo.png": "/static/media/logo.a13da29e0076c16ed226.png",
     "static/media/googlelogo.png": "/static/media/googlelogo.55d364d67e794adbf74b.png",
     "static/media/manxho-logo-tm.png": "/static/media/manxho-logo-tm.9c2664b4ce6424ed31d9.png",
     "static/media/upi.jpg": "/static/media/upi.6f036d9e2d42e8533e3c.jpg",
     "index.html": "/index.html",
     "main.894d299e.css.map": "/static/css/main.894d299e.css.map",
-    "main.14f3a638.js.map": "/static/js/main.14f3a638.js.map"
+    "main.4a4123e3.js.map": "/static/js/main.4a4123e3.js.map"
   },
   "entrypoints": [
     "static/css/main.894d299e.css",
-    "static/js/main.14f3a638.js"
+    "static/js/main.4a4123e3.js"
   ]
 }
