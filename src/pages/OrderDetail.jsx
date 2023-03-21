@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, capitalize, Container, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material'
+import { Avatar, Box, Button, capitalize, Container, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography, Link } from '@mui/material'
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useParams } from 'react-router-dom'
@@ -112,7 +112,11 @@ const OrderDetail = () => {
           </Grid>
 
         </Grid>
-        <Button variant='outlined' fullWidth sx={{ mb: 4, mt: 2, borderColor: 'brown', color: 'inherit', ":hover": { borderColor: 'brown' } }}>Support</Button>
+
+        <Link href="https://wa.me/918134909910">
+          <Button variant='outlined' fullWidth sx={{ mb: 4, mt: 2, borderColor: 'brown', color: 'inherit', ":hover": { borderColor: 'brown' } }}>Support</Button>
+        </Link>
+        
       </Container>
     </motion.div>
   )
