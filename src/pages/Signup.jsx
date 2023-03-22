@@ -24,12 +24,7 @@ import GoogleLogin from "react-google-login";
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogo from '../assets/Images/googlelogo.png'
 
-
-
-const ENDPOINT = process.env.REACT_APP_BASE_URL
 const clientId = '596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com'
-
-
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -89,7 +84,7 @@ const Signup = () => {
       } else {
         setLoading(true)
         const  response  = await axios.post(
-          `${ENDPOINT}/api/users/register/`,
+          "https://api.manxho.co.in/api/users/register/",
           {
             first_name: firstName,
             last_name: lastName,
