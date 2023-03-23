@@ -17,7 +17,7 @@ import GoogleLogo from '../assets/Images/googlelogo.png'
 
 // const ENDPOINT = process.env.REACT_APP_BASE_URL
 const ENDPOINT = 'https://api.pureseed.in'
-const clientId = '223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleusercontent.com'
+const clientId = '60129324500-acmj7o0bujlmlvuo4uq7n4a6nnmlbm19.apps.googleusercontent.com'
 
 const Signin = () => {
 
@@ -68,28 +68,7 @@ const Signin = () => {
   }
 
   useEffect(()=>{
-    /* global google */
 
-
-      // /* global google */
-      // google.accounts.id.initialize({
-      //   client_id:'179356127605-9qg2vbp7neq3fn5f15nd2kmv893f569t.apps.googleusercontent.com',
-      //   callback :handleCallbackResponse 
-      //  });
-      //  google.accounts.id.renderButton(
-      //   document.getElementById("signInDiv"),
-      //   {theme:"outline", size:"large"}
-      //  );
-
-    // function start(){
-    //   gapi.auth2.init({
-
-    //   client_id:clientId,
-    //   scope:'email'
-    //   })
-    // }
-
-    // gapi.load('client:auth2', start);
 
     if(userLoginDetails){
       navigate('/profile')
@@ -213,19 +192,6 @@ const Signin = () => {
           <Button  size='small' startIcon={<Box component='img' src={GoogleLogo} sx={{width:40, height:40}}/>} variant='contained' sx={{backgroundColor:'black', color:'white' , ':hover':{backgroundColor:'black'}}} onClick = {()=>{login()}}>
                 Sign in with Google
           </Button>
-
-         {/* <GoogleLogin
-         id='signInButton'
-         clientId={clientId}
-         onSuccess={onSuccssHandler}
-         onFailure={onFailureHandler}
-         cookiePolicy={'single_host_origin'}
-         theme={'dark'}
-
-         /> */}
-
-        
-
 
         </Box>
         </Box>

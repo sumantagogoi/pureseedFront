@@ -24,7 +24,7 @@ import GoogleLogin from "react-google-login";
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogo from '../assets/Images/googlelogo.png'
 
-const clientId = '596524482789-abvv0m7julusqlfbdhsdfjj61prrs5le.apps.googleusercontent.com'
+const clientId = '60129324500-acmj7o0bujlmlvuo4uq7n4a6nnmlbm19.apps.googleusercontent.com'
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
