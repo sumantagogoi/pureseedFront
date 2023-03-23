@@ -11,7 +11,7 @@ const EditDetailsDialog = ({openDialog, setOpenDialog}) => {
   const [last_name, setLastName] = useState(profile?.last_name)
 
   const updateDetails = async ()=>{
-    const response = await axios.post('https://api.manxho.co.in/api/users/update_details/', {'first_name':first_name, 'last_name':last_name}, {
+    const response = await axios.post('https://api.pureseed.in/api/users/update_details/', {'first_name':first_name, 'last_name':last_name}, {
       headers:{
         'content-type':'application/json',
         'Authorization': `Bearer ${userLoginDetails?.access_token}`

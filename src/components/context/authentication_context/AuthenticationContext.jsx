@@ -27,7 +27,7 @@ export const AuthenticationProvider = ({children})=>{
     }
 
     const getProfile = async(token)=>{
-        const {data} = await axios.get('https://api.manxho.co.in/api/users/profile/', {
+        const {data} = await axios.get('https://api.pureseed.in/api/users/profile/', {
             headers:{
                 'Content-Type':'application/json',
                 'Authorization': `Bearer ${token}`

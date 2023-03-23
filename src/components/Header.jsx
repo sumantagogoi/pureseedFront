@@ -36,7 +36,7 @@ function Header() {
 
  onClick={()=>navigate('/')}
 
-        >Manxho</Typography>
+        >Pureseed</Typography>
         </>): (<>
             <Typography
             component='h2'
@@ -46,7 +46,7 @@ function Header() {
             noWrap
             sx={{flex:1, fontFamily:'Lato', fontWeight:'bold'}}
             onClick={()=>navigate('/')}
-        >Manxho</Typography>
+        >Pureseed</Typography>
         </>)}
         
         

@@ -34,7 +34,7 @@ const PaymentDialog = () => {
 
   const UseUPI = async () => {
     try {
-      const response = await axios.post('https://api.manxho.co.in/api/upi_order/', {
+      const response = await axios.post('https://api.pureseed.in/api/upi_order/', {
         'order_id': orderId,
       }, {
         headers: {
@@ -52,11 +52,11 @@ const PaymentDialog = () => {
   const redirecttoPayment = async () => {
 
 
-    window.location.href = `upi://pay?pa=manxho@icici&pn=Manxho&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`
+    window.location.href = `upi://pay?pa=abhishekchakrabarty28@oksbi&pn=Pureseed&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`
   }
 
   const generateUPIqrcode = () => {
-    let uplink = `upi://pay?pa=manxho@icici&pn=Manxho&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`
+    let uplink = `upi://pay?pa=abhishekchakrabarty28@oksbi&pn=Pureseed&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`
     setQrValue(uplink)
   }
 
@@ -93,7 +93,7 @@ const PaymentDialog = () => {
 
           <Typography sx={{ mt: 2, textAlign: 'center' }}>Or Scan The code with your UPI App</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'center', margin: 4 }}>
-            <QRCode value={`upi://pay?pa=manxho@icici&pn=Manxho&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`} />
+            <QRCode value={`upi://pay?pa=pureseed@icici&pn=Pureseed&cu=INR&am=${orderTotalAmoount}&tn=order-${orderId}`} />
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', }}>
             <Button size='large' variant='contained' endIcon={<PriceCheckIcon />} onClick={() => paymentHandler()} >Paid</Button>

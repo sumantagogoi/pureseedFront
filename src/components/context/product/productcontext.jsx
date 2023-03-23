@@ -38,7 +38,7 @@ export const  ProductContextProvider = ({children}) =>{
     // get all the products from the backend
     const getProducts = async ()=>{
         try {
-            const {data} = await axios.get('https://api.manxho.co.in/api/products/')
+            const {data} = await axios.get('https://api.pureseed.in/api/products/')
             dispatch({
                 type: 'GET_ALL_PRODUCTS',
                 payload: data
@@ -51,7 +51,7 @@ export const  ProductContextProvider = ({children}) =>{
     // Get all the categories from the backend
     const getCategories = async()=>{
         try {
-            const {data} = await axios.get('https://api.manxho.co.in/api/categories/')
+            const {data} = await axios.get('https://api.pureseed.in/api/categories/')
             dispatch({
                 type:'GET_ALL_CATEGORIES',
                 payload:data
@@ -93,7 +93,7 @@ export const  ProductContextProvider = ({children}) =>{
     }
 
     const getAllOrdersByUser = async (token)=>{
-        const {data} = await axios.get('https://api.manxho.co.in/api/users/get_all_orders/', {
+        const {data} = await axios.get('https://api.pureseed.in/api/users/get_all_orders/', {
             headers:{
                 'content-type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -106,7 +106,7 @@ export const  ProductContextProvider = ({children}) =>{
     }
 
     const updateOrder = async (orderId, transactionId, token)=>{
-        const response = await axios.post('https://api.manxho.co.in/api/edit_order/', {'order_id':orderId, "transactionId":transactionId},
+        const response = await axios.post('https://api.pureseed.in/api/edit_order/', {'order_id':orderId, "transactionId":transactionId},
         {
             headers:{
                 'content-type':'application/json',

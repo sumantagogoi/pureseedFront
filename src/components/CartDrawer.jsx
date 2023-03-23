@@ -72,7 +72,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
   const handlePinCodeKeyUp = async (event) => {
     if (pinCode.length === 6) {
       try {
-        const response = await axios.get(`https://api.manxho.co.in/api/check_pincode/${pinCode}/`);
+        const response = await axios.get(`https://api.pureseed.in/api/check_pincode/${pinCode}/`);
         setShippingValue(response.data.state);
         setIsLoading(false);
         setZipcode(pinCode);
@@ -162,7 +162,7 @@ const CartDrawer = ({ showCart, setShowCart }) => {
                     <div key={item._id}>
                       <ListItem>
                         <Avatar
-                          src={`https://api.manxho.co.in${item.image}`}
+                          src={`https://api.pureseed.in${item.image}`}
                           sx={{ width: 60, height: 60 }}
                         />
                         <ListItemText sx={{ ml: 2 }}>{item.name}</ListItemText>

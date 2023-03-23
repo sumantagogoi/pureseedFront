@@ -97,7 +97,7 @@ function LeftDrawer({ open, setOpen }) {
                 <ListItemText primary={"Privacy Policy"} />
               </ListItem>
               <ListItem >
-                <Link target="_blank" href="https://www.manxho.co.in/">
+                <Link target="_blank" href="https://www.pureseed.in/">
                   <ListItemText primary={"Go to Main Site"} />
                 </Link>
               </ListItem>

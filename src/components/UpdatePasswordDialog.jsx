@@ -11,7 +11,7 @@ const UpdatePasswordDialog = ({openUpdateDialog, setOpenUpdateDialog}) => {
 
   const updatePassword = async ()=>{
     try {
-      const response = await axios.post('https://api.manxho.co.in/api/users/update_password/', {'password':password, 'confirm_password':confirm_password},{
+      const response = await axios.post('https://api.pureseed.in/api/users/update_password/', {'password':password, 'confirm_password':confirm_password},{
       headers:{
         'content-type':'application/json',
         'Authorization':`Bearer ${userLoginDetails?.token}`

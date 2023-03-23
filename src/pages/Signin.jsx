@@ -16,7 +16,7 @@ import GoogleLogo from '../assets/Images/googlelogo.png'
 
 
 // const ENDPOINT = process.env.REACT_APP_BASE_URL
-const ENDPOINT = 'https://api.manxho.co.in'
+const ENDPOINT = 'https://api.pureseed.in'
 const clientId = '223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleusercontent.com'
 
 const Signin = () => {
@@ -24,7 +24,7 @@ const Signin = () => {
   const login = useGoogleLogin({
     onSuccess: async(response)=>{
       try {
-         const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.access_token}, {
+         const {data} = await axios.post('https://api.pureseed.in/auth/google_login/', {'access_token':response.access_token}, {
           headers:{
             'content-type': 'application/json'
           }
@@ -53,7 +53,7 @@ const Signin = () => {
   const handleCallbackResponse = async(response)=>{
 
     console.log(response)
-    // const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.credential}, {
+    // const {data} = await axios.post('https://api.pureseed.in/auth/google_login/', {'access_token':response.credential}, {
     //   headers:{
     //     'content-type': 'application/json'
     //   }
@@ -123,7 +123,7 @@ const Signin = () => {
   
   const onSuccssHandler = async (response)=>{
     console.log(response.accessToken)
-    const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.accessToken}, {
+    const {data} = await axios.post('https://api.pureseed.in/auth/google_login/', {'access_token':response.accessToken}, {
       headers:{
         'content-type': 'application/json'
       }

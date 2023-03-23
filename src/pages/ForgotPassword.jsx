@@ -12,7 +12,7 @@ const ForgotPassword = () => {
 
     const handleSubmit = async ()=>{
     try {
-      const response = await axios.post('https://api.manxho.co.in/api/users/forgot_password/', {'email':email}, {
+      const response = await axios.post('https://api.pureseed.in/api/users/forgot_password/', {'email':email}, {
         headers:{
           'content-type': 'application/json'
         }

@@ -25,7 +25,7 @@ const Item = ({ item }) => {
                         <CardMedia
                             component='img'
                             height='160'
-                            image={`https://api.manxho.co.in/${item.image}`}
+                            image={`https://api.pureseed.in/${item.image}`}
                             sx={{ objectFit: 'contain' }}
                         />
                     </CardActionArea>

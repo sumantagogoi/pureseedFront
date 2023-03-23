@@ -19,7 +19,7 @@ const OrderDetail = () => {
   const params = useParams()
 
   const getOrderById = async () => {
-    const { data } = await axios.get(`https://api.manxho.co.in/api/users/order/${params.orderId}`, {
+    const { data } = await axios.get(`https://api.pureseed.in/api/users/order/${params.orderId}`, {
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${userLoginDetails?.access_token}`
@@ -48,7 +48,7 @@ const OrderDetail = () => {
             <ListItem key={item?._id}>
               <ListItemAvatar>
                 <Avatar
-                  src={`https://api.manxho.co.in${item?.image}`}
+                  src={`https://api.pureseed.in${item?.image}`}
                   sx={{ width: 56, height: 56 }}
                 />
               </ListItemAvatar>

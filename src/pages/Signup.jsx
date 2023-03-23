@@ -42,7 +42,7 @@ const Signup = () => {
   const login = useGoogleLogin({
     onSuccess: async(response)=>{
       try {
-         const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.access_token}, {
+         const {data} = await axios.post('https://api.pureseed.in/auth/google_login/', {'access_token':response.access_token}, {
           headers:{
             'content-type': 'application/json'
           }
@@ -84,7 +84,7 @@ const Signup = () => {
       } else {
         setLoading(true)
         const  response  = await axios.post(
-          "https://api.manxho.co.in/api/users/register/",
+          "https://api.pureseed.in/api/users/register/",
           {
             first_name: firstName,
             last_name: lastName,
@@ -116,7 +116,7 @@ const Signup = () => {
 
   const onSuccssHandler = async (response)=>{
     console.log(response.accessToken)
-    const {data} = await axios.post('https://api.manxho.co.in/auth/google_login/', {'access_token':response.accessToken}, {
+    const {data} = await axios.post('https://api.pureseed.in/auth/google_login/', {'access_token':response.accessToken}, {
       headers:{
         'content-type': 'application/json'
       }

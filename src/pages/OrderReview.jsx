@@ -91,7 +91,7 @@ const OrderReview = () => {
         toast.error('Kindly Login First')
        
       }else{
-        const response = await axios.post('https://api.manxho.co.in/api/create_order/',{
+        const response = await axios.post('https://api.pureseed.in/api/create_order/',{
           'orderItems':cartItems,
             'shippingAddress':shippingDetails,
             'shippingPrice':cartItems?.shippingPrice,
@@ -131,7 +131,7 @@ const OrderReview = () => {
   const applyCoupon = async (e)=>{
     
     try {
-      const data = await axios.post('https://api.manxho.co.in/api/validate_coupon/', {"coupon_code":couponCode})
+      const data = await axios.post('https://api.pureseed.in/api/validate_coupon/', {"coupon_code":couponCode})
       console.log(data)
       if(data.request.status === 200){
         setCoupon(data.data)
@@ -175,8 +175,8 @@ const loadScript = (url)=>{
       key:"rzp_live_pTJJDu6eDHbg2w",
       currency:"INR",
       amount : totalAmount *100,
-      name:"Manxho",
-      description : "Thanks For Purchasing From Manxho",
+      name:"Pureseed",
+      description : "Thanks For Purchasing From Pureseed",
   
       
       handler:function(response){
@@ -219,7 +219,7 @@ const loadScript = (url)=>{
              <ListItem key={item._id}>
                <ListItemAvatar>
                 <Avatar 
-                src={`https://api.manxho.co.in${item.image}`}
+                src={`https://api.pureseed.in${item.image}`}
                 sx={{width:56, height:56}}
                 />
                </ListItemAvatar>
@@ -258,7 +258,7 @@ const loadScript = (url)=>{
            </ListItem>
         
            <ListItem sx={{justifyContent:'flex-end'}}>
-            <Typography sx={{mr: 2, fontSize: 13}}>Use Coupon MANXHO for 3% Discount!</Typography>
+            <Typography sx={{mr: 2, fontSize: 13}}>Use Coupon PURESEED for 2% Discount!</Typography>
            <TextField
              label='Coupon'
              id='coupon'
