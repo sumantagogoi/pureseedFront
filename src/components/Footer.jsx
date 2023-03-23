@@ -11,6 +11,10 @@ const Footer = () => {
         <img src={fssai} alt="" />
       </Box>
 
+      <Box sx={{ display: 'flex', textAlign:'center', justifyContent: 'center', mt: 0, width: '100%' }}>
+        <Typography sx={{ textDecoration: 'none' }}>LIC 2222222222</Typography>
+      </Box>
+
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: '20px', mt: 2 , pb: 2, width: '100%' }}>
         <Typography onClick={() => navigate('')} sx={{ cursor: 'pointer', textDecoration: 'none' }}>Refunds And Cancellation</Typography>
         <Typography onClick={() => navigate('')} sx={{ cursor: 'pointer' }}>Terms And Condition</Typography>

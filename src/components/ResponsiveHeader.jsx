@@ -6,8 +6,8 @@ import { useTheme } from '@mui/material/styles';
 import LeftDrawer from './LeftDrawer'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/Images/logo.png'
-import textlogowhite from '../assets/Images/manxho-logo-tm.png'
+import logo from '../assets/Images/pureseed2.png'
+import textlogowhite from '../assets/Images/pureseed2.png'
 import AuthenticationContext from './context/authentication_context/AuthenticationContext';
 import ProductContext from './context/product/productcontext';
 import { useContext } from 'react';
@@ -72,9 +72,6 @@ const ResponsiveHeader = () => {
            
            <Box component='img' onClick={()=>window.location ='https://pureseed.in'}  src={textlogowhite} sx={{height:50, m:2, cursor:'pointer'}}/>
 
-            <Typography onClick={()=>navigate('/')} variant='h4' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:20, color:'inherit'}}>
-                Local . Hygienic . Fresh
-            </Typography>
             
             <Button onClick={()=>navigate('/')} size='large' color='inherit' sx={{marginLeft:'auto'}}>Home</Button>
             
