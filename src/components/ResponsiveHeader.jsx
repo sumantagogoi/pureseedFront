@@ -54,9 +54,9 @@ const ResponsiveHeader = () => {
             </IconButton>
             <Box sx={{ml:'auto', display:'flex', flexDirection:'column',}}>
                 <Box component='img' onClick={()=>window.location ='https://pureseed.in'} src={textlogowhite} sx={{height:45, cursor:'pointer' }}/>
-                <Typography onClick={()=>navigate('/')} variant='h4' align='center' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:13, mb:1, color:'inherit'}}>
+                {/* <Typography onClick={()=>navigate('/')} variant='h4' align='center' sx={{ flexGrow:1, fontFamily:'Lato', fontSize:13, mb:1, color:'inherit'}}>
                 Local . Hygienic . Fresh
-                 </Typography>
+                 </Typography> */}
             </Box>
                
             <IconButton onClick={()=>setShowCart(!showCart)} sx={{marginLeft:'auto'}} >

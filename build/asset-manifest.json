@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.894d299e.css",
-    "main.js": "/static/js/main.6276471b.js",
+    "main.js": "/static/js/main.14df9537.js",
     "static/media/pureseed2.png": "/static/media/pureseed2.9db12c00886d521a674c.png",
     "static/media/logo.png": "/static/media/logo.9c0e38da620123fa1b1d.png",
     "static/media/googlelogo.png": "/static/media/googlelogo.55d364d67e794adbf74b.png",
     "static/media/upi.jpg": "/static/media/upi.6f036d9e2d42e8533e3c.jpg",
     "index.html": "/index.html",
     "main.894d299e.css.map": "/static/css/main.894d299e.css.map",
-    "main.6276471b.js.map": "/static/js/main.6276471b.js.map"
+    "main.14df9537.js.map": "/static/js/main.14df9537.js.map"
   },
   "entrypoints": [
     "static/css/main.894d299e.css",
-    "static/js/main.6276471b.js"
+    "static/js/main.14df9537.js"
   ]
 }
