@@ -23,7 +23,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <>
-    <GoogleOAuthProvider clientId="60129324500-acmj7o0bujlmlvuo4uq7n4a6nnmlbm19.apps.Pureseedcontent.com">
+    <GoogleOAuthProvider clientId="60129324500-acmj7o0bujlmlvuo4uq7n4a6nnmlbm19.apps.googleusercontent.com">
         <ThemeProvider theme={darkTheme}>
           
           <CssBaseline/>
