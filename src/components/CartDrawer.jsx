@@ -93,7 +93,8 @@ const CartDrawer = ({ showCart, setShowCart }) => {
       setIsMore300(true);
     }
     else {
-      setIsMore300(false);
+      //setIsMore300(false);
+      setIsMore300(true);
     }
   }, [cartItems?.subTotal]
   );
