@@ -11,9 +11,6 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 
-
-
-
 const darkTheme = createTheme({
   palette: {
     mode:'dark',
@@ -26,7 +23,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <>
-    <GoogleOAuthProvider clientId="223463553527-uqsr5qhircsi2lunolb0mg92730a2fji.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="60129324500-acmj7o0bujlmlvuo4uq7n4a6nnmlbm19.apps.Pureseedcontent.com">
         <ThemeProvider theme={darkTheme}>
           
           <CssBaseline/>
